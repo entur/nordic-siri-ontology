@@ -29,7 +29,8 @@ conventions, data ownership), which belong in downstream repositories that
 import this foundation via `owl:imports` or as a git submodule.
 
 ```
-siri.ttl                ← SIRI base model + Nordic SIRI Profile (this repo)
+siri.ttl                ← SIRI base vocabulary (unofficial placeholder, pending CEN)
+siri-nordic.ttl         ← Nordic SIRI Profile (this repo)
 ```
 
 **Design principle:** Any layer built on top can tighten constraints (via
@@ -43,12 +44,22 @@ here as bridging links; the canonical NeTEx definitions live in
 
 | File | Contents |
 |------|----------|
-| `siri.ttl` | OWL classes for SIRI services (ET, SX, VM, FM), shared objects (EstimatedVehicleJourney, EstimatedCall, VehicleActivity, PtSituationElement, …), enumerations, key element specifications, communication patterns, NeTEx bridges, and Transmodel alignment. |
+| `siri.ttl` | **Unofficial placeholder** for a SIRI base vocabulary. There is no canonical CEN-published SIRI ontology yet; this file only reserves the `https://siri-cen.eu/ontology#` namespace and the base slot in the two-file layout until CEN provides one. |
+| `siri-nordic.ttl` | The Nordic SIRI Profile: OWL classes for SIRI services (ET, SX, VM, FM), shared objects (EstimatedVehicleJourney, EstimatedCall, VehicleActivity, PtSituationElement, …), enumerations, key element specifications, executable SHACL profile-constraint shapes (`profile:NSP_*`), communication patterns, NeTEx bridges, and Transmodel alignment. |
+
+This mirrors [`nordic-netex-ontology`](https://github.com/entur/nordic-netex-ontology)'s
+`netex.ttl` + `netex-nordic.ttl` split. Note that **neither standard has an
+official, up-to-date base ontology** — CEN publishes no canonical RDF/OWL for
+SIRI or NeTEx. The only existing formal source is an old, outdated Transmodel
+ontology. Both `siri.ttl` and NeTEx's `netex.ttl` are therefore placeholders,
+and the `-nordic.ttl` profile files currently self-contain the base terms they
+need until canonical CEN ontologies exist.
 
 ## Content overview
 
 | Section | What it holds |
 |---------|---------------|
+| Vocabulary declarations | Ontology declaration plus typed definitions of every custom `siri:`/`doc:`/`profile:` term (meta-classes and properties), following `nordic-netex-ontology`'s reuse-before-invention principle |
 | Profile | `profile:NordicSIRI` (NSP) — Nordic localisation of SIRI 2.0 (CEN/TS 15531) |
 | Relationship to NeTEx | Bridging references to planned NeTEx objects (Line, Route, ServiceJourney, Quay, StopPlace, DatedServiceJourney, …) via `skos:exactMatch`/`closeMatch` |
 | Data governance | Real-time producer vs. central aggregator (Entur) roles |
@@ -56,6 +67,7 @@ here as bridging links; the canonical NeTEx definitions live in
 | Shared objects | The core real-time objects and their properties |
 | Enumerations | Controlled vocabularies (occupancy, alteration, progress, …) |
 | Key element specifications | Element-level detail (cardinality, semantics) |
+| Profile constraints | Executable SHACL shapes (`profile:NSP_{ObjectName}Shape`) enforcing NSP rules beyond XSD |
 | Communication patterns | Request/response and publish/subscribe patterns |
 | Transmodel alignment | `skos:exactMatch`/`closeMatch` to Transmodel concepts |
 
@@ -64,9 +76,10 @@ here as bridging links; the canonical NeTEx definitions live in
 Downstream layers can import and build on top without modifying this repository:
 
 ```
-siri.ttl                           ← Base + Nordic Profile (this repo)
-└─ siri-entur.ttl                  ← Entur governance + service sub-profiles
-   └─ <service>.ttl                ← Per-service constraints (Anshar ET/VM/SX, …)
+siri.ttl                           ← SIRI base vocabulary (placeholder, pending CEN)
+└─ siri-nordic.ttl                 ← Nordic SIRI Profile (this repo)
+   └─ siri-entur.ttl               ← Entur governance + service sub-profiles
+      └─ <service>.ttl             ← Per-service constraints (Anshar ET/VM/SX, …)
 ```
 
 Each layer can:
@@ -74,32 +87,36 @@ Each layer can:
 - **Extend** — Define new classes, references, or domain properties
 - **Link** — Reference URIs from this repo in your own shapes and rules
 
-## Planned work (quality)
+## Quality & constraints
 
-This ontology currently expresses Nordic Profile constraints as **prose**
-(`rdfs:comment "Mandatory in Nordic Profile"`, `siri:description "… mandatory …"`).
-The primary quality task — mirroring how `nordic-netex-ontology` works — is to
-express these as **executable SHACL shapes** so validation tools can run them
-directly:
+Nordic Profile constraints are expressed as **executable SHACL shapes**
+(`profile:NSP_{ObjectName}Shape`, mirroring NeTEx's `profile:NP_{ClassName}Shape`),
+so validation tools (pySHACL, Apache Jena, TopBraid) can run them directly:
 
-| Constraint | SHACL expression | Example |
-|------------|------------------|---------|
-| Excluded | `sh:maxCount 0` | Element not used in the Nordic SIRI Profile |
-| Allowed | `sh:maxCount 1` | Optional element |
-| Required | `sh:minCount 1; sh:maxCount 1` | Element the profile requires |
-| Type check | `sh:class` | Reference must point to the correct class |
+| Constraint | SHACL expression | Example (NSP) |
+|------------|------------------|---------------|
+| Required | `sh:minCount 1; sh:maxCount 1` | `Source`, `Affects` mandatory on `PtSituationElement` |
+| Fixed value | `sh:hasValue` | `IsCompleteStopSequence` = `true` (ET) / `false` (VM) |
+| Enumerated | `sh:in ( … )` | `Progress` restricted to `open`/`closed` |
+| Format | `sh:pattern` | `SituationNumber` = `CODESPACE:SituationNumber:ID` |
+| Length | `sh:maxLength` | `Summary` ≤ 160 characters |
+| Exclusive choice | `sh:xone` | exactly one of `FramedVehicleJourneyRef` / `VehicleJourneyRef` |
 
-Suggested shape naming: `profile:NSP_{ObjectName}Shape` (mirrors NeTEx's
-`profile:NP_{ClassName}Shape`). A natural follow-up is to split `siri.ttl` into
-a base vocabulary file plus a `siri-nordic.ttl` SHACL file, matching NeTEx's
-`netex.ttl` + `netex-nordic.ttl` two-file layout.
+Each shape's `sh:path` points to a named element path (`siri:{Class}_{Element}`),
+keeping every constraint traceable to a base-schema element. Conditional rules
+that need SPARQL logic (e.g. SX-001 closing windows, SX-009 mode/submode
+pairing) are retained as `rdfs:comment` on the relevant shape.
+
+**Remaining follow-ups:** express the conditional rules as `sh:sparql`
+constraints, and — once CEN publishes an official SIRI base ontology — replace
+the `siri.ttl` placeholder with (or align it to) that source.
 
 ## Technology
 
 | Vocabulary | Role |
 |------------|------|
 | RDF/OWL | Classes and properties |
-| SHACL | Profile constraints as validatable shapes (planned) |
+| SHACL | Profile constraints as executable validation shapes |
 | SKOS | Definitions, notation, and cross-vocabulary mapping |
 | Turtle (.ttl) | Serialisation format |
 
@@ -110,7 +127,9 @@ a base vocabulary file plus a `siri-nordic.ttl` SHACL file, matching NeTEx's
 | `siri:` | `https://siri-cen.eu/ontology#` |
 | `profile:` | `https://siri-cen.eu/profile#` |
 | `doc:` | `https://siri-cen.eu/doc#` |
+| `sh:` | `http://www.w3.org/ns/shacl#` |
 | `netex:` | `https://netex-cen.eu/ontology#` |
+| `dcterms:` | `http://purl.org/dc/terms/` |
 | `tm-commons:` | `https://w3id.org/transmodel/commons#` |
 | `tm-journeys:` | `https://w3id.org/transmodel/journeys#` |
 | `tm-fac:` | `https://w3id.org/transmodel/facilities#` |
