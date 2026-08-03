@@ -4,9 +4,8 @@ Machine-readable ontology for the SIRI standard and the Nordic SIRI Profile.
 Models services, objects, relationships, enumerations, and profile constraints
 as RDF/OWL in Turtle format.
 
-> **Status:** Prep / personal area. This is the extracted, dedicated ontology
-> layer for the Nordic SIRI Profile. It is being refined here before being
-> promoted to an Entur-org repository. It mirrors the split used for NeTEx,
+> **Status:** Active. The dedicated ontology layer for the Nordic SIRI Profile,
+> maintained in the Entur organisation. It mirrors the split used for NeTEx,
 > where [`nordic-netex-ontology`](https://github.com/entur/nordic-netex-ontology)
 > is the dedicated ontology, separate from the documentation repository.
 
@@ -137,10 +136,9 @@ the `siri.ttl` placeholder with (or align it to) that source.
 
 ## Source
 
-The ontology is derived from the Nordic SIRI Profile documentation in
-[`profile-documentation-siri`](https://github.com/hfjelstad/Profile_Documentation_SIRI)
-(`Services/`, `Objects/`, `Guides/`), where `LLM/siri-ontology.ttl` is the
-generated superset this file was extracted from.
+The ontology is derived from the Nordic SIRI Profile documentation
+(`Services/`, `Objects/`, `Guides/`), from which the classes, references,
+enumerations, and profile constraints modelled here were extracted.
 
 ## Further reading
 
