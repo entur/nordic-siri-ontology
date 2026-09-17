@@ -1,0 +1,364 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:EstimatedTimetableCapabilitiesResponse a owl:Class ;
+    rdfs:label "EstimatedTimetableCapabilitiesResponse" ;
+    rdfs:subClassOf siri:EstimatedTimetableCapabilitiesResponseStructure ;
+    siri:xsdElement true .
+
+siri:EstimatedTimetableCapabilityRequestPolicyStructure a owl:Class ;
+    rdfs:label "EstimatedTimetableCapabilityRequestPolicy" ;
+    rdfs:comment "Type for Estimated Timetable Capability Request Policy." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:foreignJourneysOnly ;
+            siri:xsdSequenceOrder 1 ],
+        siri:CapabilityRequestPolicyStructure .
+
+siri:EstimatedTimetableDeliveriesStructure a owl:Class ;
+    rdfs:label "EstimatedTimetableDeliveries" ;
+    rdfs:comment "Type for Deliveries for Real-time Timetable Service. Used in WSDL." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableDelivery ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:EstimatedTimetableDelivery a owl:Class ;
+    rdfs:label "EstimatedTimetableDelivery" ;
+    rdfs:subClassOf siri:EstimatedTimetableDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:EstimatedTimetableDetailEnumeration a rdfs:Datatype ;
+    rdfs:label "EstimatedTimetableDetailEnumeration" ;
+    rdfs:comment "Detail Levels for Estimated Timetable Request." ;
+    owl:oneOf ( "minimum" "basic" "normal" "calls" "full" ) .
+
+siri:EstimatedTimetableRequest a owl:Class ;
+    rdfs:label "EstimatedTimetableRequest" ;
+    rdfs:subClassOf siri:EstimatedTimetableRequestStructure ;
+    siri:xsdElement true .
+
+siri:EstimatedTimetableServiceCapabilities a owl:Class ;
+    rdfs:label "EstimatedTimetableServiceCapabilities" ;
+    rdfs:subClassOf siri:EstimatedTimetableServiceCapabilitiesStructure ;
+    siri:xsdElement true .
+
+siri:EstimatedTimetableSubscriptionRequest a owl:Class ;
+    rdfs:label "EstimatedTimetableSubscriptionRequest" ;
+    rdfs:subClassOf siri:EstimatedTimetableSubscriptionStructure ;
+    siri:xsdElement true .
+
+siri:EstimatedVersionFrameStructure a owl:Class ;
+    rdfs:label "EstimatedVersionFrame" ;
+    rdfs:comment "Type for version frame structure." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:versionRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedVehicleJourney ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:estimatedServiceJourneyInterchange ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractItemStructure .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/et> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "SIRI Estimated Timetable (ET)" ;
+    owl:imports <https://siri-cen.eu/ontology/model> ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:EstimatedTimetableCapabilitiesResponseStructure a owl:Class ;
+    rdfs:label "EstimatedTimetableCapabilitiesResponse" ;
+    rdfs:comment "Type for Delivery for Estimated Timetable Capability." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableServiceCapabilities ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetablePermissions ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractServiceCapabilitiesResponseStructure .
+
+siri:EstimatedTimetableDeliveryStructure a owl:Class ;
+    rdfs:label "EstimatedTimetableDelivery" ;
+    rdfs:comment "Type for Delivery for Real-time Timetable Service." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedJourneyVersionFrame ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractServiceDeliveryStructure .
+
+siri:EstimatedTimetableRequestStructure a owl:Class ;
+    rdfs:label "EstimatedTimetableRequest" ;
+    rdfs:comment "Type for Type for Functional Service Request for Estimated Timetable." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:previewInterval ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeInterchanges ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeJourneyRelations ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeTrainFormations ;
+            siri:xsdSequenceOrder 12 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableDetailLevel ;
+            siri:xsdSequenceOrder 13 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 14 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:timetableVersionRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:operatorRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lines ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:vehicleMode ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:productCategoryRef ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:stopPointRef ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeTranslations ;
+            siri:xsdSequenceOrder 9 ],
+        siri:AbstractFunctionalServiceRequestStructure .
+
+siri:EstimatedTimetableServiceCapabilitiesStructure a owl:Class ;
+    rdfs:label "EstimatedTimetableServiceCapabilities" ;
+    rdfs:comment "Type for Estimated Timetable Capabilities." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:topicFiltering ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:requestPolicy ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:subscriptionPolicy ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:accessControl ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 5 ],
+        siri:AbstractCapabilitiesStructure .
+
+siri:EstimatedTimetableSubscriptionStructure a owl:Class ;
+    rdfs:label "EstimatedTimetableSubscription" ;
+    rdfs:comment "Subscription Request for the Estimated Timetable Service." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableRequest ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:incrementalUpdates ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:changeBeforeUpdates ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:skipRecordedCallUpdates ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeOnlyRecordedCallUpdates ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 6 ],
+        siri:AbstractSubscriptionStructure .
+
+siri:accessControl a owl:ObjectProperty ;
+    rdfs:label "AccessControl" ;
+    rdfs:comment "Optional Access control capabilities." ;
+    siri:xsdType "ConnectionCapabilityAccessControlStructure" .
+
+siri:changeBeforeUpdates a owl:DatatypeProperty ;
+    rdfs:label "ChangeBeforeUpdates" ;
+    rdfs:comment "The amount of change to the arrival or departure time that can happen before an update is sent (i.e. if ChangeBeforeUpdate is set to 2 minutes, the subscriber will not be told that a timetable is changed by 30 seconds - an update will only be sent when the timetable is changed by at least least 2 minutes. (OPtional from SIRI 2.0)" ;
+    siri:xsdType "DurationType" .
+
+siri:estimatedJourneyVersionFrame a owl:ObjectProperty ;
+    rdfs:label "EstimatedJourneyVersionFrame" ;
+    rdfs:comment "Estimated Journeys of a common TIMETABLE VERSION FRAME, grouped by timetable version." ;
+    siri:xsdType "EstimatedVersionFrameStructure" .
+
+siri:estimatedServiceJourneyInterchange a owl:DatatypeProperty ;
+    rdfs:label "EstimatedServiceJourneyInterchange" ;
+    rdfs:comment "Connection parameters for a monitored SERVICE JOURNEY INTERCHANGE between a feeder and distributor journey. SIRI 2.0" .
+
+siri:estimatedTimetableDelivery a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableDelivery" .
+
+siri:estimatedTimetableDetailLevel a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableDetailLevel" ;
+    rdfs:comment "Level of detail to include in response. Default is 'normal'. (SIRI 2.0)" ;
+    siri:xsdType "EstimatedTimetableDetailEnumeration" .
+
+siri:estimatedTimetablePermissions a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetablePermissions" .
+
+siri:estimatedTimetableRequest a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableRequest" .
+
+siri:estimatedTimetableServiceCapabilities a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableServiceCapabilities" .
+
+siri:estimatedVehicleJourney a owl:DatatypeProperty ;
+    rdfs:label "EstimatedVehicleJourney" .
+
+siri:foreignJourneysOnly a owl:DatatypeProperty ;
+    rdfs:label "ForeignJourneysOnly" ;
+    rdfs:comment "Whether results returns foreign journeys only." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:includeInterchanges a owl:DatatypeProperty ;
+    rdfs:label "IncludeInterchanges" .
+
+siri:includeJourneyRelations a owl:DatatypeProperty ;
+    rdfs:label "IncludeJourneyRelations" .
+
+siri:includeOnlyRecordedCallUpdates a owl:DatatypeProperty ;
+    rdfs:label "IncludeOnlyRecordedCallUpdates" ;
+    rdfs:comment "Indicates whether ONLY actual arrival-/departure times should be delivered. In other words, whether all updates related to ESTIMATED CALL should be skipped. (since SIRI 2.1) - 'false': Specifies that the data producer should transmit ESTIMATED and RECORDED CALL data as an incremental update immediately after an event occurs (with hysteresis taken into account) as is generally the case. The server will automatically proceed with 'false' if capability is not supported. - 'true': Can be requested if a consumer system is only interested in the actual times / recorded events because it only wants to check the performance for example. 'true' specifies that the data producer should only deliver RECORDED CALL udpates and skip ESTIMATED CALL updates (if capability is supported after all), i.e., deliver ESTIMATED CALL updates only with the next RECORDED CALL update. - No specification: Default value 'false' applies (don't skip updates of estimated data)." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:includeTrainFormations a owl:DatatypeProperty ;
+    rdfs:label "IncludeTrainFormations" .
+
+siri:includeTranslations a owl:DatatypeProperty ;
+    rdfs:label "IncludeTranslations" .
+
+siri:incrementalUpdates a owl:DatatypeProperty ;
+    rdfs:label "IncrementalUpdates" ;
+    rdfs:comment "Whether the producer should return the complete set of data, or only provide updates to the previously returned data i.e. changes to the expected deviation (delay or early time). Default is 'true'. If true only changes at the first stop will be returned and the client must interpolate the If false each subscription response will contain the full information as specified in this request (+(since SIRI 2.0))." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:language a owl:DatatypeProperty ;
+    rdfs:label "Language" ;
+    rdfs:comment "Preferred languages in which to return text values." ;
+    siri:xsdType "xsd:language" .
+
+siri:lines a owl:DatatypeProperty ;
+    rdfs:label "Lines" ;
+    rdfs:comment "Filter the results to include only VEHICLEs along the given LINEs." .
+
+siri:operatorRef a owl:ObjectProperty ;
+    rdfs:label "OperatorRef" ;
+    rdfs:comment "Filter the results to include journeys for only the specified OPERATORs." ;
+    siri:isReference true ;
+    siri:xsdType "OperatorRefStructure" .
+
+siri:previewInterval a owl:DatatypeProperty ;
+    rdfs:label "PreviewInterval" ;
+    rdfs:comment "Forward duration for which journeys should be included. For subscriptions, this duration is a continuously rolling window from the present time. For immediate requests, this duration is measured from the time of the request." ;
+    siri:xsdType "PositiveDurationType" .
+
+siri:productCategoryRef a owl:ObjectProperty ;
+    rdfs:label "ProductCategoryRef" ;
+    rdfs:comment "Filter the results to include only journeys of the specified TYPE OF PRODUCT CATEGORY. (since SIRI 2.1)" ;
+    rdfs:range siri:ProductCategory ;
+    siri:isReference true ;
+    siri:xsdType "ProductCategoryRefStructure" .
+
+siri:requestPolicy a owl:DatatypeProperty ;
+    rdfs:label "RequestPolicy" ;
+    rdfs:comment "Request Policy capabilities." .
+
+siri:skipRecordedCallUpdates a owl:DatatypeProperty ;
+    rdfs:label "SkipRecordedCallUpdates" ;
+    rdfs:comment "Indicates whether actual arrival-/departure times should be delivered as incremental updates, i.e. whether RECORDED CALL updates are transmitted immediately after an event occurs. (since SIRI 2.1) - 'false': Specifies that the data producer should transmit RECORDED CALL data, in particular actual arrival-/departure information as an incremental update immediately after an event occurs (with hysteresis taken into account) as is generally the case. The server will automatically proceed with 'false' if capability is not supported. - 'true': Can be requested if the data traffic is to be reduced and an immediate transmissions is not required in any of the consumer systems. 'true' specifies that the data producer should skip RECORDED CALL updates (if capability is supported after all), i.e., deliver them with the next update instead. - No specification: Default value 'false' applies (don't skip updates of recorded data)." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:stopPointRef a owl:ObjectProperty ;
+    rdfs:label "StopPointRef" ;
+    rdfs:comment "Filter the results to include only journeys with a CALL at the specified STOP POINT. (since SIRI 2.1)" ;
+    siri:isReference true ;
+    siri:xsdType "StopPointRefStructure" .
+
+siri:subscriptionPolicy a owl:ObjectProperty ;
+    rdfs:label "SubscriptionPolicy" ;
+    rdfs:comment "Subscription Policy capabilities." ;
+    siri:xsdType "CapabilitySubscriptionPolicyStructure" .
+
+siri:timetableVersionRef a owl:ObjectProperty ;
+    rdfs:label "TimetableVersionRef" ;
+    rdfs:comment "Communicate only differences to the timetable specified by this version of the timetable." ;
+    siri:isReference true ;
+    siri:xsdType "VersionRefStructure" .
+
+siri:topicFiltering a owl:DatatypeProperty ;
+    rdfs:label "TopicFiltering" ;
+    rdfs:comment "Filtering Capabilities." .
+
+siri:vehicleMode a owl:DatatypeProperty ;
+    rdfs:label "VehicleMode" ;
+    rdfs:comment "Filter the results to include only journeys of the specified VEHICLE MODE. (since SIRI 2.1)" ;
+    siri:xsdType "VehicleModesEnumeration" .
+
+siri:versionRef a owl:ObjectProperty ;
+    rdfs:label "VersionRef" ;
+    siri:isReference true .
+
+siri:extensions a owl:DatatypeProperty ;
+    rdfs:label "Extensions" .
+

@@ -1,0 +1,500 @@
+## -----------------------------------------------------------------
+## Nordic SIRI Profile — Baseline (positive membership allowlist)
+## -----------------------------------------------------------------
+## ROLE: The positive layer of the profile — which SIRI classes and
+##       fields are *in* the Nordic SIRI Profile, with cardinality,
+##       governing scope and provenance. Complements siri-nordic.ttl,
+##       whose rules encode where the profile *tightens* the base.
+##
+## Seeded once from the curated service catalogue and element
+## specifications in siri-nordic-model.ttl (in turn projected from the
+## Nordic SIRI Profile documentation Table_*.md files). Every field is
+## nordic:Baseline (established profile content, no decision ID). From
+## here the profile inherits from CCB decisions — a change flips a
+## field's provenance from nordic:Baseline to nordic:decision
+## "SIRI-xxxx". This file is not regenerated from documentation; the
+## seed is a one-time bootstrap aid.
+##
+## Scope legend:
+##   profile:NordicSIRI     — in the common Nordic SIRI Profile (ET, SX, VM)
+##   profile:EnturExtension — documented but outside NSP v1.1 scope (FM)
+##
+## CLASS BINDING (applied): nordic:onClass / nordic:inProfile point at the
+## real generated base IRI — the global element class where SIRI declares
+## one (siri:EstimatedVehicleJourney), else the XSD complexType
+## (siri:MonitoredVehicleJourneyStructure). The wire element name a message
+## actually uses is kept in nordic:element (and in each nordic:path). This
+## bridges the message-element view to the type-based base and mints nothing
+## in the CEN-owned siri: namespace. The same binding is applied across
+## siri-nordic-model.ttl; siri-nordic.ttl references elements as strings only.
+##
+## Imports: siri-nordic-vocab.ttl (nordic:, profile:)
+## -----------------------------------------------------------------
+
+@prefix siri:    <https://siri-cen.eu/ontology#> .
+@prefix nordic:  <https://siri-cen.eu/nordic#> .
+@prefix profile: <https://siri-cen.eu/profile#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://siri-cen.eu/profile/nordic-siri-baseline> a owl:Ontology ;
+    rdfs:label "Nordic SIRI Profile — Baseline" ;
+    rdfs:comment "Positive membership allowlist for the Nordic SIRI Profile, seeded from siri-nordic-model.ttl. Base snapshot: SIRI v2.2 (generator v2.2-6-g7b1463b)." ;
+    owl:imports <https://siri-cen.eu/nordic> .
+
+## =================================================================
+## SHARED CONTAINERS
+## =================================================================
+
+## --- ServiceDelivery (NordicSIRI) ---
+siri:ServiceDelivery nordic:inProfile profile:NordicSIRI ;
+    nordic:provenance nordic:Baseline .
+
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:ServiceDelivery ;
+    nordic:element "ResponseTimestamp" ;
+    nordic:path "ServiceDelivery/ResponseTimestamp" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:ServiceDelivery ;
+    nordic:element "ProducerRef" ;
+    nordic:path "ServiceDelivery/ProducerRef" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+
+## =================================================================
+## SIRI-ET — Estimated Timetable (NordicSIRI)
+## =================================================================
+
+## --- EstimatedTimetableDelivery (NordicSIRI) ---
+siri:EstimatedTimetableDelivery nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:provenance nordic:Baseline .
+
+## --- EstimatedJourneyVersionFrame (NordicSIRI) ---
+siri:EstimatedVersionFrameStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "EstimatedJourneyVersionFrame" ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:provenance nordic:Baseline .
+
+## --- EstimatedVehicleJourney (NordicSIRI) ---
+siri:EstimatedVehicleJourney nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:provenance nordic:Baseline .
+
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedVehicleJourney ;
+    nordic:element "RecordedAtTime" ;
+    nordic:path "EstimatedVehicleJourney/RecordedAtTime" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedVehicleJourney ;
+    nordic:element "DirectionRef" ;
+    nordic:path "EstimatedVehicleJourney/DirectionRef" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedVehicleJourney ;
+    nordic:element "Cancellation" ;
+    nordic:path "EstimatedVehicleJourney/Cancellation" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedVehicleJourney ;
+    nordic:element "ExtraJourney" ;
+    nordic:path "EstimatedVehicleJourney/ExtraJourney" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedVehicleJourney ;
+    nordic:element "DataSource" ;
+    nordic:path "EstimatedVehicleJourney/DataSource" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedVehicleJourney ;
+    nordic:element "IsCompleteStopSequence" ;
+    nordic:path "EstimatedVehicleJourney/IsCompleteStopSequence" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedVehicleJourney ;
+    nordic:element "Monitored" ;
+    nordic:path "EstimatedVehicleJourney/Monitored" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedVehicleJourney ;
+    nordic:element "Occupancy" ;
+    nordic:path "EstimatedVehicleJourney/Occupancy" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+
+## --- EstimatedCall (NordicSIRI) ---
+siri:EstimatedCall nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:provenance nordic:Baseline .
+
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "Order" ;
+    nordic:path "EstimatedCall/Order" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "Cancellation" ;
+    nordic:path "EstimatedCall/Cancellation" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "RequestStop" ;
+    nordic:path "EstimatedCall/RequestStop" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "AimedArrivalTime" ;
+    nordic:path "EstimatedCall/AimedArrivalTime" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "ExpectedArrivalTime" ;
+    nordic:path "EstimatedCall/ExpectedArrivalTime" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "ArrivalStatus" ;
+    nordic:path "EstimatedCall/ArrivalStatus" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "AimedDepartureTime" ;
+    nordic:path "EstimatedCall/AimedDepartureTime" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "ExpectedDepartureTime" ;
+    nordic:path "EstimatedCall/ExpectedDepartureTime" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:EstimatedCall ;
+    nordic:element "DepartureStatus" ;
+    nordic:path "EstimatedCall/DepartureStatus" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+
+## --- RecordedCall (NordicSIRI) ---
+siri:RecordedCall nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:provenance nordic:Baseline .
+
+## --- StopAssignment (NordicSIRI) — ArrivalStopAssignment / DepartureStopAssignment ---
+siri:StopAssignmentStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "StopAssignment" ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:provenance nordic:Baseline .
+
+## --- JourneyRelations (NordicSIRI) ---
+siri:JourneyRelationsStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "JourneyRelations" ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:provenance nordic:Baseline .
+
+## =================================================================
+## SIRI-VM — Vehicle Monitoring (NordicSIRI)
+## =================================================================
+
+## --- VehicleMonitoringDelivery (NordicSIRI) ---
+siri:VehicleMonitoringDelivery nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:provenance nordic:Baseline .
+
+## --- VehicleActivity (NordicSIRI) ---
+siri:VehicleActivityStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "VehicleActivity" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:provenance nordic:Baseline .
+
+## --- MonitoredVehicleJourney (NordicSIRI) ---
+siri:MonitoredVehicleJourneyStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "MonitoredVehicleJourney" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:provenance nordic:Baseline .
+
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:MonitoredVehicleJourneyStructure ;
+    nordic:element "Delay" ;
+    nordic:path "MonitoredVehicleJourney/Delay" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:MonitoredVehicleJourneyStructure ;
+    nordic:element "VehicleRef" ;
+    nordic:path "MonitoredVehicleJourney/VehicleRef" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:MonitoredVehicleJourneyStructure ;
+    nordic:element "Bearing" ;
+    nordic:path "MonitoredVehicleJourney/Bearing" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:MonitoredVehicleJourneyStructure ;
+    nordic:element "Velocity" ;
+    nordic:path "MonitoredVehicleJourney/Velocity" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:MonitoredVehicleJourneyStructure ;
+    nordic:element "DataSource" ;
+    nordic:path "MonitoredVehicleJourney/DataSource" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:MonitoredVehicleJourneyStructure ;
+    nordic:element "IsCompleteStopSequence" ;
+    nordic:path "MonitoredVehicleJourney/IsCompleteStopSequence" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:MonitoredVehicleJourneyStructure ;
+    nordic:element "InCongestion" ;
+    nordic:path "MonitoredVehicleJourney/InCongestion" ;
+    nordic:cardinality "0..1" ;
+    nordic:provenance nordic:Baseline .
+
+## --- VehicleLocation (NordicSIRI) — typed by siri:LocationStructure ---
+siri:LocationStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "VehicleLocation" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:provenance nordic:Baseline .
+
+## --- MonitoredCall (NordicSIRI) ---
+siri:MonitoredCallStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "MonitoredCall" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:provenance nordic:Baseline .
+
+## --- ProgressBetweenStops (NordicSIRI) ---
+siri:ProgressBetweenStopsStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "ProgressBetweenStops" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:provenance nordic:Baseline .
+
+## =================================================================
+## SIRI-SX — Situation Exchange (NordicSIRI)
+## =================================================================
+
+## --- SituationExchangeDelivery (NordicSIRI) ---
+siri:SituationExchangeDelivery nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- PtSituationElement (NordicSIRI) ---
+siri:PtSituationElement nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "CreationTime" ;
+    nordic:path "PtSituationElement/CreationTime" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "ParticipantRef" ;
+    nordic:path "PtSituationElement/ParticipantRef" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "SituationNumber" ;
+    nordic:path "PtSituationElement/SituationNumber" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "Progress" ;
+    nordic:path "PtSituationElement/Progress" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "UndefinedReason" ;
+    nordic:path "PtSituationElement/UndefinedReason" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "ReportType" ;
+    nordic:path "PtSituationElement/ReportType" ;
+    nordic:cardinality "1..1" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "Summary" ;
+    nordic:path "PtSituationElement/Summary" ;
+    nordic:cardinality "1..n" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "Description" ;
+    nordic:path "PtSituationElement/Description" ;
+    nordic:cardinality "0..n" ;
+    nordic:provenance nordic:Baseline .
+[] a nordic:ProfileMember ;
+    nordic:onClass siri:PtSituationElement ;
+    nordic:element "Advice" ;
+    nordic:path "PtSituationElement/Advice" ;
+    nordic:cardinality "0..n" ;
+    nordic:provenance nordic:Baseline .
+
+## --- Affects (NordicSIRI) — typed by siri:AffectsScopeStructure ---
+siri:AffectsScopeStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "Affects" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- AffectedNetwork (NordicSIRI) ---
+siri:AffectedNetworkStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "AffectedNetwork" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- AffectedLine (NordicSIRI) ---
+siri:AffectedLineStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "AffectedLine" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- AffectedStopPlace (NordicSIRI) ---
+siri:AffectedStopPlaceStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "AffectedStopPlace" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- AffectedComponent (NordicSIRI) — typed by siri:AffectedStopPlaceComponentStructure ---
+siri:AffectedStopPlaceComponentStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "AffectedComponent" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- AffectedStopPoint (NordicSIRI) ---
+siri:AffectedStopPointStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "AffectedStopPoint" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- AffectedVehicleJourney (NordicSIRI) ---
+siri:AffectedVehicleJourneyStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "AffectedVehicleJourney" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- ValidityPeriod (NordicSIRI) — typed by siri:HalfOpenTimestampOutputRangeStructure ---
+siri:HalfOpenTimestampOutputRangeStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "ValidityPeriod" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- InfoLinks (NordicSIRI) ---
+siri:InfoLinksStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "InfoLinks" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## =================================================================
+## SIRI-FM — Facility Monitoring (EnturExtension)
+## =================================================================
+## Documented for parking and facility use cases; not part of the
+## official Nordic SIRI Profile v1.1 scope.
+## -----------------------------------------------------------------
+
+## --- FacilityMonitoringDelivery (EnturExtension) ---
+siri:FacilityMonitoringDelivery nordic:inProfile profile:EnturExtension ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- FacilityCondition (EnturExtension) ---
+siri:FacilityCondition nordic:inProfile profile:EnturExtension ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- Facility (EnturExtension) ---
+siri:FacilityStructure nordic:inProfile profile:EnturExtension ;
+    nordic:element "Facility" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- FacilityStatus (EnturExtension) ---
+siri:FacilityStatusStructure nordic:inProfile profile:EnturExtension ;
+    nordic:element "FacilityStatus" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- FacilityLocation (EnturExtension) ---
+siri:FacilityLocationStructure nordic:inProfile profile:EnturExtension ;
+    nordic:element "FacilityLocation" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- MonitoredCounting (EnturExtension) ---
+siri:MonitoredCountingStructure nordic:inProfile profile:EnturExtension ;
+    nordic:element "MonitoredCounting" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- MonitoringInfo (EnturExtension) — typed by siri:MonitoringInformationStructure ---
+siri:MonitoringInformationStructure nordic:inProfile profile:EnturExtension ;
+    nordic:element "MonitoringInfo" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- Remedy (EnturExtension) ---
+siri:RemedyStructure nordic:inProfile profile:EnturExtension ;
+    nordic:element "Remedy" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## =================================================================
+## SHARED OBJECTS
+## =================================================================
+
+## --- FramedVehicleJourneyRef (NordicSIRI) ---
+siri:FramedVehicleJourneyRefStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "FramedVehicleJourneyRef" ;
+    nordic:inService nordic:SIRI_ET , nordic:SIRI_VM , nordic:SIRI_SX ;
+    nordic:provenance nordic:Baseline .
+
+## --- AccessibilityAssessment (NordicSIRI) ---
+siri:AccessibilityAssessmentStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "AccessibilityAssessment" ;
+    nordic:inService nordic:SIRI_SX , nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- AccessibilityLimitation (NordicSIRI) ---
+siri:AccessibilityLimitationStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:element "AccessibilityLimitation" ;
+    nordic:inService nordic:SIRI_SX , nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .
+
+## --- SimpleContactStructure (NordicSIRI) ---
+siri:SimpleContactStructure nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:provenance nordic:Baseline .
+
+## --- SituationRef (NordicSIRI) ---
+siri:SituationRef nordic:inProfile profile:NordicSIRI ;
+    nordic:inService nordic:SIRI_ET , nordic:SIRI_FM ;
+    nordic:provenance nordic:Baseline .

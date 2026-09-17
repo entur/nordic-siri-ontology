@@ -1,0 +1,308 @@
+## -----------------------------------------------------------------
+## Nordic SIRI Vocabulary
+## -----------------------------------------------------------------
+## ROLE: Nordic-invented vocabulary that is NOT derived from the SIRI
+##       XSD and therefore not produced by the (CEN-owned) generator.
+##       These terms live in the Nordic namespace so they never mint
+##       new terms in the CEN-owned siri: namespace.
+##
+## Contains: profile meta-classes, data-source governance, structural
+##           containment predicates, cross-reference / element
+##           description vocabulary, navigational chains, profile
+##           constraint vocabulary, and the NeTEx bridge property.
+##
+## Namespace: nordic: — https://siri-cen.eu/nordic#
+## -----------------------------------------------------------------
+
+@prefix nordic:  <https://siri-cen.eu/nordic#> .
+@prefix profile: <https://siri-cen.eu/profile#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+<https://siri-cen.eu/nordic> a owl:Ontology ;
+    rdfs:label "Nordic SIRI Vocabulary" ;
+    rdfs:comment "Nordic-specific vocabulary layered on top of the generated SIRI base ontology. Terms here are not derived from the SIRI XSD." .
+
+## =================================================================
+## PROFILE META-CLASSES
+## =================================================================
+
+nordic:Profile a owl:Class ;
+    rdfs:label "Profile" ;
+    skos:definition "A constrained localisation of SIRI for a specific region or use case" .
+
+nordic:Service a owl:Class ;
+    rdfs:label "Service" ;
+    skos:definition "A SIRI functional service (ET, SX, VM, FM, …) as scoped by the profile" .
+
+nordic:DataSource a owl:Class ;
+    rdfs:label "DataSource" ;
+    skos:definition "Origin classification for real-time data (producer, central aggregator)" .
+
+nordic:Enumeration a owl:Class ;
+    rdfs:label "Enumeration" ;
+    skos:definition "A controlled vocabulary (enumeration) referenced by the profile" .
+
+nordic:CommunicationPattern a owl:Class ;
+    rdfs:label "CommunicationPattern" ;
+    skos:definition "A data-exchange interaction pattern (publish/subscribe, request/response)" .
+
+nordic:XMLNamespace a owl:Class ;
+    rdfs:label "XMLNamespace" ;
+    skos:definition "An XML namespace used by SIRI messages (siri, acsb, ifopt, …)" .
+
+## =================================================================
+## PROFILE METADATA
+## =================================================================
+
+nordic:version a owl:DatatypeProperty ;
+    rdfs:label "version" ;
+    rdfs:range xsd:string ;
+    skos:definition "Profile version" .
+
+nordic:basedOn a owl:DatatypeProperty ;
+    rdfs:label "basedOn" ;
+    rdfs:range xsd:string ;
+    skos:definition "The standard/schema baseline the profile localises" .
+
+nordic:externalRepo a owl:DatatypeProperty ;
+    rdfs:label "externalRepo" ;
+    rdfs:range xsd:string ;
+    skos:definition "Repository where the authoritative definition of a referenced object lives" .
+
+nordic:namespace a owl:DatatypeProperty ;
+    rdfs:label "namespace" ;
+    rdfs:range xsd:string ;
+    skos:definition "XML namespace URI a class serialises under (e.g. ACSB)" .
+
+nordic:uri a owl:DatatypeProperty ;
+    rdfs:label "uri" ;
+    rdfs:range xsd:string ;
+    skos:definition "URI of an XML namespace" .
+
+nordic:prefix a owl:DatatypeProperty ;
+    rdfs:label "prefix" ;
+    rdfs:range xsd:string ;
+    skos:definition "Prefix bound to an XML namespace" .
+
+## =================================================================
+## SERVICE STRUCTURE
+## =================================================================
+
+nordic:deliveryType a owl:ObjectProperty ;
+    rdfs:label "deliveryType" ;
+    skos:definition "The delivery wrapper class produced by a service" .
+
+nordic:coreObject a owl:ObjectProperty ;
+    rdfs:label "coreObject" ;
+    skos:definition "The central real-time object exchanged by a service" .
+
+nordic:inService a owl:ObjectProperty ;
+    rdfs:label "inService" ;
+    skos:definition "The object is part of the given SIRI service" .
+
+nordic:usedIn a owl:ObjectProperty ;
+    rdfs:label "usedIn" ;
+    skos:definition "The object, enumeration or element is used by the given service(s)" .
+
+## =================================================================
+## STRUCTURAL CONTAINMENT (curated navigable view)
+## =================================================================
+## The generated base expresses XML containment via owl:Restrictions.
+## These predicates provide a curated, navigable profile view of the
+## same message structure (which container holds what, and inline
+## child placement).
+## -----------------------------------------------------------------
+
+nordic:contains a owl:ObjectProperty ;
+    rdfs:label "contains" ;
+    skos:definition "Container holds these classes as XML child elements" .
+
+nordic:containedIn a owl:ObjectProperty ;
+    rdfs:label "containedIn" ;
+    owl:inverseOf nordic:contains ;
+    skos:definition "Inverse of contains — this object is nested within a parent container" .
+
+nordic:childOf a owl:ObjectProperty ;
+    rdfs:label "childOf" ;
+    skos:definition "Object is modelled as inline child element(s) within the parent class" .
+
+## =================================================================
+## CROSS-REFERENCE & ELEMENT DESCRIPTION
+## =================================================================
+
+nordic:hasRef a owl:ObjectProperty ;
+    rdfs:label "hasRef" ;
+    skos:definition "A SIRI class carries this typed reference to another (often NeTEx) object" .
+
+nordic:hasElement a owl:ObjectProperty ;
+    rdfs:label "hasElement" ;
+    skos:definition "A SIRI class carries this profile-documented element" .
+
+nordic:property a owl:DatatypeProperty ;
+    rdfs:label "property" ;
+    rdfs:range xsd:string ;
+    skos:definition "The XML element/attribute name of a reference or element" .
+
+nordic:target a owl:ObjectProperty ;
+    rdfs:label "target" ;
+    skos:definition "The class a reference points to" .
+
+nordic:type a owl:DatatypeProperty ;
+    rdfs:label "type" ;
+    skos:definition "The datatype or enumeration of an element" .
+
+nordic:xsdCardinality a owl:DatatypeProperty ;
+    rdfs:label "xsdCardinality" ;
+    rdfs:range xsd:string ;
+    skos:definition "XSD cardinality of the element/reference (e.g. 0..1, 1..n)" .
+
+nordic:values a owl:DatatypeProperty ;
+    rdfs:label "values" ;
+    rdfs:range xsd:string ;
+    skos:definition "Permitted values of an enumeration in the profile" .
+
+nordic:referencesNeTEx a owl:ObjectProperty ;
+    rdfs:label "referencesNeTEx" ;
+    skos:definition "This SIRI class references the given planned NeTEx class by ID" .
+
+## =================================================================
+## NAVIGATIONAL CHAINS & CROSS-SERVICE LINKS
+## =================================================================
+
+nordic:step1 a owl:ObjectProperty ; rdfs:label "step1" .
+nordic:step2 a owl:ObjectProperty ; rdfs:label "step2" .
+nordic:step3 a owl:ObjectProperty ; rdfs:label "step3" .
+nordic:step4 a owl:ObjectProperty ; rdfs:label "step4" .
+nordic:step5 a owl:ObjectProperty ; rdfs:label "step5" .
+
+nordic:from a owl:ObjectProperty ;
+    rdfs:label "from" ;
+    skos:definition "Source object/service of a cross-service link" .
+
+nordic:to a owl:ObjectProperty ;
+    rdfs:label "to" ;
+    skos:definition "Target object/service of a cross-service link" .
+
+nordic:via a owl:DatatypeProperty ;
+    rdfs:label "via" ;
+    rdfs:range xsd:string ;
+    skos:definition "The element that realises a cross-service link" .
+
+nordic:relationship a owl:DatatypeProperty ;
+    rdfs:label "relationship" ;
+    rdfs:range xsd:string ;
+    skos:definition "Nature of a cross-service dependency (e.g. prerequisite)" .
+
+## =================================================================
+## PROFILE CONSTRAINT VOCABULARY
+## =================================================================
+## Nordic Profile rules currently expressed as prose. The primary
+## quality task is to promote these to executable SHACL shapes
+## (profile:NSP_{ClassName}Shape) once the generated base is wired in.
+## -----------------------------------------------------------------
+
+nordic:constraint a owl:ObjectProperty ;
+    rdfs:label "constraint" ;
+    skos:definition "A Nordic Profile rule attached to a profile" .
+
+nordic:rule a owl:DatatypeProperty ;
+    rdfs:label "rule" ;
+    rdfs:range xsd:string ;
+    skos:definition "Rule identifier (e.g. ET-001)" .
+
+nordic:description a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Human-readable statement of the rule" .
+
+nordic:service a owl:ObjectProperty ;
+    rdfs:label "service" ;
+    skos:definition "The service a rule applies to" .
+
+nordic:element a owl:DatatypeProperty ;
+    rdfs:label "element" ;
+    rdfs:range xsd:string ;
+    skos:definition "The element path a rule constrains" .
+
+nordic:value a owl:DatatypeProperty ;
+    rdfs:label "value" ;
+    rdfs:range xsd:string ;
+    skos:definition "The value a rule fixes" .
+
+## =================================================================
+## PROFILE MEMBERSHIP & PROVENANCE
+## =================================================================
+## The profile constraints above (and future SHACL shapes) encode only
+## where the profile *tightens* the base. This vocabulary carries the
+## complementary positive layer: which classes and fields are *in* the
+## profile — the baseline allowlist (siri-nordic-baseline.ttl) — plus
+## the governing scope and the provenance of each rule.
+## -----------------------------------------------------------------
+
+## --- Scope: which profile level governs a class ---
+profile:Scope a owl:Class ;
+    rdfs:label "Scope" ;
+    skos:definition "A governance level that a class or field belongs to" .
+
+profile:scope a owl:AnnotationProperty ;
+    rdfs:label "scope" ;
+    skos:definition "Which profile level governs this object" .
+
+profile:NordicSIRI a profile:Scope ;
+    rdfs:label "Nordic SIRI Profile" ;
+    skos:definition "Officially part of the common Nordic SIRI Profile (in-scope services: ET, SX, VM)" .
+
+profile:EnturExtension a profile:Scope ;
+    rdfs:label "Entur Extension" ;
+    skos:definition "Entur-specific or documented-but-extended content (e.g. SIRI-FM), not part of the common Nordic SIRI Profile scope" .
+
+profile:NordicCandidate a profile:Scope ;
+    rdfs:label "Nordic Profile Candidate" ;
+    skos:definition "Proposed for Nordic harmonisation, currently Entur-driven" .
+
+## --- Membership: the positive allowlist ---
+nordic:inProfile a owl:AnnotationProperty ;
+    rdfs:label "inProfile" ;
+    skos:definition "Marks a class as included in the profile, valued by its governing scope" .
+
+nordic:ProfileMember a owl:Class ;
+    rdfs:label "ProfileMember" ;
+    skos:definition "A field (element or attribute) that is part of the profile for a given class, with its cardinality" .
+
+nordic:onClass a owl:ObjectProperty ;
+    rdfs:label "onClass" ;
+    skos:definition "The class this profile member belongs to" .
+
+nordic:path a owl:DatatypeProperty ;
+    rdfs:label "path" ;
+    rdfs:range xsd:string ;
+    skos:definition "XML path of the member within its class" .
+
+nordic:cardinality a owl:DatatypeProperty ;
+    rdfs:label "cardinality" ;
+    rdfs:range xsd:string ;
+    skos:definition "Profile cardinality of the member (e.g. 1..1, 0..n)" .
+
+## --- Provenance: how a rule entered the profile ---
+nordic:Provenance a owl:Class ;
+    rdfs:label "Provenance" ;
+    skos:definition "The origin of a profile rule" .
+
+nordic:provenance a owl:AnnotationProperty ;
+    rdfs:label "provenance" ;
+    skos:definition "Origin of a profile rule: the pre-CCB baseline or a specific CCB decision" .
+
+nordic:Baseline a nordic:Provenance ;
+    rdfs:label "Baseline" ;
+    skos:definition "Established Nordic SIRI Profile content predating CCB decision tracking; carries no decision ID" .
+
+nordic:decision a owl:AnnotationProperty ;
+    rdfs:label "decision" ;
+    rdfs:comment "Stable CCB decision ID (e.g. SIRI-0001) that this rule realises" .
+
+nordic:issue a owl:AnnotationProperty ;
+    rdfs:label "issue" ;
+    rdfs:comment "GitHub issue number behind the decision" .

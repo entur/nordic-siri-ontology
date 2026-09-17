@@ -1,0 +1,268 @@
+## -----------------------------------------------------------------
+## SIRI ⇄ NeTEx Reference Bridge
+## -----------------------------------------------------------------
+## ROLE: Curated overlay recording which planned NeTEx objects the
+##       SIRI real-time services reference by ID, and the per-element
+##       references that realise those links. Not derived from the XSD
+##       — an editorial cross-standard bridge.
+##
+## SIRI provides real-time updates that REFERENCE planned NeTEx
+## objects. The canonical NeTEx definitions live in the CEN-owned
+## NeTEx ontology (nordic-netex-ontology); here they are declared as
+## external reference targets only.
+##
+## Uses nordic:referencesNeTEx / nordic:hasRef (see siri-nordic-vocab.ttl).
+## Loaded alongside the generated SIRI base ontology.
+## -----------------------------------------------------------------
+
+@prefix siri:   <https://siri-cen.eu/ontology#> .
+@prefix netex:  <https://netex-cen.eu/ontology#> .
+@prefix nordic: <https://siri-cen.eu/nordic#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+
+<https://siri-cen.eu/bridge/netex> a owl:Ontology ;
+    rdfs:label "SIRI–NeTEx Reference Bridge" ;
+    owl:imports <https://siri-cen.eu/ontology> ,
+                <https://siri-cen.eu/nordic> ;
+    rdfs:comment "Editorial mapping of SIRI real-time classes to the planned NeTEx objects they reference by ID." .
+
+## =================================================================
+## REFERENCED NeTEx OBJECTS (external — nordic-netex-ontology)
+## =================================================================
+
+netex:Line
+    rdfs:label "Line (NeTEx)" ;
+    skos:definition "Planned line — referenced by SIRI via LineRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+netex:Route
+    rdfs:label "Route (NeTEx)" ;
+    skos:definition "Planned route — referenced by SIRI via RouteRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+netex:ServiceJourney
+    rdfs:label "ServiceJourney (NeTEx)" ;
+    skos:definition "Planned journey template — referenced by SIRI via DatedVehicleJourneyRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+netex:JourneyPattern
+    rdfs:label "JourneyPattern (NeTEx)" ;
+    skos:definition "Planned stop sequence — referenced by SIRI via JourneyPatternRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+netex:Operator
+    rdfs:label "Operator (NeTEx)" ;
+    skos:definition "Transport operator — referenced by SIRI via OperatorRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+netex:Quay
+    rdfs:label "Quay (NeTEx / NSR)" ;
+    skos:definition "Physical boarding point — referenced by SIRI via StopPointRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+netex:StopPlace
+    rdfs:label "StopPlace (NeTEx / NSR)" ;
+    skos:definition "Physical stop location — referenced by SIRI-SX via StopPlaceRef and SIRI-FM via StopPlaceRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+netex:GroupOfLines
+    rdfs:label "GroupOfLines / Network (NeTEx)" ;
+    skos:definition "Logical line grouping — referenced by SIRI via GroupOfLinesRef / NetworkRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+netex:DatedServiceJourney
+    rdfs:label "DatedServiceJourney (NeTEx)" ;
+    skos:definition "Journey instance on a specific date — linked via FramedVehicleJourneyRef" ;
+    nordic:externalRepo "nordic-netex-ontology" .
+
+## =================================================================
+## WHICH NeTEx OBJECTS EACH SIRI CLASS REFERENCES
+## =================================================================
+
+siri:EstimatedVehicleJourney nordic:referencesNeTEx
+    netex:Line , netex:ServiceJourney , netex:JourneyPattern ,
+    netex:Route , netex:GroupOfLines , netex:Operator .
+
+siri:MonitoredVehicleJourneyStructure nordic:referencesNeTEx
+    netex:Line , netex:ServiceJourney , netex:Operator , netex:StopPlace .
+
+siri:AffectedNetworkStructure nordic:referencesNeTEx netex:GroupOfLines , netex:Operator .
+siri:AffectedLineStructure nordic:referencesNeTEx netex:Line .
+siri:AffectedStopPlaceStructure nordic:referencesNeTEx netex:StopPlace .
+siri:AffectedStopPointStructure nordic:referencesNeTEx netex:Quay .
+siri:AffectedVehicleJourneyStructure nordic:referencesNeTEx netex:ServiceJourney , netex:Line .
+
+siri:EstimatedCall nordic:referencesNeTEx netex:Quay .
+siri:RecordedCall nordic:referencesNeTEx netex:Quay .
+siri:MonitoredCallStructure nordic:referencesNeTEx netex:Quay .
+
+siri:FacilityLocationStructure nordic:referencesNeTEx
+    netex:Line , netex:Quay , netex:StopPlace , netex:Operator ,
+    netex:DatedServiceJourney .
+
+## =================================================================
+## PER-ELEMENT CROSS-REFERENCES (SIRI element → NeTEx target)
+## =================================================================
+## Each ref maps a SIRI element to the NeTEx object it references.
+## These are the bridge between real-time and planned data.
+## -----------------------------------------------------------------
+
+## --- SIRI-ET references ---
+
+siri:EstimatedVehicleJourney nordic:hasRef [
+    nordic:property "LineRef" ;
+    nordic:target netex:Line ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "FramedVehicleJourneyRef" ;
+    nordic:target netex:ServiceJourney ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "Choice with DatedVehicleJourneyRef and EstimatedVehicleJourneyCode"
+] , [
+    nordic:property "JourneyPatternRef" ;
+    nordic:target netex:JourneyPattern ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "RouteRef" ;
+    nordic:target netex:Route ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "Mandatory for replacement departures (ExtraJourney=true)"
+] , [
+    nordic:property "GroupOfLinesRef" ;
+    nordic:target netex:GroupOfLines ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "Mandatory for replacement departures"
+] , [
+    nordic:property "OperatorRef" ;
+    nordic:target netex:Operator ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "ExternalLineRef" ;
+    nordic:target netex:Line ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "Line being replaced by an ExtraJourney"
+] , [
+    nordic:property "SituationRef" ;
+    nordic:target siri:PtSituationElement ;
+    nordic:xsdCardinality "0..n" ;
+    rdfs:comment "Cross-service link to SIRI-SX situations"
+] .
+
+siri:EstimatedCall nordic:hasRef [
+    nordic:property "StopPointRef" ;
+    nordic:target netex:Quay ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "NSR Quay ID"
+] .
+
+siri:RecordedCall nordic:hasRef [
+    nordic:property "StopPointRef" ;
+    nordic:target netex:Quay ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "NSR Quay ID"
+] .
+
+## --- SIRI-VM references ---
+
+siri:MonitoredVehicleJourneyStructure nordic:hasRef [
+    nordic:property "LineRef" ;
+    nordic:target netex:Line ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "FramedVehicleJourneyRef" ;
+    nordic:target netex:ServiceJourney ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "Choice with VehicleJourneyRef — one must be set"
+] , [
+    nordic:property "OperatorRef" ;
+    nordic:target netex:Operator ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "OriginRef" ;
+    nordic:target netex:StopPlace ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "DestinationRef" ;
+    nordic:target netex:StopPlace ;
+    nordic:xsdCardinality "0..1"
+] .
+
+siri:MonitoredCallStructure nordic:hasRef [
+    nordic:property "StopPointRef" ;
+    nordic:target netex:Quay ;
+    nordic:xsdCardinality "1..1"
+] .
+
+## --- SIRI-SX references ---
+
+siri:AffectedNetworkStructure nordic:hasRef [
+    nordic:property "NetworkRef" ;
+    nordic:target netex:GroupOfLines ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "OperatorRef" ;
+    nordic:target netex:Operator ;
+    nordic:xsdCardinality "0..1"
+] .
+
+siri:AffectedLineStructure nordic:hasRef [
+    nordic:property "LineRef" ;
+    nordic:target netex:Line ;
+    nordic:xsdCardinality "1..1"
+] .
+
+siri:AffectedStopPlaceStructure nordic:hasRef [
+    nordic:property "StopPlaceRef" ;
+    nordic:target netex:StopPlace ;
+    nordic:xsdCardinality "1..1"
+] .
+
+siri:AffectedStopPointStructure nordic:hasRef [
+    nordic:property "StopPointRef" ;
+    nordic:target netex:Quay ;
+    nordic:xsdCardinality "1..1"
+] .
+
+siri:AffectedVehicleJourneyStructure nordic:hasRef [
+    nordic:property "FramedVehicleJourneyRef" ;
+    nordic:target netex:ServiceJourney ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "Choice with VehicleJourneyRef or DatedVehicleJourneyRef"
+] , [
+    nordic:property "LineRef" ;
+    nordic:target netex:Line ;
+    nordic:xsdCardinality "0..1"
+] .
+
+## --- SIRI-FM references ---
+
+siri:FacilityLocationStructure nordic:hasRef [
+    nordic:property "LineRef" ;
+    nordic:target netex:Line ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "StopPointRef" ;
+    nordic:target netex:Quay ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "StopPlaceRef" ;
+    nordic:target netex:StopPlace ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "OperatorRef" ;
+    nordic:target netex:Operator ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "DatedVehicleJourneyRef" ;
+    nordic:target netex:DatedServiceJourney ;
+    nordic:xsdCardinality "0..1"
+] .
+
+siri:FacilityCondition nordic:hasRef [
+    nordic:property "SituationRef" ;
+    nordic:target siri:PtSituationElement ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "Cross-service link to SIRI-SX situations"
+] .

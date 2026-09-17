@@ -1,0 +1,525 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:AbstractPermissionStructure a owl:Class ;
+    rdfs:label "AbstractPermission" ;
+    rdfs:comment "Type for Abstract Permission." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:allParticipants ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:participantRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalCapabilities ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:AbstractTopicPermissionStructure a owl:Class ;
+    rdfs:label "AbstractTopicPermission" ;
+    rdfs:comment "Type for Abstract Permission Topic." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:allow ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:AimedFlexibleArea a owl:Class ;
+    rdfs:label "AimedFlexibleArea" ;
+    rdfs:subClassOf siri:FlexibleAreaStructure ;
+    siri:xsdElement true .
+
+siri:AimedLocationName a owl:Class ;
+    rdfs:label "AimedLocationName" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:ArrivalCancellationReason a owl:Class ;
+    rdfs:label "ArrivalCancellationReason" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:ArrivalPlatformName a owl:Class ;
+    rdfs:label "ArrivalPlatformName" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:ArrivalProximityText a owl:Class ;
+    rdfs:label "ArrivalProximityText" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:BoundingBoxStructure a owl:Class ;
+    rdfs:label "BoundingBox" ;
+    rdfs:comment "Defines a bounding box using two corner points. GML terminology. (since SIRI 2.0)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:upperLeft ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lowerRight ;
+            siri:xsdSequenceOrder 2 ] .
+
+siri:CapabilityAccessControlStructure a owl:Class ;
+    rdfs:label "CapabilityAccessControl" ;
+    rdfs:comment "Type for Common Access control capabilities." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:requestChecking ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:CircularAreaStructure a owl:Class ;
+    rdfs:label "CircularArea" ;
+    rdfs:comment "Type for a circular area centered around a point that may be expressed in concrete WGS 84 Coordinates or any gml compatible point coordinates format. (since SIRI 2.1)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:radius ;
+            siri:xsdSequenceOrder 1 ],
+        siri:LocationStructure .
+
+siri:CoordinatesStructure a owl:Class ;
+    rdfs:label "Coordinates" ;
+    rdfs:comment "Type for GM Coordinates." .
+
+siri:DepartureCancellationReason a owl:Class ;
+    rdfs:label "DepartureCancellationReason" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:DeparturePlatformName a owl:Class ;
+    rdfs:label "DeparturePlatformName" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:DepartureProximityText a owl:Class ;
+    rdfs:label "DepartureProximityText" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:DestinationName a owl:Class ;
+    rdfs:label "DestinationName" ;
+    rdfs:subClassOf siri:NaturalLanguagePlaceNameStructure ;
+    siri:xsdElement true .
+
+siri:EmptyType a rdfs:Datatype ;
+    rdfs:label "EmptyType" ;
+    rdfs:comment "A type with no allowed content, used when simply the presence of an element is significant." ;
+    owl:oneOf ( "" ) .
+
+siri:ExtensionsStructure a owl:Class ;
+    rdfs:label "Extensions" ;
+    rdfs:comment "Type for Extensions to schema. Wraps an 'any' tag to ensure decidability." .
+
+siri:JourneyNote a owl:Class ;
+    rdfs:label "JourneyNote" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:KeyList a owl:Class ;
+    rdfs:label "KeyList" ;
+    rdfs:subClassOf siri:KeyListStructure ;
+    siri:xsdElement true .
+
+siri:KeyValueStructure a owl:Class ;
+    rdfs:label "KeyValue" ;
+    rdfs:comment "Type for a Key List. (since SIRI 2.1)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:key ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:value ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:typeOfKey ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:LineShapeStructure a owl:Class ;
+    rdfs:label "LineShape" ;
+    rdfs:comment "Defines a line shape (since SIRI 2.0)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:point ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:OriginName a owl:Class ;
+    rdfs:label "OriginName" ;
+    rdfs:subClassOf siri:NaturalLanguagePlaceNameStructure ;
+    siri:xsdElement true .
+
+siri:PublishedLineName a owl:Class ;
+    rdfs:label "PublishedLineName" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:ReasonForRemoval a owl:Class ;
+    rdfs:label "ReasonForRemoval" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:RequestorRef a owl:Class ;
+    rdfs:label "RequestorRef" ;
+    rdfs:subClassOf siri:ParticipantRefStructure ;
+    siri:xsdElement true .
+
+siri:RouteName a owl:Class ;
+    rdfs:label "RouteName" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:StopPointName a owl:Class ;
+    rdfs:label "StopPointName" ;
+    rdfs:subClassOf siri:NaturalLanguageStringStructure ;
+    siri:xsdElement true .
+
+siri:TypeOfValue a owl:Class ;
+    rdfs:label "TypeOfValue" ;
+    rdfs:subClassOf siri:TypeOfValueStructure ;
+    siri:xsdElement true .
+
+siri:TypeOfValueRefStructure a owl:Class ;
+    rdfs:label "TypeOfValue" ;
+    rdfs:comment "Type for reference to a TYPE OF VALUE. (since SIRI 2.1)" .
+
+siri:TypesOfValue a owl:Class ;
+    rdfs:label "TypesOfValue" ;
+    rdfs:subClassOf siri:TypesOfValueStructure ;
+    siri:xsdElement true .
+
+siri:ValueSet a owl:Class ;
+    rdfs:label "ValueSet" ;
+    rdfs:subClassOf siri:ValueSetStructure ;
+    siri:xsdElement true .
+
+siri:ValuesStructure a owl:Class ;
+    rdfs:label "Values" ;
+    rdfs:comment "Type for a list of TYPE OF VALUEs. (since SIRI 2.1)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:typeOfValue ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:ViaName a owl:Class ;
+    rdfs:label "ViaName" ;
+    rdfs:subClassOf siri:NaturalLanguagePlaceNameStructure ;
+    siri:xsdElement true .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/utility> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "SIRI utility types" ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:FlexibleAreaStructure a owl:Class ;
+    rdfs:label "FlexibleArea" ;
+    rdfs:comment "Bounding box, circular area or gml:polyon of the area where stops of a flexible service are called. (since SIRI 2.1) A flexible area is used in cases where a pre-booked service allows pick-up/drop-off anywhere in a designated area and provides a possible interchange to a higher-frequency service." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:boundingBox ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:circularArea ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:polygon ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:KeyListStructure a owl:Class ;
+    rdfs:label "KeyList" ;
+    rdfs:comment "Type for a Key List. (since SIRI 2.1)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:keyValue ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:LocationStructure a owl:Class ;
+    rdfs:label "Location" ;
+    rdfs:comment "Type for geospatial Position of a point. May be expressed in concrete WGS 84 Coordinates or any gml compatible point coordinates format." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:longitude ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:latitude ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:altitude ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:coordinates ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:precision ;
+            siri:xsdSequenceOrder 5 ] .
+
+siri:ParticipantRefStructure a owl:Class ;
+    rdfs:label "Participant" ;
+    rdfs:comment "Reference to Unique identifier of participant." .
+
+siri:TypeOfValueStructure a owl:Class ;
+    rdfs:label "TypeOfValue" ;
+    rdfs:comment "Type for a TYPE OF VALUE. Used to define open classifications of value types. (since SIRI 2.1)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:typeOfValueCode ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:nameOfClass ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:name ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:shortName ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:description ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:image ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:url ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:privateCode ;
+            siri:xsdSequenceOrder 8 ] .
+
+siri:TypesOfValueStructure a owl:Class ;
+    rdfs:label "TypesOfValue" ;
+    rdfs:comment "Type for containment of VALUE SETs and/or TYPE OF VALUEs. (since SIRI 2.1)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:valueSet ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:typeOfValue ;
+            siri:xsdSequenceOrder 2 ] .
+
+siri:ValueSetStructure a owl:Class ;
+    rdfs:label "ValueSet" ;
+    rdfs:comment "Type for a VALUE SET. Used to define open classifications of value types. (since SIRI 2.1)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:valueSetCode ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:classOfValues ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:name ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:values ;
+            siri:xsdSequenceOrder 4 ] .
+
+siri:allParticipants a owl:DatatypeProperty ;
+    rdfs:label "AllParticipants" ;
+    rdfs:comment "Parmissions apply by default to All particpants. May be overidden by other separate permissions for individual." ;
+    siri:xsdType "EmptyType" .
+
+siri:allow a owl:DatatypeProperty ;
+    rdfs:label "Allow" ;
+    rdfs:comment "Whether the participant may access this topic. Default is 'true'." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:altitude a owl:DatatypeProperty ;
+    rdfs:label "Altitude" ;
+    rdfs:comment "Altitude metres from sea level." ;
+    siri:xsdType "AltitudeType" .
+
+siri:boundingBox a owl:ObjectProperty ;
+    rdfs:label "BoundingBox" ;
+    rdfs:comment "Flexible area specified as a rectangular bounding box." ;
+    siri:xsdType "BoundingBoxStructure" .
+
+siri:circularArea a owl:ObjectProperty ;
+    rdfs:label "CircularArea" ;
+    rdfs:comment "Flexible area specified as a circular area (center coordinates and radius)." ;
+    siri:xsdType "CircularAreaStructure" .
+
+siri:classOfValues a owl:DatatypeProperty ;
+    rdfs:label "ClassOfValues" ;
+    rdfs:comment "Name of Class of values in set." ;
+    siri:xsdType "NameOfClassType" .
+
+siri:coordinates a owl:ObjectProperty ;
+    rdfs:label "Coordinates" ;
+    rdfs:comment "Coordinates of points in a GML compatibe format, as indicated by srsName attribute." ;
+    siri:xsdType "CoordinatesStructure" .
+
+siri:description a owl:ObjectProperty ;
+    rdfs:label "Description" ;
+    rdfs:comment "Description of TYPE OF VALUE." ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:generalCapabilities a owl:DatatypeProperty ;
+    rdfs:label "GeneralCapabilities" ;
+    rdfs:comment "Permissions for general capabilities." .
+
+siri:image a owl:DatatypeProperty ;
+    rdfs:label "Image" ;
+    rdfs:comment "Default image for TYPE OF VALUE." ;
+    siri:xsdType "xsd:anyURI" .
+
+siri:key a owl:DatatypeProperty ;
+    rdfs:label "Key" ;
+    rdfs:comment "Identifier of value e.g. System." ;
+    siri:xsdType "xsd:normalizedString" .
+
+siri:keyValue a owl:ObjectProperty ;
+    rdfs:label "KeyValue" ;
+    rdfs:comment "Key value pair for Entity." ;
+    siri:xsdType "KeyValueStructure" .
+
+siri:latitude a owl:DatatypeProperty ;
+    rdfs:label "Latitude" ;
+    rdfs:comment "Latitude from equator. -90 (South) to +90 (North). Decimal degrees, e.g. 56.356" ;
+    siri:xsdType "LatitudeType" .
+
+siri:longitude a owl:DatatypeProperty ;
+    rdfs:label "Longitude" ;
+    rdfs:comment "Longitude from Greenwich Meridian. -180 (West) to +180 (East). Decimal degrees, e.g. 2.356" ;
+    siri:xsdType "LongitudeType" .
+
+siri:lowerRight a owl:ObjectProperty ;
+    rdfs:label "LowerRight" ;
+    rdfs:comment "Lower right corner as a geospatial point." ;
+    siri:xsdType "LocationStructure" .
+
+siri:nameOfClass a owl:DatatypeProperty ;
+    rdfs:label "NameOfClass" ;
+    rdfs:comment "Name of class of which TypeOfValue is an instance." ;
+    siri:xsdType "NameOfClassType" .
+
+siri:participantRef a owl:ObjectProperty ;
+    rdfs:label "ParticipantRef" ;
+    rdfs:comment "Permission applies to specified participant." ;
+    siri:isReference true ;
+    siri:xsdType "ParticipantRefStructure" .
+
+siri:point a owl:ObjectProperty ;
+    rdfs:label "Point" ;
+    rdfs:comment "A geospatial point. (since SIRI 2.0)" ;
+    siri:xsdType "LocationStructure" .
+
+siri:polygon a owl:DatatypeProperty ;
+    rdfs:label "Polygon" ;
+    rdfs:comment "Flexible area specified as a gml:Polygon that consists of an interior and exterior linear ring." .
+
+siri:precision a owl:DatatypeProperty ;
+    rdfs:label "Precision" ;
+    rdfs:comment "Precision for point measurement. In meters." ;
+    siri:xsdType "DistanceType" .
+
+siri:privateCode a owl:DatatypeProperty ;
+    rdfs:label "PrivateCode" ;
+    rdfs:comment "Arbitrary code (usually the technical part of the identifier)." ;
+    siri:xsdType "xsd:normalizedString" .
+
+siri:radius a owl:DatatypeProperty ;
+    rdfs:label "Radius" ;
+    rdfs:comment "Radius around the center point in meters." ;
+    siri:xsdType "DistanceType" .
+
+siri:requestChecking a owl:DatatypeProperty ;
+    rdfs:label "RequestChecking" ;
+    rdfs:comment "Whether access control of requests is supported. Default is 'false'." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:shortName a owl:ObjectProperty ;
+    rdfs:label "ShortName" ;
+    rdfs:comment "Short Name for TYPE OF VALUE." ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:typeOfKey a owl:DatatypeProperty ;
+    rdfs:label "TypeOfKey" ;
+    rdfs:comment "Identifier of type of key." ;
+    siri:xsdType "xsd:normalizedString" .
+
+siri:typeOfValueCode a owl:DatatypeProperty ;
+    rdfs:label "TypeOfValueCode" ;
+    rdfs:comment "Identifier of a TYPE OF VALUE." ;
+    siri:xsdType "TypeOfValueCodeType" .
+
+siri:upperLeft a owl:ObjectProperty ;
+    rdfs:label "UpperLeft" ;
+    rdfs:comment "Upper Left corner as a geospatial point." ;
+    siri:xsdType "LocationStructure" .
+
+siri:url a owl:DatatypeProperty ;
+    rdfs:label "Url" ;
+    rdfs:comment "Default URL for TYPE OF VALUE." ;
+    siri:xsdType "xsd:anyURI" .
+
+siri:value a owl:DatatypeProperty ;
+    rdfs:label "Value" ;
+    rdfs:comment "Value for alternative key." ;
+    siri:xsdType "xsd:normalizedString" .
+
+siri:valueSet a owl:DatatypeProperty ;
+    rdfs:label "ValueSet" .
+
+siri:valueSetCode a owl:DatatypeProperty ;
+    rdfs:label "ValueSetCode" ;
+    rdfs:comment "Identifier of VALUE SET." ;
+    siri:xsdType "ValueSetCodeType" .
+
+siri:values a owl:ObjectProperty ;
+    rdfs:label "Values" ;
+    rdfs:comment "Values in set." ;
+    siri:xsdType "ValuesStructure" .
+
+siri:name a owl:ObjectProperty ;
+    rdfs:label "Name" ;
+    rdfs:comment "Name of TYPE OF VALUE." ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:typeOfValue a owl:DatatypeProperty ;
+    rdfs:label "TypeOfValue" .
+
+siri:NaturalLanguagePlaceNameStructure a owl:Class ;
+    rdfs:label "NaturalLanguagePlaceName" ;
+    rdfs:comment "@lang. ISO language code (default is 'en') A string containing a phrase in a natural language name that requires at least one character of text and forbids certain reserved characters." .
+
+siri:NaturalLanguageStringStructure a owl:Class ;
+    rdfs:label "NaturalLanguageString" ;
+    rdfs:comment "Tyoe for a string in a specified language." .
+

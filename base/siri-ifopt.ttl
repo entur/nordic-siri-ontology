@@ -1,0 +1,730 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:AccessLinkRef a owl:Class ;
+    rdfs:label "AccessLinkRef" ;
+    rdfs:subClassOf siri:AccessLinkRefStructure ;
+    siri:xsdElement true .
+
+siri:AccessModesEnumeration a rdfs:Datatype ;
+    rdfs:label "AccessModesEnumeration" ;
+    rdfs:comment "Allowed categroies of access to STOP PLACE." ;
+    owl:oneOf ( "foot" "bicycle" "car" "taxi" "shuttle" ) .
+
+siri:AccessPathLinkRefStructure a owl:Class ;
+    rdfs:label "AccessPathLink" ;
+    rdfs:comment "Type for reference to identifier of PATHLINK." ;
+    rdfs:subClassOf siri:StopPlaceComponentRefStructure .
+
+siri:AccessSpaceRefStructure a owl:Class ;
+    rdfs:label "AccessSpace" ;
+    rdfs:comment "Type for reference to ACCESS SPACe." ;
+    rdfs:subClassOf siri:StopPlaceSpaceRefStructure .
+
+siri:AccessSpaceTypeEnumeration a rdfs:Datatype ;
+    rdfs:label "AccessSpaceTypeEnumeration" ;
+    rdfs:comment "Enumeration of ACCESS SPACE Types." ;
+    owl:oneOf ( "concours" "bookingHall" "forecourt" "underpass" "overpass" "passage" "passageSection" "gallery" "garage" "shop" "waitingRoom" "restaurant" "other" ) .
+
+siri:AdministrativeAreaRefStructure a owl:Class ;
+    rdfs:label "AdministrativeArea" ;
+    rdfs:comment "Type for a reference to an ADMINISTRATIVE ZONE." .
+
+siri:AdministrativeAreaRefsStructure a owl:Class ;
+    rdfs:label "AdministrativeAreaRefs" ;
+    rdfs:comment "Type for a collection of one or more references to ADMINISTRATIVE ZONEs." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:administrativeAreaRef ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:AdministrativeAreaVersionedRefStructure a owl:Class ;
+    rdfs:label "AdministrativeAreaVersioned" ;
+    rdfs:comment "Type for a versioned reference to anADMINISTRATIVE ZONE." .
+
+siri:AdministrativeRoleTypeEnumeration a rdfs:Datatype ;
+    rdfs:label "AdministrativeRoleTypeEnumeration" ;
+    rdfs:comment "Enumeration of allowed values for RESPONSIBILITY ROLEs." ;
+    owl:oneOf ( "all" "collects" "validates" "aggregates" "distributes" "redistributes" ) .
+
+siri:AdministratorRefStructure a owl:Class ;
+    rdfs:label "Administrator" ;
+    rdfs:comment "Type for a reference to an ORGANISATION with administrative responsibility." .
+
+siri:AdministratorVersionedRefStructure a owl:Class ;
+    rdfs:label "AdministratorVersioned" ;
+    rdfs:comment "Type for a versioned reference to an ORGANISATION with administrative responsibility." .
+
+siri:AliasStructure a owl:Class ;
+    rdfs:label "Alias" ;
+    rdfs:comment "Alternative Private Code." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:privateCode ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:identifierType ;
+            siri:xsdSequenceOrder 2 ] .
+
+siri:AuthorityRefStructure a owl:Class ;
+    rdfs:label "Authority" ;
+    rdfs:comment "Type for a reference to an AUTHORITY." .
+
+siri:BoardingPositionRefStructure a owl:Class ;
+    rdfs:label "BoardingPosition" ;
+    rdfs:comment "Type for reference to BOARDING POSITION." ;
+    rdfs:subClassOf siri:StopPlaceSpaceRefStructure .
+
+siri:BoardingPositionTypeEnumeration a rdfs:Datatype ;
+    rdfs:label "BoardingPositionTypeEnumeration" ;
+    rdfs:comment "Enumeration of BOARDING POSITION Types." ;
+    owl:oneOf ( "unknown" "doorFromAirlineGate" "positionOnRailPlatform" "positionOnMetroPlatform" "positionAtCoachStop" "positionAtBusStop" "boatGangway" "ferryGangway" "telecabinePlatform" "telecabinePlatfrom" "setDownPoint" "taxiBay" "other" ) .
+
+siri:CheckPointProcessEnumeration a rdfs:Datatype ;
+    rdfs:label "CheckPointProcessEnumeration" ;
+    rdfs:comment "Allowed values for a CHECK CONSTRAINT." ;
+    owl:oneOf ( "none" "unknown" "ticketPurchase" "ticketCollection" "ticketValidation" "baggageCheckIn" "oversizeBaggageCheckIn" "oversizeBaggageReclaim" "baggageReclaim" "leftLuggageDeposit" "leftLuggageReclaim" "firstclassCheckin" "specialNeedsCheckin" "baggageSecurityCheck" "securityCheck" "outgoingPassportControl" "incomingPassportControl" "fasttrackDepartures" "fasttrackArrivals" "incomingDutyFree" "outgoingDutyFree" "taxRefunds" "outgoingCustoms" "incomingCustoms" ) .
+
+siri:CheckPointRefStructure a owl:Class ;
+    rdfs:label "CheckPoint" ;
+    rdfs:comment "Type for reference to am identifier of a hazard within a STOP PLACE." .
+
+siri:CheckPointServiceEnumeration a rdfs:Datatype ;
+    rdfs:label "CheckPointServiceEnumeration" ;
+    rdfs:comment "Allowed values for a CHECK CONSTRAINT." ;
+    owl:oneOf ( "selfserviceMachine" "counterService" "other" ) .
+
+siri:CheckPointStructure a owl:Class ;
+    rdfs:label "CheckPoint" ;
+    rdfs:comment "Type for a CHECK CONSTRAINT Hazard that can be associated with." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:checkPointId ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:maximumLikelyDelay ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:validityCondition ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:checkPointProcess ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:checkPointService ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:accessFeatureType ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:congestion ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityRef ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:minimumLikelyDelay ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:averageDelay ;
+            siri:xsdSequenceOrder 9 ] .
+
+siri:CompassBearing16Enumeration a rdfs:Datatype ;
+    rdfs:label "CompassBearing16Enumeration" ;
+    rdfs:comment "16 point compass." ;
+    owl:oneOf ( "" "SW" "SE" "NW" "NE" "W" "E" "S" "N" ) .
+
+siri:CompassBearing8Enumeration a rdfs:Datatype ;
+    rdfs:label "CompassBearing8Enumeration" ;
+    rdfs:comment "8 point compass." ;
+    owl:oneOf ( "SW" "SE" "NW" "NE" "W" "E" "S" "N" ) .
+
+siri:CongestionEnumeration a rdfs:Datatype ;
+    rdfs:label "CongestionEnumeration" ;
+    rdfs:comment "Allowed values for a CHECK CONSTRAINT." ;
+    owl:oneOf ( "noWaiting" "queue" "crowding" "full" ) .
+
+siri:CountryRefStructure a owl:Class ;
+    rdfs:label "Country" ;
+    rdfs:comment "Type for reference to a Country identifier." .
+
+siri:DeltaModificationEnumeration a rdfs:Datatype ;
+    rdfs:label "DeltaModificationEnumeration" ;
+    rdfs:comment "Classification of modification as addition, deletion, revision or delta only. Enumerated value." ;
+    owl:oneOf ( "new" "delete" "revise" "delta" ) .
+
+siri:EquipmentRefStructure a owl:Class ;
+    rdfs:label "Equipment" ;
+    rdfs:comment "Type for reference to a EQUIPMENT." .
+
+siri:EquipmentStatusEnumeration a rdfs:Datatype ;
+    rdfs:label "EquipmentStatusEnumeration" ;
+    rdfs:comment "Availabilityload status of a EQUIPMENT." ;
+    owl:oneOf ( "unknown" "available" "notAvailable" ) .
+
+siri:EquipmentTypeRefStructure a owl:Class ;
+    rdfs:label "EquipmentType" ;
+    rdfs:comment "Type for TYPE OF EQUIPMENT." .
+
+siri:FeatureIdRefStructure a owl:Class ;
+    rdfs:label "FeatureId" ;
+    rdfs:comment "Type for reference to a GIS FEATURe." .
+
+siri:IanaCountryTldEnumeration a rdfs:Datatype ;
+    rdfs:label "IanaCountryTldEnumeration" ;
+    rdfs:comment "Allowed values for classifying NPTG Localities." ;
+    owl:oneOf ( "ac" "ad" "ae" "af" "ag" "ai" "al" "am" "an" "ao" "aq" "ar" "as" "at" "au" "aw" "az" "ax" "ba" "bb" "bd" "be" "bf" "bg" "bh" "bi" "bj" "bm" "bn" "bo" "br" "bs" "bt" "bv" "bw" "by" "bz" "ca" "cc" "cd" "cf" "cg" "ch" "ci" "ck" "cl" "cm" "cn" "co" "cr" "cs" "cu" "cv" "cx" "cy" "cz" "de" "dj" "dk" "dm" "do" "dz" "ec" "ee" "eg" "eh" "er" "es" "et" "eu" "fi" "fj" "fk" "fm" "fo" "fr" "ga" "gb" "gd" "ge" "gf" "gg" "gh" "gi" "gl" "gm" "gn" "gp" "gq" "gr" "gs" "gt" "gu" "gw" "gy" "hk" "hm" "hn" "hr" "ht" "hu" "id" "ie" "il" "im" "in" "io" "iq" "ir" "is" "it" "je" "jm" "jo" "jp" "ke" "kg" "kh" "ki" "km" "kn" "kp" "kr" "kw" "ky" "kz" "la" "lb" "lc" "li" "lk" "lr" "ls" "lt" "lu" "lv" "ly" "ma" "mc" "md" "mg" "mh" "mk" "ml" "mm" "mn" "mo" "mp" "mq" "mr" "ms" "mt" "mu" "mv" "mw" "mx" "my" "mz" "na" "nc" "ne" "nf" "ng" "ni" "nl" "no" "np" "nr" "nu" "nz" "om" "pa" "pe" "pf" "pg" "ph" "pk" "pl" "pm" "pn" "pr" "ps" "pt" "pw" "py" "qa" "re" "ro" "ru" "rw" "sa" "sb" "sc" "sd" "se" "sg" "sh" "si" "sj" "sk" "sl" "sm" "sn" "so" "sr" "st" "sv" "sy" "sz" "tc" "td" "tf" "tg" "th" "tj" "tk" "tl" "tm" "tn" "to" "tp" "tr" "tt" "tv" "tw" "tz" "ua" "ug" "uk" "um" "us" "uy" "uz" "va" "vc" "ve" "vg" "vi" "vn" "vu" "wf" "ws" "ye" "yt" "yu" "za" "zm" "zw" ) .
+
+siri:InfoLinksStructure a owl:Class ;
+    rdfs:label "InfoLinks" ;
+    rdfs:comment "Type for collection of info links." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoLink ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:InterchangeWeightingEnumeration a rdfs:Datatype ;
+    rdfs:label "InterchangeWeightingEnumeration" ;
+    rdfs:comment "Enumeration of Interchange Weighting." ;
+    owl:oneOf ( "noInterchange" "interchangeAllowed" "recommendedInterchange" "preferredInterchange" ) .
+
+siri:LevelRefStructure a owl:Class ;
+    rdfs:label "Level" ;
+    rdfs:comment "Type for reference to identifier of LEVEL." .
+
+siri:LinkProjection a owl:Class ;
+    rdfs:label "LinkProjection" ;
+    rdfs:subClassOf siri:LinkProjectionStructure ;
+    siri:xsdElement true .
+
+siri:LocalService a owl:Class ;
+    rdfs:label "LocalService" ;
+    rdfs:subClassOf siri:LocalServiceStructure ;
+    siri:xsdElement true .
+
+siri:ModificationEnumeration a rdfs:Datatype ;
+    rdfs:label "ModificationEnumeration" ;
+    rdfs:comment "Classification of modification as addition, deletion or revision. Enumerated value." ;
+    owl:oneOf ( "new" "delete" "revise" ) .
+
+siri:NamespaceTypeRefStructure a owl:Class ;
+    rdfs:label "NamespaceType" ;
+    rdfs:comment "Type for a reference to an Namespace." .
+
+siri:NavigationPathRef a owl:Class ;
+    rdfs:label "NavigationPathRef" ;
+    rdfs:subClassOf siri:NavigationPathRefStructure ;
+    siri:xsdElement true .
+
+siri:NavigationTypeEnumeration a rdfs:Datatype ;
+    rdfs:label "NavigationTypeEnumeration" ;
+    rdfs:comment "Values for NAVIGATION PATH. type." ;
+    owl:oneOf ( "hallToQuay" "hallToStreet" "quayToHall" "quayToQuay" "quayToStreet" "streetToHall" "streetToQuay" "other" ) .
+
+siri:OtherPlaceEquipment a owl:Class ;
+    rdfs:label "OtherPlaceEquipment" ;
+    rdfs:subClassOf siri:PlaceEquipmentStructure ;
+    siri:xsdElement true .
+
+siri:PassageTypeEnumeration a rdfs:Datatype ;
+    rdfs:label "PassageTypeEnumeration" ;
+    rdfs:comment "Enumeration of Passage Types." ;
+    owl:oneOf ( "none" "pathway" "corridor" "overpass" "underpass" "tunnel" "other" ) .
+
+siri:PathDirectionEnumeration a rdfs:Datatype ;
+    rdfs:label "PathDirectionEnumeration" ;
+    rdfs:comment "Values for flow DIRECTION along PATH LINk." ;
+    owl:oneOf ( "oneWay" "twoWay" ) .
+
+siri:PathHeadingEnumeration a rdfs:Datatype ;
+    rdfs:label "PathHeadingEnumeration" ;
+    rdfs:comment "Values for path heading." ;
+    owl:oneOf ( "left" "right" "forward" "back" ) .
+
+siri:PathJunctionRef a owl:Class ;
+    rdfs:label "PathJunctionRef" ;
+    rdfs:subClassOf siri:PathJunctionRefStructure ;
+    siri:xsdElement true .
+
+siri:PathUpDownEnumeration a rdfs:Datatype ;
+    rdfs:label "PathUpDownEnumeration" ;
+    rdfs:comment "Values for path heading." ;
+    owl:oneOf ( "up" "down" "level" "upAndDown" "downAndUp" ) .
+
+siri:PointProjection a owl:Class ;
+    rdfs:label "PointProjection" ;
+    rdfs:subClassOf siri:PointProjectionStructure ;
+    siri:xsdElement true .
+
+siri:QuayRefStructure a owl:Class ;
+    rdfs:label "Quay" ;
+    rdfs:comment "Type for reference to QUAY." ;
+    rdfs:subClassOf siri:StopPlaceSpaceRefStructure .
+
+siri:QuayTypeEnumeration a rdfs:Datatype ;
+    rdfs:label "QuayTypeEnumeration" ;
+    rdfs:comment "Enumeration of QUAY Types." ;
+    owl:oneOf ( "airlineGate" "railPlatform" "metroPlatform" "coachStop" "busStop" "tramStop" "boatQuay" "ferryLanding" "telecabinePlatform" "telecabinePlatfrom" "taxiStand" "setDownPlace" "other" ) .
+
+siri:RegionRefStructure a owl:Class ;
+    rdfs:label "Region" ;
+    rdfs:comment "Type for a Reference to identifier of Region." .
+
+siri:RelationToVehicleEnumeration a rdfs:Datatype ;
+    rdfs:label "RelationToVehicleEnumeration" ;
+    rdfs:comment "Enumeration of Relation to VEHICLE of STOPPING POSITION." ;
+    owl:oneOf ( "frontLeft" "frontRight" "backRight" "backRight" "driverLeft" "driverRight" ) .
+
+siri:StatusEnumeration a rdfs:Datatype ;
+    rdfs:label "StatusEnumeration" ;
+    rdfs:comment "Indicates whether the entity this annotates is available for use. Use of this attribute allows entities to be retired without deleting the details from the dataset." ;
+    owl:oneOf ( "active" "inactive" "pending" ) .
+
+siri:StopPathLinkRefStructure a owl:Class ;
+    rdfs:label "StopPathLink" ;
+    rdfs:comment "Type for reference to STOP PLACE Space." ;
+    rdfs:subClassOf siri:StopPlaceComponentRefStructure .
+
+siri:StopPlaceComponentTypeEnumeration a rdfs:Datatype ;
+    rdfs:label "StopPlaceComponentTypeEnumeration" ;
+    rdfs:comment "Enumeration of SITE COMPONENT Types." ;
+    owl:oneOf ( "quay" "accessSpace" "entrance" "boardingPosition" "stoppingPlace" ) .
+
+siri:StopPlaceEntranceRefStructure a owl:Class ;
+    rdfs:label "StopPlaceEntrance" ;
+    rdfs:comment "Type for reference to STOP PLACE Entrance." ;
+    rdfs:subClassOf siri:StopPlaceSpaceRefStructure .
+
+siri:StopPlaceRef a owl:Class ;
+    rdfs:label "StopPlaceRef" ;
+    rdfs:subClassOf siri:StopPlaceRefStructure ;
+    siri:xsdElement true .
+
+siri:StopPlaceRefsStructure a owl:Class ;
+    rdfs:label "StopPlaceRefs" ;
+    rdfs:comment "Type for a collection of one or more references to a STOP PLACE." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopPlaceRef ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:TimebandStructure a owl:Class ;
+    rdfs:label "Timeband" ;
+    rdfs:comment "Type for a timeband." ;
+    rdfs:subClassOf siri:HalfOpenTimeRangeStructure .
+
+siri:TypeOfStopPlaceEnumeration a rdfs:Datatype ;
+    rdfs:label "TypeOfStopPlaceEnumeration" ;
+    rdfs:comment "Allowed categories of STOP PLACE." ;
+    owl:oneOf ( "onstreetBus" "onstreetTram" "ferryStop" "airport" "railStation" "metroStation" "coachStation" "ferryPort" "harbourPort" "other" ) .
+
+siri:ValidityConditionStructure a owl:Class ;
+    rdfs:label "ValidityCondition" ;
+    rdfs:comment "Type for a validity condition." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:fromDateTime ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:toDateTime ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:dayType ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:timebands ;
+            siri:xsdSequenceOrder 4 ] .
+
+siri:ValidityConditionsStructure a owl:Class ;
+    rdfs:label "ValidityConditions" ;
+    rdfs:comment "A collection of one or more validity conditions." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:validityCondition ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:VehicleStoppingPlaceRefStructure a owl:Class ;
+    rdfs:label "VehicleStoppingPlace" ;
+    rdfs:comment "Type for reference to VEHICLE STOPPING PLACe." ;
+    rdfs:subClassOf siri:StopPlaceSpaceRefStructure .
+
+siri:VehicleStoppingPositionRefStructure a owl:Class ;
+    rdfs:label "VehicleStoppingPosition" ;
+    rdfs:comment "Type for reference to VEHICLE STOPPING POSITION." ;
+    rdfs:subClassOf siri:StopPlaceSpaceRefStructure .
+
+siri:ZoneProjection a owl:Class ;
+    rdfs:label "ZoneProjection" ;
+    rdfs:subClassOf siri:ZoneProjectionStructure ;
+    siri:xsdElement true .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/ifopt> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "IFOPT fixed objects" ;
+    owl:imports <https://siri-cen.eu/ontology/gml> ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:AbstractEquipmentStructure a owl:Class ;
+    rdfs:label "AbstractEquipment" ;
+    rdfs:comment "Type for abstract EQUIPMENT." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:equipmentId ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:equipmentName ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:typeOfEquipment ;
+            siri:xsdSequenceOrder 3 ],
+        siri:DataManagedObjectStructure ;
+    siri:abstract true .
+
+siri:AccessLinkRefStructure a owl:Class ;
+    rdfs:label "AccessLink" ;
+    rdfs:comment "Type for reference to an ACCESS link." .
+
+siri:DataManagedObjectStructure a owl:Class ;
+    rdfs:label "DataManagedObject" ;
+    rdfs:comment "Abstract Type for DATA MANAGED OBJECT, that is an object that may be assigned a RESPONSIBILITY SET dictating a responsible ORGANISATION and/or ADMINISTRATIVE ZONE." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:managedByAreaRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoLinks ;
+            siri:xsdSequenceOrder 2 ],
+        siri:VersionedObjectStructure ;
+    siri:abstract true .
+
+siri:HalfOpenTimeRangeStructure a owl:Class ;
+    rdfs:label "HalfOpenTimeRange" ;
+    rdfs:comment "Type for a range of times. Start time must be specified, end time is optional." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:startTime ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:endTime ;
+            siri:xsdSequenceOrder 2 ] .
+
+siri:LinkProjectionStructure a owl:Class ;
+    rdfs:label "LinkProjection" ;
+    rdfs:comment "Type for PROJECTION as a geospatial polyline." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:line ;
+            siri:xsdSequenceOrder 1 ],
+        siri:AbstractProjection .
+
+siri:LocalServiceStructure a owl:Class ;
+    rdfs:label "LocalService" ;
+    rdfs:comment "Type for LOCAL SERVICE." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:validityConditions ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:featureRefs ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:InstalledEquipmentStructure .
+
+siri:NavigationPathRefStructure a owl:Class ;
+    rdfs:label "NavigationPath" ;
+    rdfs:comment "Type for reference to a NAVIGATION PATH." .
+
+siri:PathJunctionRefStructure a owl:Class ;
+    rdfs:label "PathJunction" ;
+    rdfs:comment "Type for reference to a PATH JUNCTION." .
+
+siri:PlaceEquipmentStructure a owl:Class ;
+    rdfs:label "PlaceEquipment" ;
+    rdfs:comment "Type for SITE EQUIPMENT." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 1 ],
+        siri:InstalledEquipmentStructure .
+
+siri:PointProjectionStructure a owl:Class ;
+    rdfs:label "PointProjection" ;
+    rdfs:comment "Type for geospatial Position of a point. May be expressed in concrete WGS 84 Coordinates or any GML compatible point coordinates format." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:longitude ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:latitude ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:altitude ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:coordinates ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:precision ;
+            siri:xsdSequenceOrder 5 ],
+        siri:AbstractProjection .
+
+siri:StopPlaceRefStructure a owl:Class ;
+    rdfs:label "StopPlace" ;
+    rdfs:comment "Type for reference to a STOP PLACE." .
+
+siri:VersionedObjectStructure a owl:Class ;
+    rdfs:label "VersionedObject" ;
+    rdfs:comment "Abstract Type for a versioned object." ;
+    siri:abstract true .
+
+siri:ZoneProjectionStructure a owl:Class ;
+    rdfs:label "ZoneProjection" ;
+    rdfs:comment "Type for PROJECTION as a geospatial zone." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:boundary ;
+            siri:xsdSequenceOrder 1 ],
+        siri:AbstractProjection .
+
+siri:accessFeatureType a owl:DatatypeProperty ;
+    rdfs:label "AccessFeatureType" ;
+    rdfs:comment "Type of physical featrue that may slow use of CHECK CONSTRAINt." ;
+    siri:xsdType "AccessibilityFeatureEnumeration" .
+
+siri:administrativeAreaRef a owl:ObjectProperty ;
+    rdfs:label "AdministrativeAreaRef" ;
+    rdfs:comment "Reference to the identifier of an ADMINISTRATIVE ZONE." ;
+    siri:isReference true ;
+    siri:xsdType "AdministrativeAreaVersionedRefStructure" .
+
+siri:altitude a owl:DatatypeProperty ;
+    rdfs:label "Altitude" ;
+    rdfs:comment "Altitude." ;
+    siri:xsdType "siri:AltitudeType" .
+
+siri:averageDelay a owl:DatatypeProperty ;
+    rdfs:label "AverageDelay" ;
+    rdfs:comment "Average duration expected to pass through CHECK CONSTRAINT." ;
+    siri:xsdType "siri:DurationType" .
+
+siri:boundary a owl:DatatypeProperty ;
+    rdfs:label "Boundary" ;
+    rdfs:comment "Boundary line of Zone as an ordered set of points." .
+
+siri:checkPointId a owl:DatatypeProperty ;
+    rdfs:label "CheckPointId" ;
+    rdfs:comment "Identifier of CHECK CONSTRAINt." ;
+    siri:xsdType "CheckPointIdType" .
+
+siri:checkPointProcess a owl:DatatypeProperty ;
+    rdfs:label "CheckPointProcess" ;
+    rdfs:comment "Type of process that may occur at CHECK CONSTRAINt." ;
+    siri:xsdType "CheckPointProcessEnumeration" .
+
+siri:checkPointService a owl:DatatypeProperty ;
+    rdfs:label "CheckPointService" ;
+    rdfs:comment "Type of process that may occur at CHECK CONSTRAINt." ;
+    siri:xsdType "CheckPointServiceEnumeration" .
+
+siri:congestion a owl:DatatypeProperty ;
+    rdfs:label "Congestion" ;
+    rdfs:comment "Type of crowding that may slow use of CHECK CONSTRAINt." ;
+    siri:xsdType "CongestionEnumeration" .
+
+siri:coordinates a owl:ObjectProperty ;
+    rdfs:label "Coordinates" ;
+    rdfs:comment "Coordinates of points in a GML compatible format, as indicated by srsName attribute." ;
+    siri:xsdType "siri:CoordinatesStructure" .
+
+siri:dayType a owl:DatatypeProperty ;
+    rdfs:label "DayType" ;
+    rdfs:comment "Day type for which timeband applies. If absent all day types in context." ;
+    siri:xsdType "xsd:NMTOKEN" .
+
+siri:endTime a owl:DatatypeProperty ;
+    rdfs:label "EndTime" ;
+    rdfs:comment "The (inclusive) end time. If omitted, the range end is open-ended, that is, it should be interpreted as specifed by the EndTimeStatus" ;
+    siri:xsdType "xsd:time" .
+
+siri:equipmentId a owl:DatatypeProperty ;
+    rdfs:label "EquipmentId" ;
+    rdfs:comment "Identifer of EQUIPMENT." ;
+    siri:xsdType "EquipmentIdType" .
+
+siri:equipmentName a owl:ObjectProperty ;
+    rdfs:label "EquipmentName" ;
+    rdfs:comment "Name of EQUIPMENT." ;
+    siri:xsdType "siri:NaturalLanguageStringStructure" .
+
+siri:facilityRef a owl:ObjectProperty ;
+    rdfs:label "FacilityRef" ;
+    rdfs:comment "Classification of feature of CHECK CONSTRAINT." ;
+    siri:isReference true ;
+    siri:xsdType "xsd:string" .
+
+siri:featureRefs a owl:DatatypeProperty ;
+    rdfs:label "FeatureRefs" ;
+    rdfs:comment "Classification of features." .
+
+siri:features a owl:DatatypeProperty ;
+    rdfs:label "Features" ;
+    rdfs:comment "GIS Features that this element projects onto." .
+
+siri:fromDateTime a owl:DatatypeProperty ;
+    rdfs:label "FromDateTime" ;
+    rdfs:comment "The (inclusive) start date and time." ;
+    siri:xsdType "xsd:dateTime" .
+
+siri:identifierType a owl:DatatypeProperty ;
+    rdfs:label "IdentifierType" ;
+    rdfs:comment "Type of Identifier." ;
+    siri:xsdType "xsd:normalizedString" .
+
+siri:infoLink a owl:DatatypeProperty ;
+    rdfs:label "InfoLink" .
+
+siri:infoLinks a owl:ObjectProperty ;
+    rdfs:label "InfoLinks" ;
+    rdfs:comment "Collection of URL's associated with object." ;
+    siri:xsdType "InfoLinksStructure" .
+
+siri:latitude a owl:DatatypeProperty ;
+    rdfs:label "Latitude" ;
+    rdfs:comment "Latitude from equator. -90° (South) to +90° (North)." ;
+    siri:xsdType "siri:LatitudeType" .
+
+siri:line a owl:DatatypeProperty ;
+    rdfs:label "Line" ;
+    rdfs:comment "Ordered sequence of points. There must always be a start and end point." .
+
+siri:longitude a owl:DatatypeProperty ;
+    rdfs:label "Longitude" ;
+    rdfs:comment "Longitude from Greenwich Meridian. -180° (East) to +180° (West)." ;
+    siri:xsdType "siri:LongitudeType" .
+
+siri:managedByAreaRef a owl:ObjectProperty ;
+    rdfs:label "ManagedByAreaRef" ;
+    rdfs:comment "ADMINISTRATIVE ZONEthat manages object. If absent then manager same as for containing parent of object." ;
+    siri:isReference true ;
+    siri:xsdType "AdministrativeAreaRefStructure" .
+
+siri:maximumLikelyDelay a owl:DatatypeProperty ;
+    rdfs:label "MaximumLikelyDelay" ;
+    rdfs:comment "Maximum duration expected to pass through CHECK CONSTRAINT." ;
+    siri:xsdType "siri:DurationType" .
+
+siri:minimumLikelyDelay a owl:DatatypeProperty ;
+    rdfs:label "MinimumLikelyDelay" ;
+    rdfs:comment "Minimum duration needed to pass through CHECK CONSTRAINT." ;
+    siri:xsdType "siri:DurationType" .
+
+siri:precision a owl:DatatypeProperty ;
+    rdfs:label "Precision" ;
+    rdfs:comment "Precision for point measurement. In meters." ;
+    siri:xsdType "siri:DistanceType" .
+
+siri:privateCode a owl:DatatypeProperty ;
+    rdfs:label "PrivateCode" ;
+    rdfs:comment "Alternative identifier." ;
+    siri:xsdType "PrivateCodeType" .
+
+siri:startTime a owl:DatatypeProperty ;
+    rdfs:label "StartTime" ;
+    rdfs:comment "The (inclusive) start time." ;
+    siri:xsdType "xsd:time" .
+
+siri:stopPlaceRef a owl:ObjectProperty ;
+    rdfs:label "StopPlaceRef" ;
+    siri:isReference true .
+
+siri:timebands a owl:DatatypeProperty ;
+    rdfs:label "Timebands" ;
+    rdfs:comment "Any timebands which further qualify the validity condition." .
+
+siri:toDateTime a owl:DatatypeProperty ;
+    rdfs:label "ToDateTime" ;
+    rdfs:comment "The (inclusive) end time. If omitted, the range end is open-ended, that is, it should be interpreted as \"forever\"." ;
+    siri:xsdType "xsd:dateTime" .
+
+siri:typeOfEquipment a owl:ObjectProperty ;
+    rdfs:label "TypeOfEquipment" ;
+    rdfs:comment "Type for reference to TYPE OF EQUIPMENT." ;
+    siri:isReference true ;
+    siri:xsdType "EquipmentTypeRefStructure" .
+
+siri:validityConditions a owl:ObjectProperty ;
+    rdfs:label "ValidityConditions" ;
+    rdfs:comment "Conditison governing availability of serevice." ;
+    siri:xsdType "ValidityConditionsStructure" .
+
+siri:InstalledEquipmentStructure a owl:Class ;
+    rdfs:label "InstalledEquipment" ;
+    rdfs:comment "Type for INSTALLED EQUIPMENT." ;
+    rdfs:subClassOf siri:AbstractEquipmentStructure ;
+    siri:abstract true .
+
+siri:extensions a owl:DatatypeProperty ;
+    rdfs:label "Extensions" .
+
+siri:validityCondition a owl:ObjectProperty ;
+    rdfs:label "ValidityCondition" ;
+    rdfs:comment "Reference to the identifier of an administrative area." ;
+    siri:xsdType "ValidityConditionStructure" .
+
+siri:AbstractProjection a owl:Class ;
+    rdfs:label "AbstractProjection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:features ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:StopPlaceComponentRefStructure a owl:Class ;
+    rdfs:label "StopPlaceComponent" ;
+    rdfs:comment "Type for reference to STOP PLACE." .
+
+siri:StopPlaceSpaceRefStructure a owl:Class ;
+    rdfs:label "StopPlaceSpace" ;
+    rdfs:comment "Type for reference to STOP PLACE Space." ;
+    rdfs:subClassOf siri:StopPlaceComponentRefStructure .
+

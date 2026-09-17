@@ -1,0 +1,468 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:AbstractCurve a owl:Class ;
+    rdfs:label "AbstractCurve" ;
+    rdfs:subClassOf siri:AbstractCurveType ;
+    siri:xsdElement true .
+
+siri:AbstractGML a owl:Class ;
+    rdfs:label "AbstractGML" ;
+    rdfs:subClassOf siri:AbstractGMLType ;
+    siri:xsdElement true .
+
+siri:AbstractGeometricPrimitive a owl:Class ;
+    rdfs:label "AbstractGeometricPrimitive" ;
+    rdfs:subClassOf siri:AbstractGeometricPrimitiveType ;
+    siri:xsdElement true .
+
+siri:AbstractGeometry a owl:Class ;
+    rdfs:label "AbstractGeometry" ;
+    rdfs:subClassOf siri:AbstractGeometryType ;
+    siri:xsdElement true .
+
+siri:AbstractMemberType a owl:Class ;
+    rdfs:label "AbstractMemberType" ;
+    rdfs:comment "To create a collection of GML Objects that are not all features, a property type shall be derived by extension from gml:AbstractMemberType. This abstract property type is intended to be used only in object types where software shall be able to identify that an instance of such an object type is to be interpreted as a collection of objects. By default, this abstract property type does not imply any ownership of the objects in the collection. The owns attribute of gml:OwnershipAttributeGroup may be used on a property element instance to assert ownership of an object in the collection. A collection shall not own an object already owned by another object." ;
+    siri:abstract true .
+
+siri:AbstractMetadataPropertyType a owl:Class ;
+    rdfs:label "AbstractMetadataPropertyType" ;
+    rdfs:comment "To associate metadata described by any XML Schema with a GML object, a property element shall be defined whose content model is derived by extension from gml:AbstractMetadataPropertyType. The value of such a property shall be metadata. The content model of such a property type, i.e. the metadata application schema shall be specified by the GML Application Schema. By default, this abstract property type does not imply any ownership of the metadata. The owns attribute of gml:OwnershipAttributeGroup may be used on a metadata property element instance to assert ownership of the metadata. If metadata following the conceptual model of ISO 19115 is to be encoded in a GML document, the corresponding Implementation Specification specified in ISO/TS 19139 shall be used to encode the metadata information." ;
+    siri:abstract true .
+
+siri:AbstractRing a owl:Class ;
+    rdfs:label "AbstractRing" ;
+    rdfs:subClassOf siri:AbstractRingType ;
+    siri:xsdElement true .
+
+siri:AbstractSurface a owl:Class ;
+    rdfs:label "AbstractSurface" ;
+    rdfs:subClassOf siri:AbstractSurfaceType ;
+    siri:xsdElement true .
+
+siri:AggregationType a rdfs:Datatype ;
+    rdfs:label "AggregationType" ;
+    owl:oneOf ( "set" "bag" "sequence" "array" "record" "table" ) .
+
+siri:CodeListType a owl:Class ;
+    rdfs:label "CodeListType" ;
+    rdfs:comment "gml:CodeListType provides for lists of terms. The values in an instance element shall all be valid according to the rules of the dictionary, classification scheme, or authority identified by the value of its codeSpace attribute." .
+
+siri:CodeOrNilReasonListType a owl:Class ;
+    rdfs:label "CodeOrNilReasonListType" ;
+    rdfs:comment "gml:CodeOrNilReasonListType provides for lists of terms. The values in an instance element shall all be valid according to the rules of the dictionary, classification scheme, or authority identified by the value of its codeSpace attribute. An instance element may also include embedded values from NilReasonType. It is intended to be used in situations where a term or classification is expected, but the value may be absent for some reason." .
+
+siri:CoordinatesType a owl:Class ;
+    rdfs:label "CoordinatesType" ;
+    rdfs:comment "This type is deprecated for tuples with ordinate values that are numbers. CoordinatesType is a text string, intended to be used to record an array of tuples or coordinates. While it is not possible to enforce the internal structure of the string through schema validation, some optional attributes have been provided in previous versions of GML to support a description of the internal structure. These attributes are deprecated. The attributes were intended to be used as follows: Decimal symbol used for a decimal point (default=\".\" a stop or period) cs symbol used to separate components within a tuple or coordinate string (default=\",\" a comma) ts symbol used to separate tuples or coordinate strings (default=\" \" a space) Since it is based on the XML Schema string type, CoordinatesType may be used in the construction of tables of tuples or arrays of tuples, including ones that contain mixed text and numeric values." .
+
+siri:CurveArrayPropertyType a owl:Class ;
+    rdfs:label "CurveArrayPropertyType" ;
+    rdfs:comment "A container for an array of curves. The elements are always contained in the array property, referencing geometry elements or arrays of geometry elements via XLinks is not supported." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:abstractCurve ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:Envelope a owl:Class ;
+    rdfs:label "Envelope" ;
+    rdfs:subClassOf siri:EnvelopeType ;
+    siri:xsdElement true .
+
+siri:GeometricPrimitivePropertyType a owl:Class ;
+    rdfs:label "GeometricPrimitivePropertyType" ;
+    rdfs:comment "A property that has a geometric primitive as its value domain may either be an appropriate geometry element encapsulated in an element of this type or an XLink reference to a remote geometry element (where remote includes geometry elements located elsewhere in the same document). Either the reference or the contained element shall be given, but neither both nor none." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:abstractGeometricPrimitive ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:GeometryArrayPropertyType a owl:Class ;
+    rdfs:label "GeometryArrayPropertyType" ;
+    rdfs:comment "If a feature has a property which takes an array of geometry elements as its value, this is called a geometry array property. A generic type for such a geometry property is GeometryArrayPropertyType. The elements are always contained inline in the array property, referencing geometry elements or arrays of geometry elements via XLinks is not supported." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:abstractGeometry ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:GeometryPropertyType a owl:Class ;
+    rdfs:label "GeometryPropertyType" ;
+    rdfs:comment "A geometric property may either be any geometry element encapsulated in an element of this type or an XLink reference to a remote geometry element (where remote includes geometry elements located elsewhere in the same or another document). Note that either the reference or the contained element shall be given, but not both or none. If a feature has a property that takes a geometry element as its value, this is called a geometry property. A generic type for such a geometry property is GeometryPropertyType." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:abstractGeometry ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:LineString a owl:Class ;
+    rdfs:label "LineString" ;
+    rdfs:subClassOf siri:LineStringType ;
+    siri:xsdElement true .
+
+siri:LinearRing a owl:Class ;
+    rdfs:label "LinearRing" ;
+    rdfs:subClassOf siri:LinearRingType ;
+    siri:xsdElement true .
+
+siri:LinearRingPropertyType a owl:Class ;
+    rdfs:label "LinearRingPropertyType" ;
+    rdfs:comment "A property with the content model of gml:LinearRingPropertyType encapsulates a linear ring to represent a component of a surface boundary." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:linearRing ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:MeasureListType a owl:Class ;
+    rdfs:label "MeasureListType" ;
+    rdfs:comment "gml:MeasureListType provides for a list of quantities." .
+
+siri:MeasureOrNilReasonListType a owl:Class ;
+    rdfs:label "MeasureOrNilReasonListType" ;
+    rdfs:comment "gml:MeasureOrNilReasonListType provides for a list of quantities. An instance element may also include embedded values from NilReasonType. It is intended to be used in situations where a value is expected, but the value may be absent for some reason." .
+
+siri:MeasureType a owl:Class ;
+    rdfs:label "MeasureType" ;
+    rdfs:comment "gml:MeasureType supports recording an amount encoded as a value of XML Schema double, together with a units of measure indicated by an attribute uom, short for \"units of measure\". The value of the uom attribute identifies a reference system for the amount, usually a ratio or interval scale." .
+
+siri:NilReasonEnumeration a rdfs:Datatype ;
+    rdfs:label "NilReasonEnumeration" ;
+    owl:oneOf ( "inapplicable" "missing" "template" "unknown" "withheld" ) .
+
+siri:Point a owl:Class ;
+    rdfs:label "Point" ;
+    rdfs:subClassOf siri:PointType ;
+    siri:xsdElement true .
+
+siri:PointArrayPropertyType a owl:Class ;
+    rdfs:label "PointArrayPropertyType" ;
+    rdfs:comment "gml:PointArrayPropertyType is a container for an array of points. The elements are always contained inline in the array property, referencing geometry elements or arrays of geometry elements via XLinks is not supported." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:point ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:Polygon a owl:Class ;
+    rdfs:label "Polygon" ;
+    rdfs:subClassOf siri:PolygonType ;
+    siri:xsdElement true .
+
+siri:SignType a rdfs:Datatype ;
+    rdfs:label "SignType" ;
+    rdfs:comment "gml:SignType is a convenience type with values \"+\" (plus) and \"-\" (minus)." ;
+    owl:oneOf ( "-" "+" ) .
+
+siri:SurfaceArrayPropertyType a owl:Class ;
+    rdfs:label "SurfaceArrayPropertyType" ;
+    rdfs:comment "gml:SurfaceArrayPropertyType is a container for an array of surfaces. The elements are always contained in the array property, referencing geometry elements or arrays of geometry elements via XLinks is not supported." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:abstractSurface ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:abstractAssociationRole a owl:Class ;
+    rdfs:label "abstractAssociationRole" ;
+    rdfs:subClassOf siri:AssociationRoleType ;
+    siri:xsdElement true .
+
+siri:abstractInlineProperty a owl:Class ;
+    rdfs:label "abstractInlineProperty" ;
+    rdfs:subClassOf siri:InlinePropertyType ;
+    siri:xsdElement true .
+
+siri:abstractReference a owl:Class ;
+    rdfs:label "abstractReference" ;
+    rdfs:subClassOf siri:ReferenceType ;
+    siri:xsdElement true .
+
+siri:abstractStrictAssociationRole a owl:Class ;
+    rdfs:label "abstractStrictAssociationRole" ;
+    rdfs:subClassOf siri:AssociationRoleType ;
+    siri:xsdElement true .
+
+siri:curveProperty a owl:Class ;
+    rdfs:label "curveProperty" ;
+    rdfs:subClassOf siri:CurvePropertyType ;
+    siri:xsdElement true .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:surfaceProperty a owl:Class ;
+    rdfs:label "surfaceProperty" ;
+    rdfs:subClassOf siri:SurfacePropertyType ;
+    siri:xsdElement true .
+
+siri:vector a owl:Class ;
+    rdfs:label "vector" ;
+    rdfs:subClassOf siri:VectorType ;
+    siri:xsdElement true .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/gml> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "GML subset" ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:CodeWithAuthorityType a owl:Class ;
+    rdfs:label "CodeWithAuthorityType" ;
+    rdfs:comment "gml:CodeWithAuthorityType requires that the codeSpace attribute is provided in an instance." ;
+    rdfs:subClassOf siri:CodeType .
+
+siri:CurvePropertyType a owl:Class ;
+    rdfs:label "CurvePropertyType" ;
+    rdfs:comment "A property that has a curve as its value domain may either be an appropriate geometry element encapsulated in an element of this type or an XLink reference to a remote geometry element (where remote includes geometry elements located elsewhere in the same document). Either the reference or the contained element shall be given, but neither both nor none." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:abstractCurve ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:DirectPositionListType a owl:Class ;
+    rdfs:label "DirectPositionListType" ;
+    rdfs:comment "posList instances (and other instances with the content model specified by DirectPositionListType) hold the coordinates for a sequence of direct positions within the same coordinate reference system (CRS). if no srsName attribute is given, the CRS shall be specified as part of the larger context this geometry element is part of, typically a geometric object like a point, curve, etc. The optional attribute count specifies the number of direct positions in the list. If the attribute count is present then the attribute srsDimension shall be present, too. The number of entries in the list is equal to the product of the dimensionality of the coordinate reference system (i.e. it is a derived value of the coordinate reference system definition) and the number of direct positions." .
+
+siri:EnvelopeType a owl:Class ;
+    rdfs:label "EnvelopeType" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lowerCorner ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:upperCorner ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:pos ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:InlinePropertyType a owl:Class ;
+    rdfs:label "InlinePropertyType" .
+
+siri:LineStringType a owl:Class ;
+    rdfs:label "LineStringType" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:pos ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:pointProperty ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:posList ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractCurveType .
+
+siri:LinearRingType a owl:Class ;
+    rdfs:label "LinearRingType" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:pos ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:pointProperty ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:posList ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractRingType .
+
+siri:PointPropertyType a owl:Class ;
+    rdfs:label "PointPropertyType" ;
+    rdfs:comment "A property that has a point as its value domain may either be an appropriate geometry element encapsulated in an element of this type or an XLink reference to a remote geometry element (where remote includes geometry elements located elsewhere in the same document). Either the reference or the contained element shall be given, but neither both nor none." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:point ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:PointType a owl:Class ;
+    rdfs:label "PointType" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:pos ;
+            siri:xsdSequenceOrder 1 ],
+        siri:AbstractGeometricPrimitiveType .
+
+siri:PolygonType a owl:Class ;
+    rdfs:label "PolygonType" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:exterior ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:interior ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractSurfaceType .
+
+siri:SurfacePropertyType a owl:Class ;
+    rdfs:label "SurfacePropertyType" ;
+    rdfs:comment "A property that has a surface as its value domain may either be an appropriate geometry element encapsulated in an element of this type or an XLink reference to a remote geometry element (where remote includes geometry elements located elsewhere in the same document). Either the reference or the contained element shall be given, but neither both nor none." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:abstractSurface ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:VectorType a owl:Class ;
+    rdfs:label "VectorType" ;
+    rdfs:comment "For some applications the components of the position may be adjusted to yield a unit vector." ;
+    rdfs:subClassOf siri:DirectPositionType .
+
+siri:abstractGeometricPrimitive a owl:DatatypeProperty ;
+    rdfs:label "AbstractGeometricPrimitive" .
+
+siri:abstractRing a owl:DatatypeProperty ;
+    rdfs:label "AbstractRing" .
+
+siri:descriptionReference a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "descriptionReference" ;
+    rdfs:subClassOf siri:ReferenceType ;
+    siri:xsdElement true .
+
+siri:exterior a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "exterior" ;
+    rdfs:subClassOf siri:AbstractRingPropertyType ;
+    siri:xsdElement true .
+
+siri:identifier a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "identifier" ;
+    rdfs:subClassOf siri:CodeWithAuthorityType ;
+    siri:xsdElement true .
+
+siri:interior a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "interior" ;
+    rdfs:subClassOf siri:AbstractRingPropertyType ;
+    siri:xsdElement true .
+
+siri:linearRing a owl:DatatypeProperty ;
+    rdfs:label "LinearRing" .
+
+siri:lowerCorner a owl:ObjectProperty ;
+    rdfs:label "lowerCorner" ;
+    siri:xsdType "gml:DirectPositionType" .
+
+siri:name a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "name" ;
+    rdfs:subClassOf siri:CodeType ;
+    siri:xsdElement true .
+
+siri:upperCorner a owl:ObjectProperty ;
+    rdfs:label "upperCorner" ;
+    siri:xsdType "gml:DirectPositionType" .
+
+siri:AbstractCurveType a owl:Class ;
+    rdfs:label "AbstractCurveType" ;
+    rdfs:comment "gml:AbstractCurveType is an abstraction of a curve to support the different levels of complexity. The curve may always be viewed as a geometric primitive, i.e. is continuous." ;
+    rdfs:subClassOf siri:AbstractGeometricPrimitiveType ;
+    siri:abstract true .
+
+siri:AbstractGMLType a owl:Class ;
+    rdfs:label "AbstractGMLType" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:descriptionReference ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:identifier ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:name ;
+            siri:xsdSequenceOrder 3 ] ;
+    siri:abstract true .
+
+siri:AbstractGeometryType a owl:Class ;
+    rdfs:label "AbstractGeometryType" ;
+    rdfs:comment "All geometry elements are derived directly or indirectly from this abstract supertype. A geometry element may have an identifying attribute (gml:id), one or more names (elements identifier and name) and a description (elements description and descriptionReference) . It may be associated with a spatial reference system (attribute group gml:SRSReferenceGroup). The following rules shall be adhered to: - Every geometry type shall derive from this abstract type. - Every geometry element (i.e. an element of a geometry type) shall be directly or indirectly in the substitution group of AbstractGeometry." ;
+    rdfs:subClassOf siri:AbstractGMLType ;
+    siri:abstract true .
+
+siri:AbstractRingPropertyType a owl:Class ;
+    rdfs:label "AbstractRingPropertyType" ;
+    rdfs:comment "A property with the content model of gml:AbstractRingPropertyType encapsulates a ring to represent the surface boundary property of a surface." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:abstractRing ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:AbstractRingType a owl:Class ;
+    rdfs:label "AbstractRingType" ;
+    siri:abstract true .
+
+siri:AbstractSurfaceType a owl:Class ;
+    rdfs:label "AbstractSurfaceType" ;
+    rdfs:comment "gml:AbstractSurfaceType is an abstraction of a surface to support the different levels of complexity. A surface is always a continuous region of a plane." ;
+    rdfs:subClassOf siri:AbstractGeometricPrimitiveType ;
+    siri:abstract true .
+
+siri:AssociationRoleType a owl:Class ;
+    rdfs:label "AssociationRoleType" .
+
+siri:CodeType a owl:Class ;
+    rdfs:label "CodeType" ;
+    rdfs:comment "gml:CodeType is a generalized type to be used for a term, keyword or name. It adds a XML attribute codeSpace to a term, where the value of the codeSpace attribute (if present) shall indicate a dictionary, thesaurus, classification scheme, authority, or pattern for the term." .
+
+siri:DirectPositionType a owl:Class ;
+    rdfs:label "DirectPositionType" ;
+    rdfs:comment "Direct position instances hold the coordinates for a position within some coordinate reference system (CRS). Since direct positions, as data types, will often be included in larger objects (such as geometry elements) that have references to CRS, the srsName attribute will in general be missing, if this particular direct position is included in a larger element with such a reference to a CRS. In this case, the CRS is implicitly assumed to take on the value of the containing object's CRS. if no srsName attribute is given, the CRS shall be specified as part of the larger context this geometry element is part of, typically a geometric object like a point, curve, etc." .
+
+siri:ReferenceType a owl:Class ;
+    rdfs:label "ReferenceType" ;
+    rdfs:comment "gml:ReferenceType is intended to be used in application schemas directly, if a property element shall use a \"by-reference only\" encoding." .
+
+siri:abstractCurve a owl:DatatypeProperty ;
+    rdfs:label "AbstractCurve" .
+
+siri:abstractGeometry a owl:DatatypeProperty ;
+    rdfs:label "AbstractGeometry" .
+
+siri:abstractSurface a owl:DatatypeProperty ;
+    rdfs:label "AbstractSurface" .
+
+siri:point a owl:DatatypeProperty ;
+    rdfs:label "Point" .
+
+siri:pointProperty a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "pointProperty" ;
+    rdfs:subClassOf siri:PointPropertyType ;
+    siri:xsdElement true .
+
+siri:posList a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "posList" ;
+    rdfs:subClassOf siri:DirectPositionListType ;
+    siri:xsdElement true .
+
+siri:AbstractGeometricPrimitiveType a owl:Class ;
+    rdfs:label "AbstractGeometricPrimitiveType" ;
+    rdfs:comment "gml:AbstractGeometricPrimitiveType is the abstract root type of the geometric primitives. A geometric primitive is a geometric object that is not decomposed further into other primitives in the system. All primitives are oriented in the direction implied by the sequence of their coordinate tuples." ;
+    rdfs:subClassOf siri:AbstractGeometryType ;
+    siri:abstract true .
+
+siri:pos a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "pos" ;
+    rdfs:subClassOf siri:DirectPositionType ;
+    siri:xsdElement true .
+

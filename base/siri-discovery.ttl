@@ -1,0 +1,901 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:AnnotatedConnectionLinkRef a owl:Class ;
+    rdfs:label "AnnotatedConnectionLinkRef" ;
+    rdfs:subClassOf siri:AnnotatedConnectionLinkStructure ;
+    siri:xsdElement true .
+
+siri:AnnotatedLineRef a owl:Class ;
+    rdfs:label "AnnotatedLineRef" ;
+    rdfs:subClassOf siri:AnnotatedLineStructure ;
+    siri:xsdElement true .
+
+siri:AnnotatedStopPointRef a owl:Class ;
+    rdfs:label "AnnotatedStopPointRef" ;
+    rdfs:subClassOf siri:AnnotatedStopPointStructure ;
+    siri:xsdElement true .
+
+siri:ConnectionLinksDelivery a owl:Class ;
+    rdfs:label "ConnectionLinksDelivery" ;
+    rdfs:subClassOf siri:ConnectionLinksDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:ConnectionLinksDetailEnumeration a rdfs:Datatype ;
+    rdfs:label "ConnectionLinksDetailEnumeration" ;
+    rdfs:comment "Detail Levels for CONNECTION LINKs Discovery Request. (since SIRI 2.0)" ;
+    owl:oneOf ( "minimum" "normal" "full" ) .
+
+siri:ConnectionLinksRequest a owl:Class ;
+    rdfs:label "ConnectionLinksRequest" ;
+    rdfs:subClassOf siri:ConnectionLinksDiscoveryRequestStructure ;
+    siri:xsdElement true .
+
+siri:FacilityDelivery a owl:Class ;
+    rdfs:label "FacilityDelivery" ;
+    rdfs:subClassOf siri:FacilityDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:FacilityDetailEnumeration a rdfs:Datatype ;
+    rdfs:label "FacilityDetailEnumeration" ;
+    rdfs:comment "Detail Levels for Facility Points Request. (since SIRI 2.0)" ;
+    owl:oneOf ( "minimum" "normal" "full" ) .
+
+siri:FacilityRequest a owl:Class ;
+    rdfs:label "FacilityRequest" ;
+    rdfs:subClassOf siri:FacilityRequestStructure ;
+    siri:xsdElement true .
+
+siri:InfoChannel a owl:Class ;
+    rdfs:label "InfoChannel" ;
+    rdfs:subClassOf siri:InfoChannelStructure ;
+    siri:xsdElement true .
+
+siri:InfoChannelDelivery a owl:Class ;
+    rdfs:label "InfoChannelDelivery" ;
+    rdfs:subClassOf siri:InfoChannelDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:InfoChannelRequest a owl:Class ;
+    rdfs:label "InfoChannelRequest" ;
+    rdfs:subClassOf siri:InfoChannelDiscoveryRequestStructure ;
+    siri:xsdElement true .
+
+siri:LinesDelivery a owl:Class ;
+    rdfs:label "LinesDelivery" ;
+    rdfs:subClassOf siri:LinesDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:LinesDetailEnumeration a rdfs:Datatype ;
+    rdfs:label "LinesDetailEnumeration" ;
+    rdfs:comment "Detail Levels for Lines Discovery Request. (since SIRI 2.0)" ;
+    owl:oneOf ( "minimum" "normal" "stops" "full" ) .
+
+siri:LinesRequest a owl:Class ;
+    rdfs:label "LinesRequest" ;
+    rdfs:subClassOf siri:LinesDiscoveryRequestStructure ;
+    siri:xsdElement true .
+
+siri:ProductCategoriesDelivery a owl:Class ;
+    rdfs:label "ProductCategoriesDelivery" ;
+    rdfs:subClassOf siri:ProductCategoriesDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:ProductCategoriesRequest a owl:Class ;
+    rdfs:label "ProductCategoriesRequest" ;
+    rdfs:subClassOf siri:ProductCategoriesDiscoveryRequestStructure ;
+    siri:xsdElement true .
+
+siri:ProductCategory a owl:Class ;
+    rdfs:label "ProductCategory" ;
+    rdfs:subClassOf siri:ProductCategoryStructure ;
+    siri:xsdElement true .
+
+siri:RouteDirectionStructure a owl:Class ;
+    rdfs:label "RouteDirection" ;
+    rdfs:comment "Summary information about a Direction of a Line" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:journeyPatterns ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:DirectionStructure .
+
+siri:ServiceFeature a owl:Class ;
+    rdfs:label "ServiceFeature" ;
+    rdfs:subClassOf siri:ServiceFeatureStructure ;
+    siri:xsdElement true .
+
+siri:ServiceFeaturesDelivery a owl:Class ;
+    rdfs:label "ServiceFeaturesDelivery" ;
+    rdfs:subClassOf siri:ServiceFeaturesDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:ServiceFeaturesRequest a owl:Class ;
+    rdfs:label "ServiceFeaturesRequest" ;
+    rdfs:subClassOf siri:ServiceFeaturesDiscoveryRequestStructure ;
+    siri:xsdElement true .
+
+siri:StopPointInPatternStructure a owl:Class ;
+    rdfs:label "StopPointInPattern" ;
+    rdfs:comment "Summary information about a stop within line" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:order ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:onwardLinkShape ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:linkProjectionToNextStopPoint ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 4 ],
+        siri:AnnotatedStopPointStructure .
+
+siri:StopPointsDelivery a owl:Class ;
+    rdfs:label "StopPointsDelivery" ;
+    rdfs:subClassOf siri:StopPointsDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:StopPointsDetailEnumeration a rdfs:Datatype ;
+    rdfs:label "StopPointsDetailEnumeration" ;
+    rdfs:comment "Detail Levels for Stop Points Discovery Request. (since SIRI 2.0)" ;
+    owl:oneOf ( "minimum" "normal" "full" ) .
+
+siri:StopPointsRequest a owl:Class ;
+    rdfs:label "StopPointsRequest" ;
+    rdfs:subClassOf siri:StopPointsDiscoveryRequestStructure ;
+    siri:xsdElement true .
+
+siri:VehicleFeature a owl:Class ;
+    rdfs:label "VehicleFeature" ;
+    rdfs:subClassOf siri:VehicleFeaturesStructure ;
+    siri:xsdElement true .
+
+siri:VehicleFeaturesDelivery a owl:Class ;
+    rdfs:label "VehicleFeaturesDelivery" ;
+    rdfs:subClassOf siri:VehicleFeaturesDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:VehicleFeaturesRequest a owl:Class ;
+    rdfs:label "VehicleFeaturesRequest" ;
+    rdfs:subClassOf siri:VehicleFeaturesRequestStructure ;
+    siri:xsdElement true .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/discovery> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "SIRI discovery model" ;
+    owl:imports <https://siri-cen.eu/ontology/model> ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:AnnotatedConnectionLinkStructure a owl:Class ;
+    rdfs:label "AnnotatedConnectionLink" ;
+    rdfs:comment "View of a SCHEDULED CONNECTION LINK description." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionLinkRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:feederStopPointRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:distributorStopPointRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:monitored ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:connectionLinkName ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:feederStopPointName ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:distributorStopPointName ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:url ;
+            siri:xsdSequenceOrder 8 ] .
+
+siri:AnnotatedDestinationStructure a owl:Class ;
+    rdfs:label "AnnotatedDestination" ;
+    rdfs:comment "Type for DESTINATION and place name." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:destinationRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:placeName ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:directionRef ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:AnnotatedLineStructure a owl:Class ;
+    rdfs:label "AnnotatedLine" ;
+    rdfs:comment "Summary information about a LINE type." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineName ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:monitored ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:destinations ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:directions ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 6 ] .
+
+siri:ConnectionLinksDeliveryStructure a owl:Class ;
+    rdfs:label "ConnectionLinksDelivery" ;
+    rdfs:comment "Response with CONNECTION LINKs available to make requests. +SIR v2.0" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:annotatedConnectionLinkRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryDeliveryStructure .
+
+siri:ConnectionLinksDiscoveryRequestStructure a owl:Class ;
+    rdfs:label "ConnectionLinksDiscoveryRequest" ;
+    rdfs:comment "Requests for CONNECTION LINK data for use in service requests. (since SIRI 2.0)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:boundingBox ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:circle ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:placeRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineRef ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:operatorRef ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionLinksDetailLevel ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 8 ],
+        siri:AbstractDiscoveryRequestStructure .
+
+siri:Destination a owl:Class ;
+    rdfs:label "Destination" ;
+    rdfs:subClassOf siri:AnnotatedDestinationStructure ;
+    siri:xsdElement true .
+
+siri:FacilityDeliveryStructure a owl:Class ;
+    rdfs:label "FacilityDelivery" ;
+    rdfs:comment "Response with Facilities available to make requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:annotatedFacility ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryDeliveryStructure .
+
+siri:FacilityRequestStructure a owl:Class ;
+    rdfs:label "FacilityRequest" ;
+    rdfs:comment "Requests for info channels for use in service requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:boundingBox ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:placeRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:operatorRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineRef ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityDetailLevel ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 7 ],
+        siri:AbstractDiscoveryRequestStructure .
+
+siri:InfoChannelDeliveryStructure a owl:Class ;
+    rdfs:label "InfoChannelDelivery" ;
+    rdfs:comment "Type for Response with Info channels categories available to make requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:infoChannel ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryDeliveryStructure .
+
+siri:InfoChannelDiscoveryRequestStructure a owl:Class ;
+    rdfs:label "InfoChannelDiscoveryRequest" ;
+    rdfs:comment "Requests for info channels for use in service requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 1 ],
+        siri:AbstractDiscoveryRequestStructure .
+
+siri:InfoChannelStructure a owl:Class ;
+    rdfs:label "InfoChannel" ;
+    rdfs:comment "Type for Info Channels description." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoChannelCode ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:name ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:icon ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:LinesDeliveryStructure a owl:Class ;
+    rdfs:label "LinesDelivery" ;
+    rdfs:comment "Response with LINEs available to make requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:annotatedLineRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryDeliveryStructure .
+
+siri:LinesDiscoveryRequestStructure a owl:Class ;
+    rdfs:label "LinesDiscoveryRequest" ;
+    rdfs:comment "Requests for LINE data for use in service requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:boundingBox ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:circle ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:placeRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineDirectionRef ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:operatorRef ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:linesDetailLevel ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 8 ],
+        siri:AbstractDiscoveryRequestStructure .
+
+siri:ProductCategoriesDeliveryStructure a owl:Class ;
+    rdfs:label "ProductCategoriesDelivery" ;
+    rdfs:comment "Type for Response with Product Categories available to make requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:productCategory ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryDeliveryStructure .
+
+siri:ProductCategoriesDiscoveryRequestStructure a owl:Class ;
+    rdfs:label "ProductCategoriesDiscoveryRequest" ;
+    rdfs:comment "Requests for TYPE OF PRODUCT CATEGORY reference data for use in service requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryRequestStructure .
+
+siri:ProductCategoryStructure a owl:Class ;
+    rdfs:label "ProductCategory" ;
+    rdfs:comment "Type for TYPE OF PRODUCT CATEGORY description." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productCategoryCode ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:name ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:icon ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:ServiceFeatureStructure a owl:Class ;
+    rdfs:label "ServiceFeature" ;
+    rdfs:comment "Type for Service Feature description." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:serviceFeatureCode ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:name ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:icon ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:ServiceFeaturesDeliveryStructure a owl:Class ;
+    rdfs:label "ServiceFeaturesDelivery" ;
+    rdfs:comment "Type for Response with SERVICE FEATUREs available to make requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:serviceFeature ;
+            siri:xsdSequenceOrder 1 ],
+        siri:AbstractDiscoveryDeliveryStructure .
+
+siri:ServiceFeaturesDiscoveryRequestStructure a owl:Class ;
+    rdfs:label "ServiceFeaturesDiscoveryRequest" ;
+    rdfs:comment "Type for equests for TYPE OF PRODUCT CATEGORY reference data for use in service requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 1 ],
+        siri:AbstractDiscoveryRequestStructure .
+
+siri:StopPointsDeliveryStructure a owl:Class ;
+    rdfs:label "StopPointsDelivery" ;
+    rdfs:comment "Response with STOP POINTs available to make requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:annotatedStopPointRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryDeliveryStructure .
+
+siri:StopPointsDiscoveryRequestStructure a owl:Class ;
+    rdfs:label "StopPointsDiscoveryRequest" ;
+    rdfs:comment "Requests for stop reference data for use in service requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:boundingBox ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:circle ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:placeRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:operatorRef ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineRef ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopPointsDetailLevel ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 8 ],
+        siri:AbstractDiscoveryRequestStructure .
+
+siri:VehicleFeaturesDeliveryStructure a owl:Class ;
+    rdfs:label "VehicleFeaturesDelivery" ;
+    rdfs:comment "Type for Response with Vehicle Features available to make requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:vehicleFeature ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryDeliveryStructure .
+
+siri:VehicleFeaturesRequestStructure a owl:Class ;
+    rdfs:label "VehicleFeaturesRequest" ;
+    rdfs:comment "Requests for VEHICLE feature data for use in service requests." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractDiscoveryRequestStructure .
+
+siri:VehicleFeaturesStructure a owl:Class ;
+    rdfs:label "VehicleFeatures" ;
+    rdfs:comment "Type for description of feature of VEHICLE." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleFeatureCode ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:name ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:icon ;
+            siri:xsdSequenceOrder 3 ] .
+
+siri:annotatedConnectionLinkRef a owl:ObjectProperty ;
+    rdfs:label "AnnotatedConnectionLinkRef" ;
+    siri:isReference true .
+
+siri:annotatedFacility a owl:ObjectProperty ;
+    rdfs:label "AnnotatedFacility" ;
+    rdfs:comment "Facility Definition." ;
+    siri:xsdType "AnnotatedFacilityStructure" .
+
+siri:annotatedLineRef a owl:ObjectProperty ;
+    rdfs:label "AnnotatedLineRef" ;
+    siri:isReference true .
+
+siri:annotatedStopPointRef a owl:ObjectProperty ;
+    rdfs:label "AnnotatedStopPointRef" ;
+    siri:isReference true .
+
+siri:connectionLinkName a owl:ObjectProperty ;
+    rdfs:label "ConnectionLinkName" ;
+    rdfs:comment "Name of SCHEDULED CONNECTION LINK. DetailLevel=minimum" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:connectionLinkRef a owl:ObjectProperty ;
+    rdfs:label "ConnectionLinkRef" ;
+    rdfs:comment "Identifer of the connection link. DetailLevel=minimum" ;
+    siri:isReference true ;
+    siri:xsdType "ConnectionLinkRefStructure" .
+
+siri:connectionLinksDetailLevel a owl:DatatypeProperty ;
+    rdfs:label "ConnectionLinksDetailLevel" ;
+    rdfs:comment "Level of detail to include in response. Default is 'normal'. (since SIRI 2.0)" ;
+    siri:xsdType "ConnectionLinksDetailEnumeration" .
+
+siri:destinationRef a owl:ObjectProperty ;
+    rdfs:label "DestinationRef" ;
+    rdfs:range siri:Destination ;
+    siri:isReference true ;
+    siri:xsdType "DestinationRefStructure" .
+
+siri:destinations a owl:DatatypeProperty ;
+    rdfs:label "Destinations" ;
+    rdfs:comment "DESTINATIONs to which the LINE runs. Detail level is 'normal'" .
+
+siri:directionRef a owl:ObjectProperty ;
+    rdfs:label "DirectionRef" ;
+    rdfs:comment "Direction in which destination lies. relatoive to currernt stop SIRI 2.0" ;
+    rdfs:range siri:Direction ;
+    siri:isReference true ;
+    siri:xsdType "DirectionRefStructure" .
+
+siri:directions a owl:DatatypeProperty ;
+    rdfs:label "Directions" ;
+    rdfs:comment "DIRECTIONs and Stops for the LINE. 'normal'" .
+
+siri:distributorStopPointName a owl:ObjectProperty ;
+    rdfs:label "DistributorStopPointName" ;
+    rdfs:comment "Name of the distributor's stop. DetailLevel=full" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:distributorStopPointRef a owl:ObjectProperty ;
+    rdfs:label "DistributorStopPointRef" ;
+    rdfs:comment "Identifer of the distributor's stop. DetailLevel=normal" ;
+    siri:isReference true ;
+    siri:xsdType "StopPointRefStructure" .
+
+siri:facilityDetailLevel a owl:DatatypeProperty ;
+    rdfs:label "FacilityDetailLevel" ;
+    rdfs:comment "Level of detail to include in response. Default is 'normal'. (since SIRI 2.0)" ;
+    siri:xsdType "FacilityDetailEnumeration" .
+
+siri:features a owl:DatatypeProperty ;
+    rdfs:label "Features" ;
+    rdfs:comment "Service features of stop. Detail level is 'full'" .
+
+siri:feederStopPointName a owl:ObjectProperty ;
+    rdfs:label "FeederStopPointName" ;
+    rdfs:comment "Name of the feeder's stop. DetailLevel=full" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:feederStopPointRef a owl:ObjectProperty ;
+    rdfs:label "FeederStopPointRef" ;
+    rdfs:comment "Identifer of the feeder's stop. DetailLevel=normal" ;
+    siri:isReference true ;
+    siri:xsdType "StopPointRefStructure" .
+
+siri:infoChannel a owl:DatatypeProperty ;
+    rdfs:label "InfoChannel" .
+
+siri:infoChannelCode a owl:DatatypeProperty ;
+    rdfs:label "InfoChannelCode" ;
+    rdfs:comment "Identifier of classification." ;
+    siri:xsdType "InfoChannelCodeType" .
+
+siri:journeyPatterns a owl:DatatypeProperty ;
+    rdfs:label "JourneyPatterns" ;
+    rdfs:comment "JourneyPatterns in Direction of route (since SIRI 2.0)" .
+
+siri:lineDirectionRef a owl:ObjectProperty ;
+    rdfs:label "LineDirectionRef" ;
+    rdfs:comment "Reference to line for which details are to be returned (v2.0)" ;
+    siri:isReference true ;
+    siri:xsdType "LineDirectionStructure" .
+
+siri:lineName a owl:ObjectProperty ;
+    rdfs:label "LineName" ;
+    rdfs:comment "Name of LINE. (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:lines a owl:DatatypeProperty ;
+    rdfs:label "Lines" ;
+    rdfs:comment "LINEs that use stop. Detail level is 'full'" .
+
+siri:linesDetailLevel a owl:DatatypeProperty ;
+    rdfs:label "LinesDetailLevel" ;
+    rdfs:comment "Level of detail to include in response. Default is 'normal'. (since SIRI 2.0)" ;
+    siri:xsdType "LinesDetailEnumeration" .
+
+siri:linkProjectionToNextStopPoint a owl:ObjectProperty ;
+    rdfs:label "LinkProjectionToNextStopPoint" ;
+    rdfs:comment "GIs projection of Link to the next provided StopPoint. NB Line here means Geometry Polyline, not Transmodel Transport Line." ;
+    siri:xsdType "ifopt:LinkProjectionStructure" .
+
+siri:location a owl:ObjectProperty ;
+    rdfs:label "Location" ;
+    rdfs:comment "Coordinates to use to show stop as a poitn on map. Detail level is 'normal'.+SIRI.v2.0" ;
+    siri:xsdType "LocationStructure" .
+
+siri:onwardLinkShape a owl:ObjectProperty ;
+    rdfs:label "OnwardLinkShape" ;
+    rdfs:comment "Plot of points from this stop to next Stop. Detail level is 'full'. (since SIRI 2.0)" ;
+    siri:xsdType "LineShapeStructure" .
+
+siri:order a owl:DatatypeProperty ;
+    rdfs:label "Order" ;
+    rdfs:comment "Order of STOP POINT in route (since SIRI 2.0)" ;
+    siri:xsdType "xsd:positiveInteger" .
+
+siri:placeName a owl:ObjectProperty ;
+    rdfs:label "PlaceName" ;
+    rdfs:comment "Name of destination TOPOGRAPHIC PLACE. (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:productCategory a owl:DatatypeProperty ;
+    rdfs:label "ProductCategory" .
+
+siri:productCategoryCode a owl:DatatypeProperty ;
+    rdfs:label "ProductCategoryCode" ;
+    rdfs:comment "Identifier of TYPE OF PRODUCT CATEGORY classification. SIRI provides a recommended set of values covering most usages, intended to be TPEG compatible. See the SIRI facilities packaged." ;
+    siri:xsdType "ProductCategoryCodeType" .
+
+siri:serviceFeature a owl:DatatypeProperty ;
+    rdfs:label "ServiceFeature" .
+
+siri:serviceFeatureCode a owl:DatatypeProperty ;
+    rdfs:label "ServiceFeatureCode" ;
+    rdfs:comment "Identifier of classification. SIRI provides a recommended set of values covering most usages, intended to be TPEG compatible. See the SIRI facilities packaged." ;
+    siri:xsdType "ServiceFeatureCodeType" .
+
+siri:stopAreaRef a owl:ObjectProperty ;
+    rdfs:label "StopAreaRef" ;
+    rdfs:comment "Identifer of the sSTOP AREA to which SCHEDULED STOP POINT belongs. +SIRI.v2.0" ;
+    siri:isReference true ;
+    siri:xsdType "StopAreaRefStructure" .
+
+siri:stopName a owl:ObjectProperty ;
+    rdfs:label "StopName" ;
+    rdfs:comment "Name of SCHEDULED STOP POINT. Detail level is 'normal'. (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:stopPointRef a owl:ObjectProperty ;
+    rdfs:label "StopPointRef" ;
+    rdfs:comment "Identifer of the stop." ;
+    siri:isReference true ;
+    siri:xsdType "StopPointRefStructure" .
+
+siri:stopPointsDetailLevel a owl:DatatypeProperty ;
+    rdfs:label "StopPointsDetailLevel" ;
+    rdfs:comment "Level of detail to include in response. Default is 'normal'. (since SIRI 2.0)" ;
+    siri:xsdType "StopPointsDetailEnumeration" .
+
+siri:timingPoint a owl:DatatypeProperty ;
+    rdfs:label "TimingPoint" .
+
+siri:vehicleFeature a owl:DatatypeProperty ;
+    rdfs:label "VehicleFeature" .
+
+siri:vehicleFeatureCode a owl:DatatypeProperty ;
+    rdfs:label "VehicleFeatureCode" ;
+    rdfs:comment "Identifier of feature of VEHICLE. SIRI provides a recommended set of values covering most usages, intended to be TPEG compatible. See the SIRI facilities packaged." ;
+    siri:xsdType "VehicleFeatureCodeType" .
+
+siri:AnnotatedStopPointStructure a owl:Class ;
+    rdfs:label "AnnotatedStopPoint" ;
+    rdfs:comment "View of a SCHEDULED STOP POINT description." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopPointRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:timingPoint ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:monitored ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:stopName ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopAreaRef ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:features ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lines ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:location ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:url ;
+            siri:xsdSequenceOrder 9 ] .
+
+siri:url a owl:DatatypeProperty ;
+    rdfs:label "Url" ;
+    rdfs:comment "Web page associated with Stop. Detail level is 'full'+SIRI.v2.0" ;
+    siri:xsdType "xsd:anyURI" .
+
+siri:circle a owl:ObjectProperty ;
+    rdfs:label "Circle" ;
+    rdfs:comment "Circle containing stops be returned. Point indicates centre, precision indicates radius ((since SIRI 2.0))" ;
+    siri:xsdType "LocationStructure" .
+
+siri:monitored a owl:DatatypeProperty ;
+    rdfs:label "Monitored" ;
+    rdfs:comment "Whether the LINE has real-time info. Default is 'true'." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:boundingBox a owl:ObjectProperty ;
+    rdfs:label "BoundingBox" ;
+    rdfs:comment "Rectangle containing stops be returned. ((since SIRI 2.0))" ;
+    siri:xsdType "BoundingBoxStructure" .
+
+siri:icon a owl:DatatypeProperty ;
+    rdfs:label "Icon" ;
+    rdfs:comment "Icon used to represent TYPE OF PRODUCT CATEGORY." ;
+    siri:xsdType "xsd:anyURI" .
+
+siri:lineRef a owl:ObjectProperty ;
+    rdfs:label "LineRef" ;
+    rdfs:comment "Filter the results to include only stops for the given LINE. ((since SIRI 2.0))" ;
+    siri:isReference true ;
+    siri:xsdType "LineRefStructure" .
+
+siri:name a owl:ObjectProperty ;
+    rdfs:label "Name" ;
+    rdfs:comment "Name of classification (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:operatorRef a owl:ObjectProperty ;
+    rdfs:label "OperatorRef" ;
+    rdfs:comment "Filter the results to include only stops run by the specified OPERATOR. ((since SIRI 2.0))" ;
+    siri:isReference true ;
+    siri:xsdType "OperatorRefStructure" .
+
+siri:placeRef a owl:ObjectProperty ;
+    rdfs:label "PlaceRef" ;
+    rdfs:comment "Filter the results to include only stops associated with the PLACE . ((since SIRI 2.0))" ;
+    siri:isReference true ;
+    siri:xsdType "xsd:normalizedString" .
+
+siri:language a owl:DatatypeProperty ;
+    rdfs:label "Language" ;
+    rdfs:comment "Preferred languages in which to return text values. (since SIRI 2.0)" ;
+    siri:xsdType "xsd:language" .
+
+siri:extensions a owl:DatatypeProperty ;
+    rdfs:label "Extensions" .
+
