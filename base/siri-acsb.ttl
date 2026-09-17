@@ -1,0 +1,303 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:AccessibilityAssessmentStructure a owl:Class ;
+    rdfs:label "AccessibilityAssessment" ;
+    rdfs:comment "Type for Assesment." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:mobilityImpairedAccess ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:limitations ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:suitabilities ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 4 ] .
+
+siri:AccessibilityEnumeration a rdfs:Datatype ;
+    rdfs:label "AccessibilityEnumeration" ;
+    rdfs:comment "Enumeration of values for an accessibility value." ;
+    owl:oneOf ( "unknown" "false" "true" ) .
+
+siri:AccessibilityLimitationStructure a owl:Class ;
+    rdfs:label "AccessibilityLimitation" ;
+    rdfs:comment "Type for limitation on navigation." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:limitationId ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:validityCondition ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:wheelchairAccess ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stepFreeAccess ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:escalatorFreeAccess ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:liftFreeAccess ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:audibleSignalsAvailable ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:visualSignsAvailable ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 9 ] .
+
+siri:AudibleSignalsAvailable a owl:Class ;
+    rdfs:label "AudibleSignalsAvailable" ;
+    rdfs:subClassOf siri:AccessibilityStructure ;
+    siri:xsdElement true .
+
+siri:EncumbranceEnumeration a rdfs:Datatype ;
+    rdfs:label "EncumbranceEnumeration" ;
+    rdfs:comment "Enumeration of specific encumbrances USER NEEDs." ;
+    owl:oneOf ( "luggageEncumbered" "pushchair" "baggageTrolley" "oversizeBaggage" "guideDog" "otherAnimal" "otherEncumbrance" ) .
+
+siri:EscalatorFreeAccess a owl:Class ;
+    rdfs:label "EscalatorFreeAccess" ;
+    rdfs:subClassOf siri:AccessibilityStructure ;
+    siri:xsdElement true .
+
+siri:GuideDogAccess a owl:Class ;
+    rdfs:label "GuideDogAccess" ;
+    rdfs:subClassOf siri:AccessibilityStructure ;
+    siri:xsdElement true .
+
+siri:LiftFreeAccess a owl:Class ;
+    rdfs:label "LiftFreeAccess" ;
+    rdfs:subClassOf siri:AccessibilityStructure ;
+    siri:xsdElement true .
+
+siri:LimitationRefStructure a owl:Class ;
+    rdfs:label "Limitation" ;
+    rdfs:comment "Type for reference to an identifier of a hazard within a STOP PLACE." .
+
+siri:MedicalNeedEnumeration a rdfs:Datatype ;
+    rdfs:label "MedicalNeedEnumeration" ;
+    rdfs:comment "Enumeration of specific Medical USER NEEDs." ;
+    owl:oneOf ( "allergic" "heartCondition" "otherMedicalNeed" ) .
+
+siri:MobilityEnumeration a rdfs:Datatype ;
+    rdfs:label "MobilityEnumeration" ;
+    rdfs:comment "Identification of mobility USER NEEDs." ;
+    owl:oneOf ( "wheelchair" "assistedWheelchair" "motorizedWheelchair" "walkingFrame" "restrictedMobility" "otherMobilityNeed" ) .
+
+siri:PassengerAccessibilityNeedsStructure a owl:Class ;
+    rdfs:label "PassengerAccessibilityNeeds" ;
+    rdfs:comment "Type for accessibility needs. Records the requirementrs of a passenger that may affect choice of facilities." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:userNeed ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:accompaniedByCarer ;
+            siri:xsdSequenceOrder 2 ] .
+
+siri:PyschosensoryNeedEnumeration a rdfs:Datatype ;
+    rdfs:label "PyschosensoryNeedEnumeration" ;
+    rdfs:comment "Enumeration of specific psychosensory USER NEEDs." ;
+    owl:oneOf ( "visualImpairment" "auditoryImpairment" "cognitiveInputImpairment" "averseToLifts" "averseToEscalators" "averseToConfinedSpaces" "averseToCrowds" "otherPsychosensoryNeed" ) .
+
+siri:StepFreeAccess a owl:Class ;
+    rdfs:label "StepFreeAccess" ;
+    rdfs:subClassOf siri:AccessibilityStructure ;
+    siri:xsdElement true .
+
+siri:SuitabilityEnumeration a rdfs:Datatype ;
+    rdfs:label "SuitabilityEnumeration" ;
+    rdfs:comment "Identification of specific SUITABILITY." ;
+    owl:oneOf ( "suitable" "notSuitable" ) .
+
+siri:SuitabilityStructure a owl:Class ;
+    rdfs:label "Suitability" ;
+    rdfs:comment "Type for of a specific SUITABILITY." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:suitable ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:userNeed ;
+            siri:xsdSequenceOrder 2 ] .
+
+siri:UserNeedStructure a owl:Class ;
+    rdfs:label "UserNeed" ;
+    rdfs:comment "Type for of a specific need." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:mobilityNeed ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:psychosensoryNeed ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:medicalNeed ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:encumbranceNeed ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:excluded ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:needRanking ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 7 ] .
+
+siri:VisualSignsAvailable a owl:Class ;
+    rdfs:label "VisualSignsAvailable" ;
+    rdfs:subClassOf siri:AccessibilityStructure ;
+    siri:xsdElement true .
+
+siri:WheelchairAccess a owl:Class ;
+    rdfs:label "WheelchairAccess" ;
+    rdfs:subClassOf siri:AccessibilityStructure ;
+    siri:xsdElement true .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/acsb> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "Accessibility (acsb)" ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:accompaniedByCarer a owl:DatatypeProperty ;
+    rdfs:label "AccompaniedByCarer" ;
+    rdfs:comment "Whether the passenger is accompanied by a carer or assistant." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:audibleSignalsAvailable a owl:DatatypeProperty ;
+    rdfs:label "AudibleSignalsAvailable" ;
+    rdfs:comment "Whether a PLACE / SITE ELEMENT has Audible signals for the visually impaired. Default is 'false'." .
+
+siri:encumbranceNeed a owl:DatatypeProperty ;
+    rdfs:label "EncumbranceNeed" ;
+    rdfs:comment "Passenger enceumbrance USER NEED for which SUITABILITY is specified." ;
+    siri:xsdType "EncumbranceEnumeration" .
+
+siri:escalatorFreeAccess a owl:DatatypeProperty ;
+    rdfs:label "EscalatorFreeAccess" .
+
+siri:excluded a owl:DatatypeProperty ;
+    rdfs:label "Excluded" ;
+    rdfs:comment "Whether USER NEED is included or excluded. Default is 'included'." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:liftFreeAccess a owl:DatatypeProperty ;
+    rdfs:label "LiftFreeAccess" .
+
+siri:limitationId a owl:DatatypeProperty ;
+    rdfs:label "LimitationId" ;
+    rdfs:comment "Identifier of LIMITATION." ;
+    siri:xsdType "LimitationIdType" .
+
+siri:limitations a owl:DatatypeProperty ;
+    rdfs:label "Limitations" ;
+    rdfs:comment "The Limitations that apply to component." .
+
+siri:medicalNeed a owl:DatatypeProperty ;
+    rdfs:label "MedicalNeed" ;
+    rdfs:comment "Passenger medical USER NEED for which SUITABILITY is specified." .
+
+siri:mobilityImpairedAccess a owl:DatatypeProperty ;
+    rdfs:label "MobilityImpairedAccess" ;
+    rdfs:comment "Summary indication as to whether the component is considered to be accessible or not." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:mobilityNeed a owl:DatatypeProperty ;
+    rdfs:label "MobilityNeed" ;
+    rdfs:comment "Passenger mobility USER NEED for which SUITABILITY is specified." ;
+    siri:xsdType "MobilityEnumeration" .
+
+siri:needRanking a owl:DatatypeProperty ;
+    rdfs:label "NeedRanking" ;
+    rdfs:comment "Relative ranking of USER NEED on a sclae 1-5" ;
+    siri:xsdType "xsd:integer" .
+
+siri:psychosensoryNeed a owl:DatatypeProperty ;
+    rdfs:label "PsychosensoryNeed" ;
+    rdfs:comment "Passenger mobility USER NEED for which SUITABILITY is specified." ;
+    siri:xsdType "PyschosensoryNeedEnumeration" .
+
+siri:stepFreeAccess a owl:DatatypeProperty ;
+    rdfs:label "StepFreeAccess" .
+
+siri:suitabilities a owl:DatatypeProperty ;
+    rdfs:label "Suitabilities" ;
+    rdfs:comment "The Suitability of the component to meet specifc user needs." .
+
+siri:suitable a owl:DatatypeProperty ;
+    rdfs:label "Suitable" ;
+    rdfs:comment "Whether the Facility is suitable." ;
+    siri:xsdType "SuitabilityEnumeration" .
+
+siri:validityCondition a owl:ObjectProperty ;
+    rdfs:label "ValidityCondition" ;
+    rdfs:comment "Validity condition governing applicability of LIMITATION." ;
+    siri:xsdType "ifopt:ValidityConditionStructure" .
+
+siri:visualSignsAvailable a owl:DatatypeProperty ;
+    rdfs:label "VisualSignsAvailable" ;
+    rdfs:comment "Whether a PLACE / SITE ELEMENT has Visual signals for the hearing impaired. Default is 'unknown'." .
+
+siri:wheelchairAccess a owl:DatatypeProperty ;
+    rdfs:label "WheelchairAccess" .
+
+siri:userNeed a owl:ObjectProperty ;
+    rdfs:label "UserNeed" ;
+    rdfs:comment "Specific pyschosensory need that may constrain choice of services and facilities." ;
+    siri:xsdType "UserNeedStructure" .
+
+siri:extensions a owl:DatatypeProperty ;
+    rdfs:label "Extensions" .
+
+siri:AccessibilityStructure a owl:Class ;
+    rdfs:label "Accessibility" ;
+    rdfs:comment "Type for accessibility." .
+

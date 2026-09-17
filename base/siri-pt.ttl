@@ -1,0 +1,554 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:DatedTimetableVersionFrame a owl:Class ;
+    rdfs:label "DatedTimetableVersionFrame" ;
+    rdfs:subClassOf siri:DatedTimetableVersionFrameStructure ;
+    siri:xsdElement true .
+
+siri:ProductionTimetableCapabilitiesResponse a owl:Class ;
+    rdfs:label "ProductionTimetableCapabilitiesResponse" ;
+    rdfs:subClassOf siri:ProductionTimetableCapabilitiesResponseStructure ;
+    siri:xsdElement true .
+
+siri:ProductionTimetableCapabilityRequestPolicyStructure a owl:Class ;
+    rdfs:label "ProductionTimetableCapabilityRequestPolicy" ;
+    rdfs:comment "Type for Estimated ProductionCapability Request Policy." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:foreignJourneysOnly ;
+            siri:xsdSequenceOrder 1 ],
+        siri:CapabilityRequestPolicyStructure .
+
+siri:ProductionTimetableDeliveriesStructure a owl:Class ;
+    rdfs:label "ProductionTimetableDeliveries" ;
+    rdfs:comment "Type for deliveries of production timetable service. Used in WSDL." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableDelivery ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:ProductionTimetableDelivery a owl:Class ;
+    rdfs:label "ProductionTimetableDelivery" ;
+    rdfs:subClassOf siri:ProductionTimetableDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:ProductionTimetableRequest a owl:Class ;
+    rdfs:label "ProductionTimetableRequest" ;
+    rdfs:subClassOf siri:ProductionTimetableRequestStructure ;
+    siri:xsdElement true .
+
+siri:ProductionTimetableServiceCapabilities a owl:Class ;
+    rdfs:label "ProductionTimetableServiceCapabilities" ;
+    rdfs:subClassOf siri:ProductionTimetableServiceCapabilitiesStructure ;
+    siri:xsdElement true .
+
+siri:ProductionTimetableSubscriptionRequest a owl:Class ;
+    rdfs:label "ProductionTimetableSubscriptionRequest" ;
+    rdfs:subClassOf siri:ProductionTimetableSubscriptionStructure ;
+    siri:xsdElement true .
+
+siri:TimetableValidityPeriod a owl:Class ;
+    rdfs:label "TimetableValidityPeriod" ;
+    rdfs:comment "Start and end of timetable validity (time window) of journeys for which schedules are to be returned by the data producer. The ValidityPeriod of the timetable must not exceed the ValidityPeriod requested by the subscriber. If omitted, then the full - by the subscriber requested - ValidityPeriod or configured data horizon applies. Since the end of an OPERATING DAY of one ITCS does not usually coincide with the end of another ITCS, it may happen that data cannot be provided for the complete time frame requested by a subscriber. In order for the data consumer to be aware of this situation, the data producer should confirm - in each returned timetable - for which part of the requested ValidityPeriod he can actually deliver journey schedules. If the requested period is so far in the past that the data producer does no longer have any data, he should reject the subscription with \"Status=false\" and a BeyondDataHorizon ErrorCondition. If the requested period is so far in the future that the data producer does not yet have any data, he will deliver data as soon as it is available. A timetable falls inside the ValidityPeriod if all of its journeys fall inside it. A journey falls inside the ValidityPeriod if the AimedDepartureTime or AimedArrivalTime at any CALL lies between the Start- and EndTime of the ValidityPeriod (regardless of whether the aimed times at a previous or subsequent CALL fall ouside of the ValidityPeriod). Careful: Journeys which themselves fall outside the ValidityPeriod, but which are linked to a journey within the ValidityPeriod by a JOURNEY RELATION, are also regarded as falling inside the ValidityPeriod. Examples are journeys where the vehicle is split or joins with or is replaced by another vehicle." ;
+    rdfs:subClassOf siri:ClosedTimestampRangeStructure .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/pt> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "SIRI Production Timetable (PT)" ;
+    owl:imports <https://siri-cen.eu/ontology/model> ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:DatedTimetableVersionFrameStructure a owl:Class ;
+    rdfs:label "DatedTimetableVersionFrame" ;
+    rdfs:comment "Type for Production Timetable of a LINE." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:versionRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:publishedLineName ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:groupOfLinesRef ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:directionName ;
+            siri:xsdSequenceOrder 12 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:externalLineRef ;
+            siri:xsdSequenceOrder 13 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:brandingRef ;
+            siri:xsdSequenceOrder 14 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:branding ;
+            siri:xsdSequenceOrder 15 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:operatorRef ;
+            siri:xsdSequenceOrder 16 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productCategoryRef ;
+            siri:xsdSequenceOrder 17 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:serviceFeatureRef ;
+            siri:xsdSequenceOrder 18 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:vehicleFeatureRef ;
+            siri:xsdSequenceOrder 19 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:validityPeriod ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:originDisplay ;
+            siri:xsdSequenceOrder 20 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:destinationDisplay ;
+            siri:xsdSequenceOrder 21 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:lineNote ;
+            siri:xsdSequenceOrder 22 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:firstOrLastJourney ;
+            siri:xsdSequenceOrder 23 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:headwayService ;
+            siri:xsdSequenceOrder 24 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:monitored ;
+            siri:xsdSequenceOrder 25 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:datedVehicleJourney ;
+            siri:xsdSequenceOrder 26 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:removedDatedVehicleJourney ;
+            siri:xsdSequenceOrder 27 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:serviceJourneyInterchange ;
+            siri:xsdSequenceOrder 28 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:removedServiceJourneyInterchange ;
+            siri:xsdSequenceOrder 29 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:shortestPossibleCycle ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 30 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineRef ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:directionRef ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:journeyPatternRef ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:journeyPatternName ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:vehicleMode ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:routeRef ;
+            siri:xsdSequenceOrder 9 ],
+        siri:AbstractItemStructure .
+
+siri:ProductionTimetableCapabilitiesResponseStructure a owl:Class ;
+    rdfs:label "ProductionTimetableCapabilitiesResponse" ;
+    rdfs:comment "Type for Delivery for ProductionTimetable Capability." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableServiceCapabilities ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetablePermissions ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractServiceCapabilitiesResponseStructure .
+
+siri:ProductionTimetableDeliveryStructure a owl:Class ;
+    rdfs:label "ProductionTimetableDelivery" ;
+    rdfs:comment "Delivery for Production Timetable Service type." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:datedTimetableVersionFrame ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractServiceDeliveryStructure .
+
+siri:ProductionTimetableRequestStructure a owl:Class ;
+    rdfs:label "ProductionTimetableRequest" ;
+    rdfs:comment "Type for Functional Service Request for Production Timetables." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:validityPeriod ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeInterchanges ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeJourneyRelations ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeTrainFormations ;
+            siri:xsdSequenceOrder 12 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:incrementalUpdates ;
+            siri:xsdSequenceOrder 13 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 14 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:timetableVersionRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:operatorRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lines ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:vehicleMode ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:productCategoryRef ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:stopPointRef ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeTranslations ;
+            siri:xsdSequenceOrder 9 ],
+        siri:AbstractFunctionalServiceRequestStructure .
+
+siri:ProductionTimetableServiceCapabilitiesStructure a owl:Class ;
+    rdfs:label "ProductionTimetableServiceCapabilities" ;
+    rdfs:comment "Type for ProductionTimetable Capabilities." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:topicFiltering ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:requestPolicy ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:subscriptionPolicy ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:accessControl ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 5 ],
+        siri:AbstractCapabilitiesStructure .
+
+siri:ProductionTimetableSubscriptionStructure a owl:Class ;
+    rdfs:label "ProductionTimetableSubscription" ;
+    rdfs:comment "Subscription Request for Production Timetable Service." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableRequest ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:incrementalUpdates ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractSubscriptionStructure .
+
+siri:accessControl a owl:ObjectProperty ;
+    rdfs:label "AccessControl" ;
+    rdfs:comment "Optional Access control capabilities." ;
+    siri:xsdType "ConnectionCapabilityAccessControlStructure" .
+
+siri:branding a owl:ObjectProperty ;
+    rdfs:label "Branding" ;
+    rdfs:comment "An arbitrary marketing classification. (since SIRI 2.1)" ;
+    siri:xsdType "BrandingStructure" .
+
+siri:brandingRef a owl:ObjectProperty ;
+    rdfs:label "BrandingRef" ;
+    rdfs:comment "Reference to a BRANDING. (since SIRI 2.1)" ;
+    siri:isReference true ;
+    siri:xsdType "BrandingRefStructure" .
+
+siri:datedTimetableVersionFrame a owl:DatatypeProperty ;
+    rdfs:label "DatedTimetableVersionFrame" ;
+    rdfs:comment "A TIMETABLE to run on a specified date." .
+
+siri:datedVehicleJourney a owl:ObjectProperty ;
+    rdfs:label "DatedVehicleJourney" ;
+    rdfs:comment "Complete list of all planned VEHICLE JOURNEYs for this LINE and DIRECTION." ;
+    siri:xsdType "DatedVehicleJourneyStructure" .
+
+siri:destinationDisplay a owl:ObjectProperty ;
+    rdfs:label "DestinationDisplay" ;
+    rdfs:comment "Description of the destination stop (vehicle signage) to show on vehicle, Can be overwritten for a journey, and then also section by section by the entry in an Individual Call. (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:directionName a owl:ObjectProperty ;
+    rdfs:label "DirectionName" ;
+    rdfs:comment "Description of the DIRECTION. May correspond to a DESTINATION DISPLAY. (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:directionRef a owl:ObjectProperty ;
+    rdfs:label "DirectionRef" ;
+    rdfs:comment "Reference to a LINE DIRECTION DIRECTION, typically outward or return." ;
+    rdfs:range siri:Direction ;
+    siri:isReference true ;
+    siri:xsdType "DirectionRefStructure" .
+
+siri:externalLineRef a owl:ObjectProperty ;
+    rdfs:label "ExternalLineRef" ;
+    rdfs:comment "Alternative identifier of LINE that an external system may associate with journey." ;
+    siri:isReference true ;
+    siri:xsdType "LineRefStructure" .
+
+siri:firstOrLastJourney a owl:DatatypeProperty ;
+    rdfs:label "FirstOrLastJourney" ;
+    rdfs:comment "Whether journey is first or last jouurney of day. (since SIRI 2.0)" ;
+    siri:xsdType "FirstOrLastJourneyEnumeration" .
+
+siri:foreignJourneysOnly a owl:DatatypeProperty ;
+    rdfs:label "ForeignJourneysOnly" ;
+    rdfs:comment "Whether results returns foreign journeys only." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:groupOfLinesRef a owl:ObjectProperty ;
+    rdfs:label "GroupOfLinesRef" ;
+    rdfs:comment "Reference to a GROUP OF LINEs to which journey belongs. SIRI 2.0" ;
+    siri:isReference true ;
+    siri:xsdType "GroupOfLinesRefStructure" .
+
+siri:headwayService a owl:DatatypeProperty ;
+    rdfs:label "HeadwayService" ;
+    rdfs:comment "Whether this is a Headway Service, that is, one shown as operating at a prescribed interval rather than to a fixed timetable." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:includeInterchanges a owl:DatatypeProperty ;
+    rdfs:label "IncludeInterchanges" .
+
+siri:includeJourneyRelations a owl:DatatypeProperty ;
+    rdfs:label "IncludeJourneyRelations" .
+
+siri:includeTrainFormations a owl:DatatypeProperty ;
+    rdfs:label "IncludeTrainFormations" .
+
+siri:includeTranslations a owl:DatatypeProperty ;
+    rdfs:label "IncludeTranslations" .
+
+siri:journeyPatternName a owl:ObjectProperty ;
+    rdfs:label "JourneyPatternName" ;
+    rdfs:comment "Name of Joruney Pattern" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:journeyPatternRef a owl:ObjectProperty ;
+    rdfs:label "JourneyPatternRef" ;
+    rdfs:comment "Identifier of JOURNEY PATTERN that journey follows." ;
+    siri:isReference true ;
+    siri:xsdType "JourneyPatternRefStructure" .
+
+siri:language a owl:DatatypeProperty ;
+    rdfs:label "Language" ;
+    rdfs:comment "Preferred languages in which to return text values." ;
+    siri:xsdType "xsd:language" .
+
+siri:lineNote a owl:ObjectProperty ;
+    rdfs:label "LineNote" ;
+    rdfs:comment "Additional Text associated with LINE. (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguagePlaceNameStructure" .
+
+siri:lineRef a owl:ObjectProperty ;
+    rdfs:label "LineRef" ;
+    rdfs:comment "Reference to a LINE." ;
+    siri:isReference true ;
+    siri:xsdType "LineRefStructure" .
+
+siri:lines a owl:DatatypeProperty ;
+    rdfs:label "Lines" ;
+    rdfs:comment "Filter the results to include only vehicles along the given LINEs." .
+
+siri:monitored a owl:DatatypeProperty ;
+    rdfs:label "Monitored" ;
+    rdfs:comment "Whether VEHICLE JOURNEYs of LINE are normally monitored. Provides a default value for the Monitored element on individual journeys of the timetable." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:originDisplay a owl:ObjectProperty ;
+    rdfs:label "OriginDisplay" ;
+    rdfs:comment "Description of the origin stop (vehicle signage) to show on vehicle, Can be overwritten for a journey, and then also section by section by the entry in an Individual Call. (since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:productionTimetableDelivery a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetableDelivery" .
+
+siri:productionTimetablePermissions a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetablePermissions" .
+
+siri:productionTimetableRequest a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetableRequest" .
+
+siri:productionTimetableServiceCapabilities a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetableServiceCapabilities" .
+
+siri:publishedLineName a owl:DatatypeProperty ;
+    rdfs:label "PublishedLineName" ;
+    rdfs:comment "Name or Number by which the LINE is known to the public. (Unbounded since SIRI 2.0)" .
+
+siri:removedDatedVehicleJourney a owl:ObjectProperty ;
+    rdfs:label "RemovedDatedVehicleJourney" ;
+    rdfs:comment "List of all removed VEHICLE JOURNEYs for this LINE and DIRECTION. A data producer may silently remove a journey from the plan if it was previously provided in error. Careful: Removal is different from Cancellation. Minimal information, or no information at all, of a RemovedDatedVehicleJourney or the removal itself must be communicated to the passengers, i.e., it is \"silently\" removed. A Cancellation, on the other hand, is possibly the most important information to provide to the passengers. It is strongly advised to only use this feature in cases where a journey was sent in error and it can be assumed that as few passengers as possible have seen the erroneous information to avoid confusion. (since SIRI 2.1)" ;
+    siri:xsdType "RemovedDatedVehicleJourneyStructure" .
+
+siri:removedServiceJourneyInterchange a owl:ObjectProperty ;
+    rdfs:label "RemovedServiceJourneyInterchange" ;
+    rdfs:comment "List of all removed SERVICE JOURNEY INTERCHANGEs. A data producer may silently remove an interchange from the plan if it was previously provided in error. Careful: Removal is different from Cancellation. Minimal information, or no information at all, of a RemovedServiceJourneyInterchange or the removal itself must be communicated to the passengers, i.e., it is \"silently\" removed. A Cancellation, on the other hand, is possibly the most important information to provide to the passengers. It is strongly advised to only use this feature in cases where an interchange was sent in error and it can be assumed that as few passengers as possible have seen the erroneous information to avoid confusion. (since SIRI 2.1)" ;
+    siri:xsdType "RemovedServiceJourneyInterchangeStructure" .
+
+siri:requestPolicy a owl:DatatypeProperty ;
+    rdfs:label "RequestPolicy" ;
+    rdfs:comment "Request Policiy capabilities." .
+
+siri:routeRef a owl:ObjectProperty ;
+    rdfs:label "RouteRef" ;
+    rdfs:comment "Identifier of ROUTE that journey follows." ;
+    siri:isReference true ;
+    siri:xsdType "RouteRefStructure" .
+
+siri:serviceFeatureRef a owl:ObjectProperty ;
+    rdfs:label "ServiceFeatureRef" ;
+    rdfs:comment "Classification of service into arbitrary Service categories, e.g. school bus. Recommended SIRI values based on TPEG are given in SIRI documentation and enumerated in the siri_facilities package. Corresponds to NeTEX TYPE OF SERVICe." ;
+    rdfs:range siri:ServiceFeature ;
+    siri:isReference true .
+
+siri:serviceJourneyInterchange a owl:ObjectProperty ;
+    rdfs:label "ServiceJourneyInterchange" ;
+    rdfs:comment "Connection paramters for a SERVICE JOURNEY INTERCHANGE between a feeder and distributor journey. SIRI 2.0" ;
+    siri:xsdType "ServiceJourneyInterchangeStructure" .
+
+siri:shortestPossibleCycle a owl:DatatypeProperty ;
+    rdfs:label "ShortestPossibleCycle" ;
+    rdfs:comment "Minimum interval at which updates for this DATED TIMETABLE VERSION FRAME can be sent. (since SIRI 2.1)" ;
+    siri:xsdType "PositiveDurationType" .
+
+siri:stopPointRef a owl:ObjectProperty ;
+    rdfs:label "StopPointRef" ;
+    rdfs:comment "Filter the results to include only journeys with a CALL at the specified STOP POINT. (since SIRI 2.1)" ;
+    siri:isReference true ;
+    siri:xsdType "StopPointRefStructure" .
+
+siri:subscriptionPolicy a owl:DatatypeProperty ;
+    rdfs:label "SubscriptionPolicy" ;
+    rdfs:comment "Subscription Policy capabilities." .
+
+siri:timetableVersionRef a owl:ObjectProperty ;
+    rdfs:label "TimetableVersionRef" ;
+    rdfs:comment "Communicate only differences to the timetable specified by this VERSION of the TIMETABLe." ;
+    siri:isReference true ;
+    siri:xsdType "VersionRefStructure" .
+
+siri:topicFiltering a owl:DatatypeProperty ;
+    rdfs:label "TopicFiltering" ;
+    rdfs:comment "Filtering Capabilities." .
+
+siri:vehicleFeatureRef a owl:ObjectProperty ;
+    rdfs:label "VehicleFeatureRef" ;
+    rdfs:comment "Features of VEHICLE providing journey. Recommended SIRI values based on TPEG are given in SIRI documentation and enumerated in the siri_facilities package." ;
+    rdfs:range siri:VehicleFeature ;
+    siri:isReference true ;
+    siri:xsdType "VehicleFeatureRefStructure" .
+
+siri:versionRef a owl:ObjectProperty ;
+    rdfs:label "VersionRef" ;
+    rdfs:comment "Timetable Version." ;
+    siri:isReference true ;
+    siri:xsdType "VersionRefStructure" .
+
+siri:incrementalUpdates a owl:DatatypeProperty ;
+    rdfs:label "IncrementalUpdates" ;
+    rdfs:comment "Whether to return the whole timetable, or just differences from the inidicated version. Default is 'false'." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:operatorRef a owl:ObjectProperty ;
+    rdfs:label "OperatorRef" ;
+    rdfs:comment "Filter the results to include journeys for only the specified OPERATORs." ;
+    siri:isReference true ;
+    siri:xsdType "OperatorRefStructure" .
+
+siri:productCategoryRef a owl:ObjectProperty ;
+    rdfs:label "ProductCategoryRef" ;
+    rdfs:comment "Filter the results to include only journeys of the specified TYPE OF PRODUCT CATEGORY. (since SIRI 2.1)" ;
+    rdfs:range siri:ProductCategory ;
+    siri:isReference true ;
+    siri:xsdType "ProductCategoryRefStructure" .
+
+siri:validityPeriod a owl:ObjectProperty ;
+    rdfs:label "ValidityPeriod" ;
+    siri:xsdType "TimetableValidityPeriod" .
+
+siri:vehicleMode a owl:DatatypeProperty ;
+    rdfs:label "VehicleMode" ;
+    rdfs:comment "Filter the results to include only journeys of the specified VEHICLE MODE. (since SIRI 2.1)" ;
+    siri:xsdType "VehicleModesEnumeration" .
+
+siri:extensions a owl:DatatypeProperty ;
+    rdfs:label "Extensions" .
+

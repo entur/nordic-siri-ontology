@@ -1,0 +1,43 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+
+<https://siri-cen.eu/ontology> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "SIRI base ontology (generated from XSD)" ;
+    owl:imports <https://siri-cen.eu/ontology/acsb>,
+        <https://siri-cen.eu/ontology/ca>,
+        <https://siri-cen.eu/ontology/cm>,
+        <https://siri-cen.eu/ontology/core>,
+        <https://siri-cen.eu/ontology/ct>,
+        <https://siri-cen.eu/ontology/datex2>,
+        <https://siri-cen.eu/ontology/discovery>,
+        <https://siri-cen.eu/ontology/et>,
+        <https://siri-cen.eu/ontology/fm>,
+        <https://siri-cen.eu/ontology/framework>,
+        <https://siri-cen.eu/ontology/gm>,
+        <https://siri-cen.eu/ontology/gml>,
+        <https://siri-cen.eu/ontology/ifopt>,
+        <https://siri-cen.eu/ontology/model>,
+        <https://siri-cen.eu/ontology/pt>,
+        <https://siri-cen.eu/ontology/sm>,
+        <https://siri-cen.eu/ontology/st>,
+        <https://siri-cen.eu/ontology/sx>,
+        <https://siri-cen.eu/ontology/utility>,
+        <https://siri-cen.eu/ontology/vm> ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+

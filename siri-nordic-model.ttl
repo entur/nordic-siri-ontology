@@ -1,0 +1,849 @@
+## -----------------------------------------------------------------
+## Nordic SIRI Structural Model (curated overlay)
+## -----------------------------------------------------------------
+## ROLE: Curated, navigable Nordic view of SIRI message structure that
+##       is editorial rather than mechanical: the service catalogue,
+##       delivery/object containment, shared objects, enumerations,
+##       key element specifications, navigational chains, cross-service
+##       links, communication patterns and documentation pointers.
+##
+## The generated base ontology remains authoritative for classes,
+## properties, cardinality and XSD sequence. This overlay only adds
+## the profile's structural navigation and descriptive annotations on
+## top of the generated siri: classes, using nordic: predicates.
+##
+## Imports: generated SIRI base + siri-nordic-vocab.ttl
+## -----------------------------------------------------------------
+
+@prefix siri:   <https://siri-cen.eu/ontology#> .
+@prefix nordic: <https://siri-cen.eu/nordic#> .
+@prefix doc:    <https://siri-cen.eu/doc#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+
+<https://siri-cen.eu/nordic/model> a owl:Ontology ;
+    rdfs:label "Nordic SIRI Structural Model" ;
+    owl:imports <https://siri-cen.eu/ontology> ,
+                <https://siri-cen.eu/nordic> ;
+    rdfs:comment "Curated service catalogue, containment and descriptive annotations layered on the generated SIRI base." .
+
+## =================================================================
+## SIRI SERVICES
+## =================================================================
+
+nordic:SIRI_ET a nordic:Service ;
+    rdfs:label "SIRI-ET — Estimated Timetable" ;
+    skos:definition "Exchanges continuous same-day timetable updates: delays, cancellations, extra journeys, platform changes" ;
+    doc:description "Services/SIRI-ET/Description_SIRI-ET.md" ;
+    doc:table "Services/SIRI-ET/Table_SIRI-ET.md" ;
+    doc:examples "Services/SIRI-ET/Examples/" ;
+    nordic:status "in-scope" ;
+    nordic:deliveryType siri:EstimatedTimetableDelivery ;
+    nordic:coreObject siri:EstimatedVehicleJourney .
+
+nordic:SIRI_SX a nordic:Service ;
+    rdfs:label "SIRI-SX — Situation Exchange" ;
+    skos:definition "Exchanges textual descriptions of planned and unplanned disruptions affecting public transport" ;
+    doc:description "Services/SIRI-SX/Description_SIRI-SX.md" ;
+    doc:table "Services/SIRI-SX/Table_SIRI-SX.md" ;
+    doc:examples "Services/SIRI-SX/Examples/" ;
+    nordic:status "in-scope" ;
+    nordic:deliveryType siri:SituationExchangeDelivery ;
+    nordic:coreObject siri:PtSituationElement .
+
+nordic:SIRI_VM a nordic:Service ;
+    rdfs:label "SIRI-VM — Vehicle Monitoring" ;
+    skos:definition "Exchanges vehicle position, delay, status, and occupancy data in real time" ;
+    doc:description "Services/SIRI-VM/Description_SIRI-VM.md" ;
+    doc:table "Services/SIRI-VM/Table_SIRI-VM.md" ;
+    doc:examples "Services/SIRI-VM/Examples/" ;
+    nordic:status "in-scope" ;
+    nordic:deliveryType siri:VehicleMonitoringDelivery ;
+    nordic:coreObject siri:MonitoredVehicleJourneyStructure .
+
+nordic:SIRI_FM a nordic:Service ;
+    rdfs:label "SIRI-FM — Facility Monitoring" ;
+    skos:definition "Exchanges facility status, accessibility, and counting data for PT infrastructure" ;
+    doc:description "Services/SIRI-FM/Description_SIRI-FM.md" ;
+    doc:table "Services/SIRI-FM/Table_SIRI-FM.md" ;
+    doc:examples "Services/SIRI-FM/Examples/" ;
+    nordic:status "extended" ;
+    rdfs:comment "Not part of the official Nordic SIRI Profile v1.1 scope, but documented for parking and facility monitoring use cases" ;
+    nordic:deliveryType siri:FacilityMonitoringDelivery ;
+    nordic:coreObject siri:FacilityCondition .
+
+## --- Services NOT in scope ---
+
+nordic:SIRI_PT a nordic:Service ;
+    rdfs:label "SIRI-PT — Production Timetable" ;
+    nordic:status "not-in-scope" ;
+    skos:definition "Timetable changes outside current operating day" .
+
+nordic:SIRI_SM a nordic:Service ;
+    rdfs:label "SIRI-SM — Stop Monitoring" ;
+    nordic:status "not-in-scope" ;
+    skos:definition "Arrival/transfer times for same operating day" .
+
+nordic:SIRI_ST a nordic:Service ;
+    rdfs:label "SIRI-ST — Stop Timetable" ;
+    nordic:status "not-in-scope" ;
+    skos:definition "Stop changes outside current operating day" .
+
+nordic:SIRI_CM a nordic:Service ;
+    rdfs:label "SIRI-CM — Connection Monitoring" ;
+    nordic:status "not-in-scope" ;
+    skos:definition "Guaranteed interchange monitoring" .
+
+nordic:SIRI_CT a nordic:Service ;
+    rdfs:label "SIRI-CT — Connection Timetable" ;
+    nordic:status "not-in-scope" ;
+    skos:definition "Interchange changes outside operating day" .
+
+nordic:SIRI_GM a nordic:Service ;
+    rdfs:label "SIRI-GM — General Messaging" ;
+    nordic:status "not-in-scope" ;
+    skos:definition "General text-based information" .
+
+## =================================================================
+## CONTAINER / DELIVERY STRUCTURE
+## =================================================================
+
+siri:ServiceDelivery
+    skos:definition "Top-level container wrapping one delivery type with producer metadata" ;
+    doc:description "Objects/ServiceDelivery/Description_ServiceDelivery.md" ;
+    doc:table "Objects/ServiceDelivery/Table_ServiceDelivery.md" ;
+    nordic:contains siri:EstimatedTimetableDelivery ,
+                  siri:SituationExchangeDelivery ,
+                  siri:VehicleMonitoringDelivery ,
+                  siri:FacilityMonitoringDelivery ;
+    rdfs:comment "Exactly ONE delivery type per ServiceDelivery message" .
+
+siri:EstimatedTimetableDelivery
+    skos:definition "Delivery wrapper for SIRI-ET containing EstimatedJourneyVersionFrames" ;
+    doc:table "Services/SIRI-ET/Table_SIRI-ET.md" ;
+    nordic:containedIn siri:ServiceDelivery ;
+    nordic:contains siri:EstimatedVersionFrameStructure .
+
+siri:SituationExchangeDelivery
+    skos:definition "Delivery wrapper for SIRI-SX containing PtSituationElements" ;
+    doc:table "Services/SIRI-SX/Table_SIRI-SX.md" ;
+    nordic:containedIn siri:ServiceDelivery ;
+    nordic:contains siri:PtSituationElement .
+
+siri:VehicleMonitoringDelivery
+    skos:definition "Delivery wrapper for SIRI-VM containing VehicleActivities" ;
+    doc:table "Services/SIRI-VM/Table_SIRI-VM.md" ;
+    nordic:containedIn siri:ServiceDelivery ;
+    nordic:contains siri:VehicleActivityStructure .
+
+siri:FacilityMonitoringDelivery
+    skos:definition "Delivery wrapper for SIRI-FM containing FacilityConditions" ;
+    doc:table "Services/SIRI-FM/Table_SIRI-FM.md" ;
+    nordic:containedIn siri:ServiceDelivery ;
+    nordic:contains siri:FacilityCondition .
+
+siri:EstimatedVersionFrameStructure
+    skos:definition "Timestamped container grouping EstimatedVehicleJourneys" ;
+    nordic:containedIn siri:EstimatedTimetableDelivery ;
+    nordic:contains siri:EstimatedVehicleJourney .
+
+## =================================================================
+## SIRI-ET OBJECTS
+## =================================================================
+
+siri:EstimatedVehicleJourney
+    skos:definition "Journey-level real-time timetable data: delays, cancellations, extra journeys, platform changes" ;
+    doc:description "Objects/EstimatedVehicleJourney/Description_EstimatedVehicleJourney.md" ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:containedIn siri:EstimatedVersionFrameStructure ;
+    nordic:contains siri:RecordedCall , siri:EstimatedCall .
+
+siri:EstimatedCall
+    skos:definition "Per-stop estimated arrival/departure for a stop not yet served" ;
+    doc:description "Objects/EstimatedCall/Description_EstimatedCall.md" ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:childOf siri:EstimatedVehicleJourney .
+
+siri:RecordedCall
+    skos:definition "Per-stop actual arrival/departure for an already-served stop" ;
+    doc:description "Objects/RecordedCall/Description_RecordedCall.md" ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:childOf siri:EstimatedVehicleJourney .
+
+siri:StopAssignmentStructure
+    rdfs:label "ArrivalStopAssignment / DepartureStopAssignment" ;
+    skos:definition "Platform change: maps a stop to an expected quay (replaces planned assignment)" ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:childOf siri:EstimatedCall .
+
+siri:JourneyRelationsStructure
+    rdfs:label "JourneyRelations" ;
+    skos:definition "Relations between journeys (e.g. through-running, splitting, joining)" ;
+    nordic:inService nordic:SIRI_ET ;
+    nordic:childOf siri:EstimatedVehicleJourney .
+
+## =================================================================
+## SIRI-VM OBJECTS
+## =================================================================
+
+siri:VehicleActivityStructure
+    skos:definition "Container for a single vehicle's monitoring data with validity timestamps" ;
+    doc:description "Objects/VehicleActivity/Description_VehicleActivity.md" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:containedIn siri:VehicleMonitoringDelivery ;
+    nordic:contains siri:MonitoredVehicleJourneyStructure , siri:ProgressBetweenStopsStructure .
+
+siri:MonitoredVehicleJourneyStructure
+    skos:definition "Real-time vehicle position, delay, status, and occupancy for a planned journey" ;
+    doc:description "Objects/MonitoredVehicleJourney/Description_MonitoredVehicleJourney.md" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:childOf siri:VehicleActivityStructure ;
+    nordic:contains siri:LocationStructure , siri:MonitoredCallStructure .
+
+siri:LocationStructure
+    skos:definition "GPS coordinates (WGS84) of the vehicle: Longitude, Latitude" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:childOf siri:MonitoredVehicleJourneyStructure .
+
+siri:MonitoredCallStructure
+    skos:definition "Current or most recent stop being served: StopPointRef, VehicleAtStop" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:childOf siri:MonitoredVehicleJourneyStructure .
+
+siri:ProgressBetweenStopsStructure
+    skos:definition "Progress between previous and next stop: LinkDistance, Percentage" ;
+    nordic:inService nordic:SIRI_VM ;
+    nordic:childOf siri:VehicleActivityStructure .
+
+## =================================================================
+## SIRI-SX OBJECTS
+## =================================================================
+
+siri:PtSituationElement
+    skos:definition "Core situation object: disruption/deviation with affected targets, severity, textual descriptions, validity" ;
+    doc:description "Objects/PtSituationElement/Description_PtSituationElement.md" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:containedIn siri:SituationExchangeDelivery ;
+    nordic:contains siri:AffectsScopeStructure , siri:HalfOpenTimestampOutputRangeStructure , siri:InfoLinksStructure .
+
+siri:AffectsScopeStructure
+    skos:definition "What a situation impacts: networks, stop places, stop points, vehicle journeys" ;
+    doc:description "Objects/Affects/Description_Affects.md" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:PtSituationElement ;
+    nordic:contains siri:AffectedNetworkStructure ,
+                  siri:AffectedStopPlaceStructure ,
+                  siri:AffectedStopPointStructure ,
+                  siri:AffectedVehicleJourneyStructure .
+
+siri:AffectedNetworkStructure
+    skos:definition "Network/line-level impact with operator, mode, and line details" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:AffectsScopeStructure ;
+    nordic:contains siri:AffectedLineStructure .
+
+siri:AffectedLineStructure
+    skos:definition "A specific line affected within a network, with optional route and section details" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:AffectedNetworkStructure .
+
+siri:AffectedStopPlaceStructure
+    skos:definition "Physical stop location impact with accessibility assessment and affected components" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:AffectsScopeStructure ;
+    nordic:contains siri:AffectedStopPlaceComponentStructure , siri:AccessibilityAssessmentStructure .
+
+siri:AffectedStopPlaceComponentStructure
+    skos:definition "Specific component of a stop place (quay, entrance, access space) that is affected" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:AffectedStopPlaceStructure .
+
+siri:AffectedStopPointStructure
+    skos:definition "Logical stop point impact with boarding/alighting conditions" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:AffectsScopeStructure .
+
+siri:AffectedVehicleJourneyStructure
+    skos:definition "Specific journey affected by a situation, with route and departure time" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:AffectsScopeStructure .
+
+siri:HalfOpenTimestampOutputRangeStructure
+    skos:definition "Time range (StartTime + optional EndTime) when a situation is active" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:PtSituationElement .
+
+siri:InfoLinksStructure
+    skos:definition "Collection of hyperlinks (Uri + Label) for additional situation information" ;
+    nordic:inService nordic:SIRI_SX ;
+    nordic:childOf siri:PtSituationElement .
+
+## =================================================================
+## SIRI-FM OBJECTS
+## =================================================================
+
+siri:FacilityCondition
+    skos:definition "Status report for a facility: condition, counting, remedy, and validity" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:containedIn siri:FacilityMonitoringDelivery ;
+    nordic:contains siri:FacilityStructure ,
+                  siri:FacilityStatusStructure ,
+                  siri:MonitoredCountingStructure ,
+                  siri:MonitoringInformationStructure ,
+                  siri:RemedyStructure .
+
+siri:FacilityStructure
+    skos:definition "Inline facility definition: code, class, features, location, accessibility" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:childOf siri:FacilityCondition ;
+    nordic:contains siri:FacilityLocationStructure ,
+                  siri:AccessibilityAssessmentStructure ;
+    rdfs:comment "Choice with FacilityRef — use inline Facility or reference, not both" .
+
+siri:FacilityStatusStructure
+    skos:definition "Current operational status of a facility with optional accessibility impact" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:childOf siri:FacilityCondition ;
+    nordic:contains siri:AccessibilityAssessmentStructure .
+
+siri:FacilityLocationStructure
+    skos:definition "Where the facility is: references to lines, stops, vehicles, operators" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:childOf siri:FacilityStructure .
+
+siri:MonitoredCountingStructure
+    skos:definition "Numerical counting data: type, unit, count/percentage, trend" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:childOf siri:FacilityCondition .
+
+siri:MonitoringInformationStructure
+    skos:definition "Monitoring metadata: interval, type, period" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:childOf siri:FacilityCondition .
+
+siri:RemedyStructure
+    skos:definition "Corrective action: type (replace/repair/remove/otherRoute/otherLocation), description, period" ;
+    nordic:inService nordic:SIRI_FM ;
+    nordic:childOf siri:FacilityCondition .
+
+## =================================================================
+## SHARED OBJECTS
+## =================================================================
+
+siri:FramedVehicleJourneyRefStructure
+    skos:definition "Journey reference with date: DataFrameRef (operating date) + DatedVehicleJourneyRef (ServiceJourney ID)" ;
+    doc:description "Objects/FramedVehicleJourneyRef/Description_FramedVehicleJourneyRef.md" ;
+    nordic:usedIn nordic:SIRI_ET , nordic:SIRI_VM , nordic:SIRI_SX ;
+    rdfs:comment "Primary mechanism for linking SIRI real-time data to planned NeTEx journeys" .
+
+siri:AccessibilityAssessmentStructure
+    skos:definition "Accessibility impact: MobilityImpairedAccess, Limitations (wheelchair, step-free, escalator, lift)" ;
+    nordic:usedIn nordic:SIRI_SX , nordic:SIRI_FM ;
+    nordic:namespace "http://www.ifopt.org.uk/acsb" ;
+    rdfs:comment "Uses ACSB namespace (xmlns:acsb). Child elements must be acsb: prefixed." .
+
+siri:AccessibilityLimitationStructure
+    skos:definition "Specific accessibility limits: WheelchairAccess, StepFreeAccess, EscalatorFreeAccess, LiftFreeAccess, AudibleSignalsAvailable, VisualSignsAvailable" ;
+    nordic:childOf siri:AccessibilityAssessmentStructure ;
+    nordic:namespace "http://www.ifopt.org.uk/acsb" .
+
+siri:SimpleContactStructure
+    skos:definition "Contact point: PhoneNumber, Url" ;
+    nordic:usedIn nordic:SIRI_ET .
+
+siri:SituationRef
+    skos:definition "Reference to a published PtSituationElement via SituationSimpleRef" ;
+    nordic:usedIn nordic:SIRI_ET , nordic:SIRI_FM ;
+    rdfs:comment "Cross-service link: ET/FM messages can reference SX situations" .
+
+## =================================================================
+## ENUMERATIONS
+## =================================================================
+
+## --- VehicleStatusEnumeration (SIRI-VM) ---
+
+nordic:VehicleStatusEnum a nordic:Enumeration ;
+    rdfs:label "VehicleStatusEnumeration" ;
+    nordic:usedIn nordic:SIRI_VM ;
+    nordic:values "expected", "notExpected", "cancelled", "assigned",
+                "signedOn", "atOrigin", "inProgress", "aborted",
+                "offRoute", "completed", "assumedCompleted", "notRun" .
+
+## --- OccupancyEnumeration (SIRI-ET, SIRI-VM) ---
+
+nordic:OccupancyEnum a nordic:Enumeration ;
+    rdfs:label "OccupancyEnumeration" ;
+    nordic:usedIn nordic:SIRI_ET , nordic:SIRI_VM ;
+    nordic:values "full", "seatsAvailable", "standingAvailable",
+                "unknown", "empty", "manySeatAvailable",
+                "fewSeatAvailable", "standingRoomOnly",
+                "crushStandingRoomOnly", "notAcceptingPassengers" .
+
+## --- ArrivalStatus / DepartureStatus (SIRI-ET) ---
+
+nordic:CallStatusEnum a nordic:Enumeration ;
+    rdfs:label "ArrivalStatusEnumeration / DepartureStatusEnumeration" ;
+    nordic:usedIn nordic:SIRI_ET ;
+    nordic:values "onTime", "early", "delayed", "cancelled",
+                "missed", "arrived", "departed", "noReport" .
+
+## --- BoardingActivity (SIRI-ET) ---
+
+nordic:BoardingActivityEnum a nordic:Enumeration ;
+    rdfs:label "ArrivalBoardingActivityEnumeration / DepartureBoardingActivityEnumeration" ;
+    nordic:usedIn nordic:SIRI_ET ;
+    nordic:values "boarding", "noBoarding", "alighting", "noAlighting",
+                "passThru" .
+
+## --- Progress (SIRI-SX) ---
+
+nordic:ProgressEnum a nordic:Enumeration ;
+    rdfs:label "WorkflowStatusEnumeration" ;
+    nordic:usedIn nordic:SIRI_SX ;
+    nordic:values "open", "closed" ;
+    rdfs:comment "Nordic Profile restricts to open/closed only" .
+
+## --- ReportType (SIRI-SX) ---
+
+nordic:ReportTypeEnum a nordic:Enumeration ;
+    rdfs:label "ReportTypeEnumeration" ;
+    nordic:usedIn nordic:SIRI_SX ;
+    nordic:values "general", "incident" .
+
+## --- Severity (SIRI-SX) ---
+
+nordic:SeverityEnum a nordic:Enumeration ;
+    rdfs:label "SeverityEnumeration" ;
+    nordic:usedIn nordic:SIRI_SX ;
+    nordic:values "unknown", "verySlight", "slight", "normal",
+                "severe", "verySevere", "noImpact", "undefined" .
+
+## --- StopCondition (SIRI-SX) ---
+
+nordic:StopConditionEnum a nordic:Enumeration ;
+    rdfs:label "RoutePointTypeEnumeration (StopCondition)" ;
+    nordic:usedIn nordic:SIRI_SX ;
+    nordic:values "stop", "startPoint", "destination",
+                "notStopping", "requestStop", "exceptionalStop" .
+
+## --- ComponentType (SIRI-SX) ---
+
+nordic:ComponentTypeEnum a nordic:Enumeration ;
+    rdfs:label "AffectedComponentTypeEnumeration" ;
+    nordic:usedIn nordic:SIRI_SX ;
+    nordic:values "accessSpace", "boardingPosition", "entrance", "quay" .
+
+## --- FacilityStatus (SIRI-FM) ---
+
+nordic:FacilityStatusEnum a nordic:Enumeration ;
+    rdfs:label "FacilityStatusEnumeration" ;
+    nordic:usedIn nordic:SIRI_FM ;
+    nordic:values "unknown", "available", "notAvailable",
+                "partiallyAvailable", "added", "removed" .
+
+## --- FacilityClass (SIRI-FM) ---
+
+nordic:FacilityClassEnum a nordic:Enumeration ;
+    rdfs:label "FacilityClassEnumeration" ;
+    nordic:usedIn nordic:SIRI_FM ;
+    nordic:values "unknown", "fixedEquipment", "mobileEquipment",
+                "siteComponent", "site", "parkingBay",
+                "vehicle", "stop", "line" .
+
+## --- CountingType (SIRI-FM) ---
+
+nordic:CountingTypeEnum a nordic:Enumeration ;
+    rdfs:label "CountingTypeEnumeration" ;
+    nordic:usedIn nordic:SIRI_FM ;
+    nordic:values "availabilityCount", "reservedCount", "inUseCount",
+                "outOfOrderCount", "presentCount", "chargingLevel",
+                "availableRunningDistance", "currentStateCount" ;
+    rdfs:comment "No totalCount or capacityCount exists — infer total from sum or use Percentage" .
+
+## --- CountedFeatureUnit (SIRI-FM) ---
+
+nordic:CountedFeatureUnitEnum a nordic:Enumeration ;
+    rdfs:label "CountedFeatureUnitEnumeration" ;
+    nordic:usedIn nordic:SIRI_FM ;
+    nordic:values "bays", "seats", "otherSpaces", "devices",
+                "vehicles", "persons", "passengers",
+                "entrances", "exits" .
+
+## --- FacilityFeature categories (SIRI-FM) ---
+
+nordic:FacilityFeatureEnum a nordic:Enumeration ;
+    rdfs:label "AllFacilitiesFeatureStructure (16 categories)" ;
+    nordic:usedIn nordic:SIRI_FM ;
+    nordic:values "AccessFacility", "AccommodationFacility",
+                "AssistanceFacility", "FareClassFacility",
+                "HireFacility", "LuggageFacility",
+                "MobilityFacility", "NuisanceFacility",
+                "ParkingFacility", "PassengerCommsFacility",
+                "PassengerInformationFacility", "RefreshmentFacility",
+                "ReservedSpaceFacility", "RetailFacility",
+                "SanitaryFacility", "TicketingFacility" .
+
+## --- RemedyType (SIRI-FM) ---
+
+nordic:RemedyTypeEnum a nordic:Enumeration ;
+    rdfs:label "RemedyTypeEnumeration" ;
+    nordic:usedIn nordic:SIRI_FM ;
+    nordic:values "unknown", "replace", "repair", "remove",
+                "otherRoute", "otherLocation" .
+
+## --- VehicleMode (shared) ---
+
+nordic:VehicleModeEnum a nordic:Enumeration ;
+    rdfs:label "VehicleModesEnumeration" ;
+    nordic:usedIn nordic:SIRI_ET , nordic:SIRI_VM , nordic:SIRI_SX ;
+    nordic:values "air", "bus", "coach", "ferry", "metro",
+                "rail", "tram", "water" .
+
+## --- AccessibilityLimitation values (ACSB) ---
+
+nordic:AccessibilityValueEnum a nordic:Enumeration ;
+    rdfs:label "LimitationStatusEnumeration (ACSB)" ;
+    nordic:usedIn nordic:SIRI_SX , nordic:SIRI_FM ;
+    nordic:values "true", "false", "unknown" ;
+    rdfs:comment "Tristate for WheelchairAccess, StepFreeAccess, etc." .
+
+## =================================================================
+## KEY ELEMENT SPECIFICATIONS
+## =================================================================
+## Important element-level details from Table files, captured as
+## profile annotations on the generated siri: classes.
+## -----------------------------------------------------------------
+
+## --- ServiceDelivery elements ---
+
+siri:ServiceDelivery nordic:hasElement [
+    nordic:property "ResponseTimestamp" ;
+    nordic:type "xsd:dateTime" ;
+    nordic:xsdCardinality "1..1" ;
+    skos:definition "When the dataset was generated/published"
+] , [
+    nordic:property "ProducerRef" ;
+    nordic:type "xsd:NMTOKEN" ;
+    nordic:xsdCardinality "1..1" ;
+    skos:definition "Codespace identifying the data producer"
+] .
+
+## --- EstimatedVehicleJourney key elements ---
+
+siri:EstimatedVehicleJourney nordic:hasElement [
+    nordic:property "RecordedAtTime" ;
+    nordic:type "xsd:dateTime" ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "DirectionRef" ;
+    nordic:type "xsd:NMTOKEN" ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "Mandatory but not semantically used — set to 0 if unknown"
+] , [
+    nordic:property "Cancellation" ;
+    nordic:type "xsd:boolean" ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "true = entire journey cancelled. Choice with ExtraJourney"
+] , [
+    nordic:property "ExtraJourney" ;
+    nordic:type "xsd:boolean" ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "true = replacement departure. Requires VehicleMode, RouteRef, GroupOfLinesRef"
+] , [
+    nordic:property "DataSource" ;
+    nordic:type "xsd:string" ;
+    nordic:xsdCardinality "1..1" ;
+    skos:definition "Data source codespace"
+] , [
+    nordic:property "IsCompleteStopSequence" ;
+    nordic:type "xsd:boolean" ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "Must ALWAYS be true in Nordic Profile"
+] , [
+    nordic:property "Monitored" ;
+    nordic:type "xsd:boolean" ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "Occupancy" ;
+    nordic:type "OccupancyEnumeration" ;
+    nordic:xsdCardinality "0..1"
+] .
+
+## --- EstimatedCall key elements ---
+
+siri:EstimatedCall nordic:hasElement [
+    nordic:property "Order" ;
+    nordic:type "xsd:integer" ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "Cancellation" ;
+    nordic:type "xsd:boolean" ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "true = this specific stop is cancelled"
+] , [
+    nordic:property "RequestStop" ;
+    nordic:type "xsd:boolean" ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "AimedArrivalTime" ;
+    nordic:type "xsd:dateTime" ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "ExpectedArrivalTime" ;
+    nordic:type "xsd:dateTime" ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "ArrivalStatus" ;
+    nordic:type "CallStatusEnumeration" ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "AimedDepartureTime" ;
+    nordic:type "xsd:dateTime" ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "ExpectedDepartureTime" ;
+    nordic:type "xsd:dateTime" ;
+    nordic:xsdCardinality "0..1"
+] , [
+    nordic:property "DepartureStatus" ;
+    nordic:type "CallStatusEnumeration" ;
+    nordic:xsdCardinality "0..1"
+] .
+
+## --- MonitoredVehicleJourney key elements ---
+
+siri:MonitoredVehicleJourneyStructure nordic:hasElement [
+    nordic:property "Delay" ;
+    nordic:type "xsd:duration" ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "PT0S = on time. Mandatory in Nordic Profile"
+] , [
+    nordic:property "VehicleRef" ;
+    nordic:type "xsd:NMTOKEN" ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "Bearing" ;
+    nordic:type "xsd:decimal" ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "Heading in degrees 0-360"
+] , [
+    nordic:property "Velocity" ;
+    nordic:type "xsd:nonNegativeInteger" ;
+    nordic:xsdCardinality "0..1" ;
+    rdfs:comment "Speed in cm/s"
+] , [
+    nordic:property "DataSource" ;
+    nordic:type "xsd:string" ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "IsCompleteStopSequence" ;
+    nordic:type "xsd:boolean" ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "Must ALWAYS be false in Nordic Profile (only MonitoredCall)"
+] , [
+    nordic:property "InCongestion" ;
+    nordic:type "xsd:boolean" ;
+    nordic:xsdCardinality "0..1"
+] .
+
+## --- PtSituationElement key elements ---
+
+siri:PtSituationElement nordic:hasElement [
+    nordic:property "CreationTime" ;
+    nordic:type "xsd:dateTime" ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "ParticipantRef" ;
+    nordic:type "xsd:NMTOKEN" ;
+    nordic:xsdCardinality "1..1"
+] , [
+    nordic:property "SituationNumber" ;
+    nordic:type "xsd:string" ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "Format: CODESPACE:SituationNumber:ID"
+] , [
+    nordic:property "Progress" ;
+    nordic:type "WorkflowStatusEnumeration" ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "open or closed"
+] , [
+    nordic:property "UndefinedReason" ;
+    nordic:type "xsd:string" ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "Mandatory but always empty"
+] , [
+    nordic:property "ReportType" ;
+    nordic:type "ReportTypeEnumeration" ;
+    nordic:xsdCardinality "1..1" ;
+    rdfs:comment "general = informational, incident = impacts operation"
+] , [
+    nordic:property "Summary" ;
+    nordic:type "NaturalLanguageStringStructure" ;
+    nordic:xsdCardinality "1..n" ;
+    rdfs:comment "Max 160 chars per language"
+] , [
+    nordic:property "Description" ;
+    nordic:type "NaturalLanguageStringStructure" ;
+    nordic:xsdCardinality "0..n"
+] , [
+    nordic:property "Advice" ;
+    nordic:type "NaturalLanguageStringStructure" ;
+    nordic:xsdCardinality "0..n" ;
+    rdfs:comment "Actionable guidance for passengers"
+] .
+
+## =================================================================
+## SERVICE CHAINS (navigational shortcuts)
+## =================================================================
+
+nordic:ETChain rdfs:comment """
+    ServiceDelivery → EstimatedTimetableDelivery
+      → EstimatedJourneyVersionFrame → EstimatedVehicleJourney
+        → RecordedCalls + EstimatedCalls
+    Real-time timetable chain: from message envelope to per-stop predictions.
+""" ;
+    nordic:step1 siri:ServiceDelivery ;
+    nordic:step2 siri:EstimatedTimetableDelivery ;
+    nordic:step3 siri:EstimatedVersionFrameStructure ;
+    nordic:step4 siri:EstimatedVehicleJourney ;
+    nordic:step5 siri:EstimatedCall .
+
+nordic:VMChain rdfs:comment """
+    ServiceDelivery → VehicleMonitoringDelivery
+      → VehicleActivity → MonitoredVehicleJourney
+        → VehicleLocation + MonitoredCall
+    Vehicle tracking chain: from message to GPS position and current stop.
+""" ;
+    nordic:step1 siri:ServiceDelivery ;
+    nordic:step2 siri:VehicleMonitoringDelivery ;
+    nordic:step3 siri:VehicleActivityStructure ;
+    nordic:step4 siri:MonitoredVehicleJourneyStructure ;
+    nordic:step5 siri:LocationStructure .
+
+nordic:SXChain rdfs:comment """
+    ServiceDelivery → SituationExchangeDelivery
+      → PtSituationElement → Affects
+        → AffectedNetwork / AffectedStopPlace / AffectedVehicleJourney
+    Situation chain: from message to impacted targets.
+""" ;
+    nordic:step1 siri:ServiceDelivery ;
+    nordic:step2 siri:SituationExchangeDelivery ;
+    nordic:step3 siri:PtSituationElement ;
+    nordic:step4 siri:AffectsScopeStructure ;
+    nordic:step5 siri:AffectedNetworkStructure .
+
+nordic:FMChain rdfs:comment """
+    ServiceDelivery → FacilityMonitoringDelivery
+      → FacilityCondition → Facility + FacilityStatus + MonitoredCounting
+    Facility chain: from message to facility status and counting data.
+""" ;
+    nordic:step1 siri:ServiceDelivery ;
+    nordic:step2 siri:FacilityMonitoringDelivery ;
+    nordic:step3 siri:FacilityCondition ;
+    nordic:step4 siri:FacilityStructure ;
+    nordic:step5 siri:MonitoredCountingStructure .
+
+## =================================================================
+## CROSS-SERVICE LINKS
+## =================================================================
+## SIRI services reference each other to provide richer context.
+## -----------------------------------------------------------------
+
+nordic:ETtoSX rdfs:comment """
+    EstimatedVehicleJourney → SituationRef → PtSituationElement
+    An ET journey can reference SX situations explaining the deviation.
+""" ;
+    nordic:from siri:EstimatedVehicleJourney ;
+    nordic:to siri:PtSituationElement ;
+    nordic:via "SituationRef" .
+
+nordic:FMtoSX rdfs:comment """
+    FacilityCondition → SituationRef → PtSituationElement
+    A facility condition can reference an SX situation.
+""" ;
+    nordic:from siri:FacilityCondition ;
+    nordic:to siri:PtSituationElement ;
+    nordic:via "SituationRef" .
+
+nordic:VMrequiresET rdfs:comment """
+    SIRI-VM requires valid NeTEx or SIRI-ET data to exist first.
+    Vehicle positions are only meaningful when there is a journey to track.
+""" ;
+    nordic:from nordic:SIRI_VM ;
+    nordic:to nordic:SIRI_ET ;
+    nordic:relationship "prerequisite" .
+
+## =================================================================
+## COMMUNICATION PATTERNS
+## =================================================================
+
+nordic:PubSub a nordic:CommunicationPattern ;
+    rdfs:label "Publish/Subscribe" ;
+    skos:definition "Consumer subscribes to SIRI data; producer pushes updates continuously" ;
+    doc:description "Guides/DataExchange/DataExchange_Guide.md" .
+
+nordic:RequestResponse a nordic:CommunicationPattern ;
+    rdfs:label "Request/Response" ;
+    skos:definition "Consumer requests data on demand; producer responds with current state" ;
+    doc:description "Guides/DataExchange/DataExchange_Guide.md" .
+
+## =================================================================
+## XML NAMESPACES
+## =================================================================
+
+nordic:SIRINamespace a nordic:XMLNamespace ;
+    rdfs:label "SIRI namespace" ;
+    nordic:uri "http://www.siri.org.uk/siri" ;
+    nordic:prefix "siri" .
+
+nordic:ACSBNamespace a nordic:XMLNamespace ;
+    rdfs:label "ACSB namespace (accessibility)" ;
+    nordic:uri "http://www.ifopt.org.uk/acsb" ;
+    nordic:prefix "acsb" ;
+    rdfs:comment "Required for AccessibilityAssessment, AccessibilityLimitation, WheelchairAccess, etc." .
+
+nordic:IFOPTNamespace a nordic:XMLNamespace ;
+    rdfs:label "IFOPT namespace (stop infrastructure)" ;
+    nordic:uri "http://www.ifopt.org.uk/ifopt" ;
+    nordic:prefix "ifopt" .
+
+## =================================================================
+## GUIDES (documentation references)
+## =================================================================
+
+doc:GetStarted a doc:Guide ;
+    rdfs:label "Get Started" ;
+    doc:path "Guides/GetStarted/GetStarted_Guide.md" ;
+    skos:definition "Introduction to SIRI and the Nordic Profile" .
+
+doc:GeneralInformation a doc:Guide ;
+    rdfs:label "General Information" ;
+    doc:path "Guides/GeneralInformation/GeneralInformation_Guide.md" ;
+    skos:definition "SIRI overview, terminology, and conventions" .
+
+doc:DataExchange a doc:Guide ;
+    rdfs:label "Data Exchange" ;
+    doc:path "Guides/DataExchange/DataExchange_Guide.md" ;
+    skos:definition "Communication patterns: Pub/Sub, Request/Response" .
+
+doc:ParkingAccessibility a doc:Guide ;
+    rdfs:label "Parking & Accessibility (FM)" ;
+    doc:path "Guides/Parking/Parking_Implementation_Guide.md" ;
+    skos:definition "Implementing parking monitoring with SIRI-FM" .
+
+doc:Validation a doc:Guide ;
+    rdfs:label "Validation" ;
+    doc:path "Guides/Validation/Validation_Guide.md" ;
+    skos:definition "Validating SIRI XML against the official XSD" .
+
+doc:Glossary a doc:Guide ;
+    rdfs:label "Glossary" ;
+    doc:path "Guides/Glossary/Glossary.md" ;
+    skos:definition "Terminology and definitions" .
+
+doc:BussForTog a doc:Guide ;
+    rdfs:label "Buss for tog — XSD-dekningsanalyse" ;
+    doc:path "Guides/BussForTog/BussForTog_XSD_Dekningsanalyse.md" ;
+    skos:definition "Coverage analysis of bus-for-train attributes against SIRI v2.2 XSD" .

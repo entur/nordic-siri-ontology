@@ -1,0 +1,1147 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:AccessFacility a owl:Class ;
+    rdfs:label "AccessFacility" ;
+    siri:xsdElement true .
+
+siri:AccommodationFacility a owl:Class ;
+    rdfs:label "AccommodationFacility" ;
+    siri:xsdElement true .
+
+siri:ActualArrivalTime a owl:Class ;
+    rdfs:label "ActualArrivalTime" ;
+    siri:xsdElement true .
+
+siri:ActualDepartureTime a owl:Class ;
+    rdfs:label "ActualDepartureTime" ;
+    siri:xsdElement true .
+
+siri:ActualHeadwayInterval a owl:Class ;
+    rdfs:label "ActualHeadwayInterval" ;
+    siri:xsdElement true .
+
+siri:AimedArrivalTime a owl:Class ;
+    rdfs:label "AimedArrivalTime" ;
+    siri:xsdElement true .
+
+siri:AimedArrivalTimeOfFeeder a owl:Class ;
+    rdfs:label "AimedArrivalTimeOfFeeder" ;
+    siri:xsdElement true .
+
+siri:AimedDepartureTime a owl:Class ;
+    rdfs:label "AimedDepartureTime" ;
+    siri:xsdElement true .
+
+siri:AimedDepartureTimeOfDistributor a owl:Class ;
+    rdfs:label "AimedDepartureTimeOfDistributor" ;
+    siri:xsdElement true .
+
+siri:AimedHeadwayInterval a owl:Class ;
+    rdfs:label "AimedHeadwayInterval" ;
+    siri:xsdElement true .
+
+siri:AimedLatestPassengerAccessTime a owl:Class ;
+    rdfs:label "AimedLatestPassengerAccessTime" ;
+    siri:xsdElement true .
+
+siri:AirSubmode a owl:Class ;
+    rdfs:label "AirSubmode" ;
+    siri:xsdElement true .
+
+siri:AlertCause a owl:Class ;
+    rdfs:label "AlertCause" ;
+    siri:xsdElement true .
+
+siri:AllowAll a owl:Class ;
+    rdfs:label "AllowAll" ;
+    siri:xsdElement true .
+
+siri:ArrivalBoardingActivity a owl:Class ;
+    rdfs:label "ArrivalBoardingActivity" ;
+    siri:xsdElement true .
+
+siri:ArrivalStatus a owl:Class ;
+    rdfs:label "ArrivalStatus" ;
+    siri:xsdElement true .
+
+siri:AssistanceFacility a owl:Class ;
+    rdfs:label "AssistanceFacility" ;
+    siri:xsdElement true .
+
+siri:BookingStatusType a owl:Class ;
+    rdfs:label "BookingStatusType" ;
+    siri:xsdElement true .
+
+siri:BusSubmode a owl:Class ;
+    rdfs:label "BusSubmode" ;
+    siri:xsdElement true .
+
+siri:CapabilitiesRequest a owl:Class ;
+    rdfs:label "CapabilitiesRequest" ;
+    rdfs:subClassOf siri:CapabilitiesRequestStructure ;
+    siri:xsdElement true .
+
+siri:CapabilitiesResponse a owl:Class ;
+    rdfs:label "CapabilitiesResponse" ;
+    rdfs:subClassOf siri:CapabilitiesResponseStructure ;
+    siri:xsdElement true .
+
+siri:CheckConnectionLinkRef a owl:Class ;
+    rdfs:label "CheckConnectionLinkRef" ;
+    siri:xsdElement true .
+
+siri:CheckLineRef a owl:Class ;
+    rdfs:label "CheckLineRef" ;
+    siri:xsdElement true .
+
+siri:CheckMonitoringRef a owl:Class ;
+    rdfs:label "CheckMonitoringRef" ;
+    siri:xsdElement true .
+
+siri:CheckOperatorRef a owl:Class ;
+    rdfs:label "CheckOperatorRef" ;
+    siri:xsdElement true .
+
+siri:CoachSubmode a owl:Class ;
+    rdfs:label "CoachSubmode" ;
+    siri:xsdElement true .
+
+siri:Condition a owl:Class ;
+    rdfs:label "Condition" ;
+    siri:xsdElement true .
+
+siri:ControlActionCode a owl:Class ;
+    rdfs:label "ControlActionCode" ;
+    siri:xsdElement true .
+
+siri:DayType a owl:Class ;
+    rdfs:label "DayType" ;
+    siri:xsdElement true .
+
+siri:DepartureBoardingActivity a owl:Class ;
+    rdfs:label "DepartureBoardingActivity" ;
+    siri:xsdElement true .
+
+siri:DepartureStatus a owl:Class ;
+    rdfs:label "DepartureStatus" ;
+    siri:xsdElement true .
+
+siri:DistributorStopOrder a owl:Class ;
+    rdfs:label "DistributorStopOrder" ;
+    siri:xsdElement true .
+
+siri:DistributorVisitNumber a owl:Class ;
+    rdfs:label "DistributorVisitNumber" ;
+    siri:xsdElement true .
+
+siri:EnvironmentReason a owl:Class ;
+    rdfs:label "EnvironmentReason" ;
+    siri:xsdElement true .
+
+siri:EnvironmentSubReason a owl:Class ;
+    rdfs:label "EnvironmentSubReason" ;
+    siri:xsdElement true .
+
+siri:EquipmentReason a owl:Class ;
+    rdfs:label "EquipmentReason" ;
+    siri:xsdElement true .
+
+siri:EquipmentSubReason a owl:Class ;
+    rdfs:label "EquipmentSubReason" ;
+    siri:xsdElement true .
+
+siri:ExpectedArrivalTime a owl:Class ;
+    rdfs:label "ExpectedArrivalTime" ;
+    siri:xsdElement true .
+
+siri:ExpectedDepartureTime a owl:Class ;
+    rdfs:label "ExpectedDepartureTime" ;
+    siri:xsdElement true .
+
+siri:ExpectedHeadwayInterval a owl:Class ;
+    rdfs:label "ExpectedHeadwayInterval" ;
+    siri:xsdElement true .
+
+siri:ExpectedLatestPassengerAccessTime a owl:Class ;
+    rdfs:label "ExpectedLatestPassengerAccessTime" ;
+    siri:xsdElement true .
+
+siri:Extensions a owl:Class ;
+    rdfs:label "Extensions" ;
+    siri:xsdElement true .
+
+siri:ExtraCall a owl:Class ;
+    rdfs:label "ExtraCall" ;
+    siri:xsdElement true .
+
+siri:ExtraInterchange a owl:Class ;
+    rdfs:label "ExtraInterchange" ;
+    siri:xsdElement true .
+
+siri:FareClass a owl:Class ;
+    rdfs:label "FareClass" ;
+    siri:xsdElement true .
+
+siri:FareClassFacility a owl:Class ;
+    rdfs:label "FareClassFacility" ;
+    siri:xsdElement true .
+
+siri:FareClasses a owl:Class ;
+    rdfs:label "FareClasses" ;
+    siri:xsdElement true .
+
+siri:FeederStopOrder a owl:Class ;
+    rdfs:label "FeederStopOrder" ;
+    siri:xsdElement true .
+
+siri:FeederVisitNumber a owl:Class ;
+    rdfs:label "FeederVisitNumber" ;
+    siri:xsdElement true .
+
+siri:FilterByConnectionLinkRef a owl:Class ;
+    rdfs:label "FilterByConnectionLinkRef" ;
+    siri:xsdElement true .
+
+siri:FilterByDestination a owl:Class ;
+    rdfs:label "FilterByDestination" ;
+    siri:xsdElement true .
+
+siri:FilterByDirectionRef a owl:Class ;
+    rdfs:label "FilterByDirectionRef" ;
+    siri:xsdElement true .
+
+siri:FilterByFacilityRef a owl:Class ;
+    rdfs:label "FilterByFacilityRef" ;
+    siri:xsdElement true .
+
+siri:FilterByInterchangeRef a owl:Class ;
+    rdfs:label "FilterByInterchangeRef" ;
+    siri:xsdElement true .
+
+siri:FilterByLineRef a owl:Class ;
+    rdfs:label "FilterByLineRef" ;
+    siri:xsdElement true .
+
+siri:FilterByMonitoringRef a owl:Class ;
+    rdfs:label "FilterByMonitoringRef" ;
+    siri:xsdElement true .
+
+siri:FilterByOperatorRef a owl:Class ;
+    rdfs:label "FilterByOperatorRef" ;
+    siri:xsdElement true .
+
+siri:FilterByProductCategoryRef a owl:Class ;
+    rdfs:label "FilterByProductCategoryRef" ;
+    siri:xsdElement true .
+
+siri:FilterByStopPointRef a owl:Class ;
+    rdfs:label "FilterByStopPointRef" ;
+    siri:xsdElement true .
+
+siri:FilterByValidityPeriod a owl:Class ;
+    rdfs:label "FilterByValidityPeriod" ;
+    siri:xsdElement true .
+
+siri:FilterByVehicleJourneyRef a owl:Class ;
+    rdfs:label "FilterByVehicleJourneyRef" ;
+    siri:xsdElement true .
+
+siri:FilterByVehicleMode a owl:Class ;
+    rdfs:label "FilterByVehicleMode" ;
+    siri:xsdElement true .
+
+siri:FilterByVehicleRef a owl:Class ;
+    rdfs:label "FilterByVehicleRef" ;
+    siri:xsdElement true .
+
+siri:FirstOrLastJourney a owl:Class ;
+    rdfs:label "FirstOrLastJourney" ;
+    siri:xsdElement true .
+
+siri:FunicularSubmode a owl:Class ;
+    rdfs:label "FunicularSubmode" ;
+    siri:xsdElement true .
+
+siri:HireFacility a owl:Class ;
+    rdfs:label "HireFacility" ;
+    siri:xsdElement true .
+
+siri:IncludeInterchanges a owl:Class ;
+    rdfs:label "IncludeInterchanges" ;
+    siri:xsdElement true .
+
+siri:IncludeJourneyRelations a owl:Class ;
+    rdfs:label "IncludeJourneyRelations" ;
+    siri:xsdElement true .
+
+siri:IncludeTrainFormations a owl:Class ;
+    rdfs:label "IncludeTrainFormations" ;
+    siri:xsdElement true .
+
+siri:IncludeTranslations a owl:Class ;
+    rdfs:label "IncludeTranslations" ;
+    siri:xsdElement true .
+
+siri:InterchangeCode a owl:Class ;
+    rdfs:label "InterchangeCode" ;
+    siri:xsdElement true .
+
+siri:InterchangeStatusType a owl:Class ;
+    rdfs:label "InterchangeStatusType" ;
+    siri:xsdElement true .
+
+siri:LuggageFacility a owl:Class ;
+    rdfs:label "LuggageFacility" ;
+    siri:xsdElement true .
+
+siri:MetroSubmode a owl:Class ;
+    rdfs:label "MetroSubmode" ;
+    siri:xsdElement true .
+
+siri:MiscellaneousReason a owl:Class ;
+    rdfs:label "MiscellaneousReason" ;
+    siri:xsdElement true .
+
+siri:MiscellaneousSubReason a owl:Class ;
+    rdfs:label "MiscellaneousSubReason" ;
+    siri:xsdElement true .
+
+siri:MobilityFacility a owl:Class ;
+    rdfs:label "MobilityFacility" ;
+    siri:xsdElement true .
+
+siri:NuisanceFacility a owl:Class ;
+    rdfs:label "NuisanceFacility" ;
+    siri:xsdElement true .
+
+siri:Occupancy a owl:Class ;
+    rdfs:label "Occupancy" ;
+    siri:xsdElement true .
+
+siri:Order a owl:Class ;
+    rdfs:label "Order" ;
+    siri:xsdElement true .
+
+siri:ParkingFacility a owl:Class ;
+    rdfs:label "ParkingFacility" ;
+    siri:xsdElement true .
+
+siri:PassengerCommsFacility a owl:Class ;
+    rdfs:label "PassengerCommsFacility" ;
+    siri:xsdElement true .
+
+siri:PassengerInformationFacility a owl:Class ;
+    rdfs:label "PassengerInformationFacility" ;
+    siri:xsdElement true .
+
+siri:PersonnelReason a owl:Class ;
+    rdfs:label "PersonnelReason" ;
+    siri:xsdElement true .
+
+siri:PersonnelSubReason a owl:Class ;
+    rdfs:label "PersonnelSubReason" ;
+    siri:xsdElement true .
+
+siri:PredictionInaccurate a owl:Class ;
+    rdfs:label "PredictionInaccurate" ;
+    siri:xsdElement true .
+
+siri:PredictionInaccurateReason a owl:Class ;
+    rdfs:label "PredictionInaccurateReason" ;
+    siri:xsdElement true .
+
+siri:QuayType a owl:Class ;
+    rdfs:label "QuayType" ;
+    siri:xsdElement true .
+
+siri:RailSubmode a owl:Class ;
+    rdfs:label "RailSubmode" ;
+    siri:xsdElement true .
+
+siri:RefreshmentFacility a owl:Class ;
+    rdfs:label "RefreshmentFacility" ;
+    siri:xsdElement true .
+
+siri:ReportType a owl:Class ;
+    rdfs:label "ReportType" ;
+    siri:xsdElement true .
+
+siri:RequestTimestamp a owl:Class ;
+    rdfs:label "RequestTimestamp" ;
+    siri:xsdElement true .
+
+siri:ReservedSpaceFacility a owl:Class ;
+    rdfs:label "ReservedSpaceFacility" ;
+    siri:xsdElement true .
+
+siri:ResponseTimestamp a owl:Class ;
+    rdfs:label "ResponseTimestamp" ;
+    siri:xsdElement true .
+
+siri:RetailFacility a owl:Class ;
+    rdfs:label "RetailFacility" ;
+    siri:xsdElement true .
+
+siri:RoutePointType a owl:Class ;
+    rdfs:label "RoutePointType" ;
+    siri:xsdElement true .
+
+siri:SanitaryFacility a owl:Class ;
+    rdfs:label "SanitaryFacility" ;
+    siri:xsdElement true .
+
+siri:SelfDriveSubmode a owl:Class ;
+    rdfs:label "SelfDriveSubmode" ;
+    siri:xsdElement true .
+
+siri:ServiceDelivery a owl:Class ;
+    rdfs:label "ServiceDelivery" ;
+    rdfs:subClassOf siri:ServiceDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:ServiceDeliveryBodyStructure a owl:Class ;
+    rdfs:label "ServiceDeliveryBody" ;
+    rdfs:comment "Type for SIRI Service Delivery Body.." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:status ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionTimetableDelivery ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringFeederDelivery ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringDistributorDelivery ;
+            siri:xsdSequenceOrder 12 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageDelivery ;
+            siri:xsdSequenceOrder 13 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityMonitoringDelivery ;
+            siri:xsdSequenceOrder 14 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationExchangeDelivery ;
+            siri:xsdSequenceOrder 15 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:errorCondition ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:moreData ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:includedSituationExchangeDelivery ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableDelivery ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableDelivery ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopTimetableDelivery ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringDelivery ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringDelivery ;
+            siri:xsdSequenceOrder 9 ] .
+
+siri:ServiceRequest a owl:Class ;
+    rdfs:label "ServiceRequest" ;
+    rdfs:subClassOf siri:ServiceRequestStructure ;
+    siri:xsdElement true .
+
+siri:Severity a owl:Class ;
+    rdfs:label "Severity" ;
+    siri:xsdElement true .
+
+siri:SiriServiceDeliveryStructure a owl:Class ;
+    rdfs:label "SiriServiceDelivery" ;
+    rdfs:comment "Type for a SIRI SIRI Functional Service Delivery types.Used for WSDL." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:includedSituationExchangeDelivery ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageDelivery ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityMonitoringDelivery ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationExchangeDelivery ;
+            siri:xsdSequenceOrder 12 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableDelivery ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableDelivery ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopTimetableDelivery ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringDelivery ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringDelivery ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionTimetableDelivery ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringFeederDelivery ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringDistributorDelivery ;
+            siri:xsdSequenceOrder 9 ] .
+
+siri:SiriSubscriptionRequestStructure a owl:Class ;
+    rdfs:label "SiriSubscriptionRequest" ;
+    rdfs:comment "Type for SIRI Functional Service Subscription types. Used for WSDL exchanges." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableSubscriptionRequest ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationExchangeSubscriptionRequest ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableSubscriptionRequest ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopTimetableSubscriptionRequest ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringSubscriptionRequest ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringSubscriptionRequest ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionTimetableSubscriptionRequest ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringSubscriptionRequest ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageSubscriptionRequest ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityMonitoringSubscriptionRequest ;
+            siri:xsdSequenceOrder 9 ] .
+
+siri:SrsName a owl:Class ;
+    rdfs:label "SrsName" ;
+    siri:xsdElement true .
+
+siri:Status a owl:Class ;
+    rdfs:label "Status" ;
+    siri:xsdElement true .
+
+siri:StopPointType a owl:Class ;
+    rdfs:label "StopPointType" ;
+    siri:xsdElement true .
+
+siri:SubscriptionRequest a owl:Class ;
+    rdfs:label "SubscriptionRequest" ;
+    rdfs:subClassOf siri:SubscriptionRequestStructure ;
+    siri:xsdElement true .
+
+siri:TaxiSubmode a owl:Class ;
+    rdfs:label "TaxiSubmode" ;
+    siri:xsdElement true .
+
+siri:TelecabinSubmode a owl:Class ;
+    rdfs:label "TelecabinSubmode" ;
+    siri:xsdElement true .
+
+siri:TicketRestrictionType a owl:Class ;
+    rdfs:label "TicketRestrictionType" ;
+    siri:xsdElement true .
+
+siri:TicketingFacility a owl:Class ;
+    rdfs:label "TicketingFacility" ;
+    siri:xsdElement true .
+
+siri:TimetableType a owl:Class ;
+    rdfs:label "TimetableType" ;
+    siri:xsdElement true .
+
+siri:TimingPoint a owl:Class ;
+    rdfs:label "TimingPoint" ;
+    siri:xsdElement true .
+
+siri:TramSubmode a owl:Class ;
+    rdfs:label "TramSubmode" ;
+    siri:xsdElement true .
+
+siri:UndefinedReason a owl:Class ;
+    rdfs:label "UndefinedReason" ;
+    siri:xsdElement true .
+
+siri:UnknownReason a owl:Class ;
+    rdfs:label "UnknownReason" ;
+    siri:xsdElement true .
+
+siri:VehicleAtStop a owl:Class ;
+    rdfs:label "VehicleAtStop" ;
+    siri:xsdElement true .
+
+siri:VehicleMode a owl:Class ;
+    rdfs:label "VehicleMode" ;
+    siri:xsdElement true .
+
+siri:VersionRef a owl:Class ;
+    rdfs:label "VersionRef" ;
+    siri:xsdElement true .
+
+siri:VisitNumber a owl:Class ;
+    rdfs:label "VisitNumber" ;
+    siri:xsdElement true .
+
+siri:WaterSubmode a owl:Class ;
+    rdfs:label "WaterSubmode" ;
+    siri:xsdElement true .
+
+siri:associationName a owl:Class ;
+    rdfs:label "associationName" ;
+    siri:xsdElement true .
+
+siri:defaultCodeSpace a owl:Class ;
+    rdfs:label "defaultCodeSpace" ;
+    siri:xsdElement true .
+
+siri:gmlProfileSchema a owl:Class ;
+    rdfs:label "gmlProfileSchema" ;
+    siri:xsdElement true .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:reversePropertyName a owl:Class ;
+    rdfs:label "reversePropertyName" ;
+    siri:xsdElement true .
+
+siri:targetElement a owl:Class ;
+    rdfs:label "targetElement" ;
+    siri:xsdElement true .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/core> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "SIRI core (root aggregating schemas)" ;
+    owl:imports <https://siri-cen.eu/ontology/framework>,
+        <https://siri-cen.eu/ontology/model> ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:CapabilitiesRequestStructure a owl:Class ;
+    rdfs:label "CapabilitiesRequest" ;
+    rdfs:comment "Type for Requests for capabilities of the current system." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:address ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionTimetableCapabilitiesRequest ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringCapabilitiesRequest ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageCapabilitiesRequest ;
+            siri:xsdSequenceOrder 12 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityMonitoringCapabilitiesRequest ;
+            siri:xsdSequenceOrder 13 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationExchangeCapabilitiesRequest ;
+            siri:xsdSequenceOrder 14 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:requestorRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:delegatorAddress ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:delegatorRef ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableCapabilitiesRequest ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableCapabilitiesRequest ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopTimetableCapabilitiesRequest ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringCapabilitiesRequest ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringCapabilitiesRequest ;
+            siri:xsdSequenceOrder 9 ],
+        siri:AuthenticatedRequestStructure .
+
+siri:CapabilitiesResponseStructure a owl:Class ;
+    rdfs:label "CapabilitiesResponse" ;
+    rdfs:comment "Type for the capabilities of an implementation." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableCapabilitiesResponse ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationExchangeCapabilitiesResponse ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableCapabilitiesResponse ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopTimetableCapabilitiesResponse ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringCapabilitiesResponse ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringCapabilitiesResponse ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionTimetableCapabilitiesResponse ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringCapabilitiesResponse ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageCapabilitiesResponse ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityMonitoringCapabilitiesResponse ;
+            siri:xsdSequenceOrder 9 ],
+        siri:ProducerResponseStructure .
+
+siri:ServiceDeliveryStructure a owl:Class ;
+    rdfs:label "ServiceDelivery" ;
+    rdfs:comment "Type for SIRI Service Delivery." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:status ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionTimetableDelivery ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringFeederDelivery ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringDistributorDelivery ;
+            siri:xsdSequenceOrder 12 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageDelivery ;
+            siri:xsdSequenceOrder 13 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityMonitoringDelivery ;
+            siri:xsdSequenceOrder 14 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationExchangeDelivery ;
+            siri:xsdSequenceOrder 15 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:errorCondition ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:moreData ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:includedSituationExchangeDelivery ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableDelivery ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableDelivery ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopTimetableDelivery ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringDelivery ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringDelivery ;
+            siri:xsdSequenceOrder 9 ],
+        siri:ProducerResponseStructure .
+
+siri:ServiceRequestStructure a owl:Class ;
+    rdfs:label "ServiceRequest" ;
+    rdfs:comment "SIRI Service Request." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableRequest ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityMonitoringRequest ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationExchangeRequest ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableRequest ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopTimetableRequest ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringMultipleRequest ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringRequest ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringRequest ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionTimetableRequest ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringRequest ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageRequest ;
+            siri:xsdSequenceOrder 9 ],
+        siri:ContextualisedRequestStructure .
+
+siri:SubscriptionRequestStructure a owl:Class ;
+    rdfs:label "SubscriptionRequest" ;
+    rdfs:comment "Type for SIRI Subscription Request." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:productionTimetableSubscriptionRequest ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationExchangeSubscriptionRequest ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:estimatedTimetableSubscriptionRequest ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopTimetableSubscriptionRequest ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:stopMonitoringSubscriptionRequest ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringSubscriptionRequest ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionTimetableSubscriptionRequest ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:connectionMonitoringSubscriptionRequest ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageSubscriptionRequest ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:facilityMonitoringSubscriptionRequest ;
+            siri:xsdSequenceOrder 9 ],
+        siri:AbstractSubscriptionRequestStructure .
+
+siri:address a owl:DatatypeProperty ;
+    rdfs:label "Address" ;
+    rdfs:comment "Address to which response is to be sent. This may also be determined from RequestorRef and preconfigured data." ;
+    siri:xsdType "EndpointAddress" .
+
+siri:connectionMonitoringCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "ConnectionMonitoringCapabilitiesRequest" .
+
+siri:connectionMonitoringCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "ConnectionMonitoringCapabilitiesResponse" .
+
+siri:connectionMonitoringRequest a owl:DatatypeProperty ;
+    rdfs:label "ConnectionMonitoringRequest" .
+
+siri:connectionTimetableCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "ConnectionTimetableCapabilitiesRequest" .
+
+siri:connectionTimetableCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "ConnectionTimetableCapabilitiesResponse" .
+
+siri:connectionTimetableRequest a owl:DatatypeProperty ;
+    rdfs:label "ConnectionTimetableRequest" .
+
+siri:delegatorAddress a owl:DatatypeProperty ;
+    rdfs:label "DelegatorAddress" ;
+    rdfs:comment "Address of original Consumer, i.e. requesting system to which delegating response is to be returned. (since SIRI 2.0)" ;
+    siri:xsdType "EndpointAddress" .
+
+siri:delegatorRef a owl:ObjectProperty ;
+    rdfs:label "DelegatorRef" ;
+    rdfs:comment "Identifier of delegating system that originated message. (since SIRI 2.0)" ;
+    siri:isReference true ;
+    siri:xsdType "ParticipantRefStructure" .
+
+siri:estimatedTimetableCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableCapabilitiesRequest" .
+
+siri:estimatedTimetableCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableCapabilitiesResponse" .
+
+siri:estimatedTimetableRequest a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableRequest" .
+
+siri:facilityMonitoringCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "FacilityMonitoringCapabilitiesRequest" .
+
+siri:facilityMonitoringCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "FacilityMonitoringCapabilitiesResponse" .
+
+siri:facilityMonitoringRequest a owl:DatatypeProperty ;
+    rdfs:label "FacilityMonitoringRequest" .
+
+siri:generalMessageCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageCapabilitiesRequest" .
+
+siri:generalMessageCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageCapabilitiesResponse" .
+
+siri:generalMessageRequest a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageRequest" .
+
+siri:productionTimetableCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetableCapabilitiesRequest" .
+
+siri:productionTimetableCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetableCapabilitiesResponse" .
+
+siri:productionTimetableRequest a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetableRequest" .
+
+siri:requestorRef a owl:ObjectProperty ;
+    rdfs:label "RequestorRef" ;
+    siri:isReference true .
+
+siri:situationExchangeCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "SituationExchangeCapabilitiesRequest" .
+
+siri:situationExchangeCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "SituationExchangeCapabilitiesResponse" .
+
+siri:situationExchangeRequest a owl:DatatypeProperty ;
+    rdfs:label "SituationExchangeRequest" .
+
+siri:stopMonitoringCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "StopMonitoringCapabilitiesRequest" .
+
+siri:stopMonitoringCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "StopMonitoringCapabilitiesResponse" .
+
+siri:stopMonitoringMultipleRequest a owl:DatatypeProperty ;
+    rdfs:label "StopMonitoringMultipleRequest" .
+
+siri:stopMonitoringRequest a owl:DatatypeProperty ;
+    rdfs:label "StopMonitoringRequest" .
+
+siri:stopTimetableCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "StopTimetableCapabilitiesRequest" .
+
+siri:stopTimetableCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "StopTimetableCapabilitiesResponse" .
+
+siri:stopTimetableRequest a owl:DatatypeProperty ;
+    rdfs:label "StopTimetableRequest" .
+
+siri:vehicleMonitoringCapabilitiesRequest a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringCapabilitiesRequest" .
+
+siri:vehicleMonitoringCapabilitiesResponse a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringCapabilitiesResponse" .
+
+siri:vehicleMonitoringRequest a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringRequest" .
+
+siri:connectionMonitoringSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "ConnectionMonitoringSubscriptionRequest" .
+
+siri:connectionTimetableSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "ConnectionTimetableSubscriptionRequest" .
+
+siri:errorCondition a owl:DatatypeProperty ;
+    rdfs:label "ErrorCondition" ;
+    rdfs:comment "Description of any error or warning conditions that appluy to the overall request. More Specific error conditions should be included on each request that fails." .
+
+siri:estimatedTimetableSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableSubscriptionRequest" .
+
+siri:facilityMonitoringSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "FacilityMonitoringSubscriptionRequest" .
+
+siri:generalMessageSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageSubscriptionRequest" .
+
+siri:moreData a owl:DatatypeProperty ;
+    rdfs:label "MoreData" ;
+    rdfs:comment "Whether there is a further delivery message with more current updates that follows this one. Default is 'false'." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:productionTimetableSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetableSubscriptionRequest" .
+
+siri:situationExchangeSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "SituationExchangeSubscriptionRequest" .
+
+siri:status a owl:DatatypeProperty ;
+    rdfs:label "Status" ;
+    rdfs:comment "Whether the complerte request could be processed successfully or not. Default is 'true'. If any of the individual requests within the delivery failed, should be set to ' false'." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:stopMonitoringSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "StopMonitoringSubscriptionRequest" .
+
+siri:stopTimetableSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "StopTimetableSubscriptionRequest" .
+
+siri:vehicleMonitoringSubscriptionRequest a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringSubscriptionRequest" .
+
+siri:connectionMonitoringDistributorDelivery a owl:DatatypeProperty ;
+    rdfs:label "ConnectionMonitoringDistributorDelivery" ;
+    rdfs:comment "Delivery for Connection Protection Fetcher Service." .
+
+siri:connectionMonitoringFeederDelivery a owl:DatatypeProperty ;
+    rdfs:label "ConnectionMonitoringFeederDelivery" ;
+    rdfs:comment "Delivery for Connection Protection Fetcher Service." .
+
+siri:connectionTimetableDelivery a owl:DatatypeProperty ;
+    rdfs:label "ConnectionTimetableDelivery" .
+
+siri:estimatedTimetableDelivery a owl:DatatypeProperty ;
+    rdfs:label "EstimatedTimetableDelivery" .
+
+siri:facilityMonitoringDelivery a owl:DatatypeProperty ;
+    rdfs:label "FacilityMonitoringDelivery" .
+
+siri:generalMessageDelivery a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageDelivery" ;
+    rdfs:comment "Delivery for general Message service." .
+
+siri:includedSituationExchangeDelivery a owl:DatatypeProperty ;
+    rdfs:label "IncludedSituationExchangeDelivery" .
+
+siri:productionTimetableDelivery a owl:DatatypeProperty ;
+    rdfs:label "ProductionTimetableDelivery" .
+
+siri:situationExchangeDelivery a owl:DatatypeProperty ;
+    rdfs:label "SituationExchangeDelivery" .
+
+siri:stopMonitoringDelivery a owl:DatatypeProperty ;
+    rdfs:label "StopMonitoringDelivery" ;
+    rdfs:comment "Delivery for Stop Event service." .
+
+siri:stopTimetableDelivery a owl:DatatypeProperty ;
+    rdfs:label "StopTimetableDelivery" .
+
+siri:vehicleMonitoringDelivery a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringDelivery" ;
+    rdfs:comment "Delivery for Vehicle Activity Service." .
+

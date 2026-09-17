@@ -1,0 +1,564 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:VehicleActivityCancellationStructure a owl:Class ;
+    rdfs:label "VehicleActivityCancellation" ;
+    rdfs:comment "Type for cancellation of an earlier Vehicle Activity." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:groupOfLinesRef ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:directionName ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:externalLineRef ;
+            siri:xsdSequenceOrder 12 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:brandingRef ;
+            siri:xsdSequenceOrder 13 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:branding ;
+            siri:xsdSequenceOrder 14 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:reason ;
+            siri:xsdSequenceOrder 15 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 16 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleJourneyRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:directionRef ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:journeyPatternRef ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:journeyPatternName ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:vehicleMode ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:routeRef ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:publishedLineName ;
+            siri:xsdSequenceOrder 9 ],
+        siri:AbstractReferencingItemStructure .
+
+siri:VehicleActivityStructure a owl:Class ;
+    rdfs:label "VehicleActivity" ;
+    rdfs:comment "Type for a Vehicle Activity." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:validUntilTime ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:monitoringName ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:progressBetweenStops ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:monitoredVehicleJourney ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:vehicleActivityNote ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 7 ],
+        siri:AbstractIdentifiedItemStructure .
+
+siri:VehicleMonitorPermissionStructure a owl:Class ;
+    rdfs:label "VehicleMonitorPermission" ;
+    rdfs:comment "Type for MonitoringPoint Permission." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringRef ;
+            siri:xsdSequenceOrder 1 ],
+        siri:AbstractTopicPermissionStructure .
+
+siri:VehicleMonitoringCapabilitiesResponse a owl:Class ;
+    rdfs:label "VehicleMonitoringCapabilitiesResponse" ;
+    rdfs:subClassOf siri:VehicleMonitoringCapabilitiesResponseStructure ;
+    siri:xsdElement true .
+
+siri:VehicleMonitoringCapabilityRequestPolicyStructure a owl:Class ;
+    rdfs:label "VehicleMonitoringCapabilityRequestPolicy" ;
+    rdfs:comment "Type for capability request policy." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:hasReferences ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:hasNames ;
+            siri:xsdSequenceOrder 2 ],
+        siri:CapabilityRequestPolicyStructure .
+
+siri:VehicleMonitoringDeliveriesStructure a owl:Class ;
+    rdfs:label "VehicleMonitoringDeliveries" ;
+    rdfs:comment "Type for Deliveries for VEHICLE monitoring services Used in WSDL." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringDelivery ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:VehicleMonitoringDelivery a owl:Class ;
+    rdfs:label "VehicleMonitoringDelivery" ;
+    rdfs:subClassOf siri:VehicleMonitoringDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:VehicleMonitoringDetailEnumeration a rdfs:Datatype ;
+    rdfs:label "VehicleMonitoringDetailEnumeration" ;
+    rdfs:comment "Detail Levels for Request." ;
+    owl:oneOf ( "minimum" "basic" "normal" "calls" ) .
+
+siri:VehicleMonitoringRefStructure a owl:Class ;
+    rdfs:label "VehicleMonitoring" ;
+    rdfs:comment "Type for reference to a Vehicle Monitoring scope" .
+
+siri:VehicleMonitoringRequest a owl:Class ;
+    rdfs:label "VehicleMonitoringRequest" ;
+    rdfs:subClassOf siri:VehicleMonitoringRequestStructure ;
+    siri:xsdElement true .
+
+siri:VehicleMonitoringServiceCapabilities a owl:Class ;
+    rdfs:label "VehicleMonitoringServiceCapabilities" ;
+    rdfs:subClassOf siri:VehicleMonitoringServiceCapabilitiesStructure ;
+    siri:xsdElement true .
+
+siri:VehicleMonitoringServicePermissionStructure a owl:Class ;
+    rdfs:label "VehicleMonitoringServicePermission" ;
+    rdfs:comment "Type for Monitoring Service Permissions." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:operatorPermissions ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:linePermissions ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringPermissions ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 4 ],
+        siri:AbstractPermissionStructure .
+
+siri:VehicleMonitoringSubscriptionRequest a owl:Class ;
+    rdfs:label "VehicleMonitoringSubscriptionRequest" ;
+    rdfs:subClassOf siri:VehicleMonitoringSubscriptionStructure ;
+    siri:xsdElement true .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/vm> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "SIRI Vehicle Monitoring (VM)" ;
+    owl:imports <https://siri-cen.eu/ontology/model> ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:VehicleMonitoringCapabilitiesResponseStructure a owl:Class ;
+    rdfs:label "VehicleMonitoringCapabilitiesResponse" ;
+    rdfs:comment "Type for Delivery for Vehicle Monitoring Service." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringServiceCapabilities ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringPermissions ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractServiceCapabilitiesResponseStructure .
+
+siri:VehicleMonitoringDeliveryStructure a owl:Class ;
+    rdfs:label "VehicleMonitoringDelivery" ;
+    rdfs:comment "Type for Delivery for Vehicle Monitoring Service. Provides information about one or more vehicles; each has its own VEHICLE activity element." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:vehicleActivity ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:vehicleActivityCancellation ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:vehicleActivityNote ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 4 ],
+        siri:AbstractServiceDeliveryStructure .
+
+siri:VehicleMonitoringRequestStructure a owl:Class ;
+    rdfs:label "VehicleMonitoringRequest" ;
+    rdfs:comment "Type for Functional Service Request for Vehicle Monitoring Service." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeSituations ;
+            siri:xsdSequenceOrder 10 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 11 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:lineRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:directionRef ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:includeTranslations ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:maximumVehicles ;
+            siri:xsdSequenceOrder 7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringDetailLevel ;
+            siri:xsdSequenceOrder 8 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:maximumNumberOfCalls ;
+            siri:xsdSequenceOrder 9 ],
+        siri:AbstractFunctionalServiceRequestStructure .
+
+siri:VehicleMonitoringServiceCapabilitiesStructure a owl:Class ;
+    rdfs:label "VehicleMonitoringServiceCapabilities" ;
+    rdfs:comment "Type for Vehicle Monitoring Capabilities." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:topicFiltering ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:requestPolicy ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:subscriptionPolicy ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:accessControl ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:responseFeatures ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 6 ],
+        siri:AbstractCapabilitiesStructure .
+
+siri:VehicleMonitoringSubscriptionStructure a owl:Class ;
+    rdfs:label "VehicleMonitoringSubscription" ;
+    rdfs:comment "Type for Subscription Request for Vehicle Monitoring Service." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:vehicleMonitoringRequest ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:incrementalUpdates ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:changeBeforeUpdates ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:updateInterval ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 5 ],
+        siri:AbstractSubscriptionStructure .
+
+siri:accessControl a owl:DatatypeProperty ;
+    rdfs:label "AccessControl" ;
+    rdfs:comment "Optional Access control capabilities." .
+
+siri:branding a owl:ObjectProperty ;
+    rdfs:label "Branding" ;
+    rdfs:comment "An arbitrary marketing classification. (since SIRI 2.1)" ;
+    siri:xsdType "BrandingStructure" .
+
+siri:brandingRef a owl:ObjectProperty ;
+    rdfs:label "BrandingRef" ;
+    rdfs:comment "Reference to a BRANDING. (since SIRI 2.1)" ;
+    siri:isReference true ;
+    siri:xsdType "BrandingRefStructure" .
+
+siri:changeBeforeUpdates a owl:DatatypeProperty ;
+    rdfs:label "ChangeBeforeUpdates" ;
+    rdfs:comment "The amount of change to the VEHICLE expected arrival time at next stop that can happen before an update is sent (i.e. if ChangeBeforeUpdate is set to 2 minutes, the subscriber will not be told that a bus is 30 seconds delayed - an update will only be sent when the bus is at least 2 minutes delayed)." ;
+    siri:xsdType "DurationType" .
+
+siri:directionName a owl:ObjectProperty ;
+    rdfs:label "DirectionName" ;
+    rdfs:comment "Description of the DIRECTION. May correspond to a DESTINATION DISPLAY. (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:externalLineRef a owl:ObjectProperty ;
+    rdfs:label "ExternalLineRef" ;
+    rdfs:comment "Alternative identifier of LINE that an external system may associate with journey." ;
+    siri:isReference true ;
+    siri:xsdType "LineRefStructure" .
+
+siri:groupOfLinesRef a owl:ObjectProperty ;
+    rdfs:label "GroupOfLinesRef" ;
+    rdfs:comment "Reference to a GROUP OF LINEs to which journey belongs. SIRI 2.0" ;
+    siri:isReference true ;
+    siri:xsdType "GroupOfLinesRefStructure" .
+
+siri:hasNames a owl:DatatypeProperty ;
+    rdfs:label "HasNames" ;
+    rdfs:comment "Whether results should return references." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:hasReferences a owl:DatatypeProperty ;
+    rdfs:label "HasReferences" ;
+    rdfs:comment "Whether results should return references." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:includeSituations a owl:DatatypeProperty ;
+    rdfs:label "IncludeSituations" ;
+    rdfs:comment "Whether any related Situations should be included in the ServiceDelivery. Default is 'false'. (since SIRI 2.0)" ;
+    siri:xsdType "xsd:boolean" .
+
+siri:includeTranslations a owl:DatatypeProperty ;
+    rdfs:label "IncludeTranslations" .
+
+siri:incrementalUpdates a owl:DatatypeProperty ;
+    rdfs:label "IncrementalUpdates" ;
+    rdfs:comment "Whether the producer will return the complete set of current data, or only provide updates to this data, i.e. additions, modifications and deletions. If false or omitted, each subscription response will contain the full information as specified in this request." ;
+    siri:xsdType "xsd:boolean" .
+
+siri:journeyPatternName a owl:ObjectProperty ;
+    rdfs:label "JourneyPatternName" ;
+    rdfs:comment "Name of Joruney Pattern" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:journeyPatternRef a owl:ObjectProperty ;
+    rdfs:label "JourneyPatternRef" ;
+    rdfs:comment "Identifier of JOURNEY PATTERN that journey follows." ;
+    siri:isReference true ;
+    siri:xsdType "JourneyPatternRefStructure" .
+
+siri:language a owl:DatatypeProperty ;
+    rdfs:label "Language" ;
+    rdfs:comment "Preferred languages in which to return text values." ;
+    siri:xsdType "xsd:language" .
+
+siri:linePermissions a owl:DatatypeProperty ;
+    rdfs:label "LinePermissions" .
+
+siri:maximumNumberOfCalls a owl:DatatypeProperty ;
+    rdfs:label "MaximumNumberOfCalls" ;
+    rdfs:comment "If calls are to be returned, maximum number of calls to include in response. If absent, exclude all calls. (since SIRI 2.0)." .
+
+siri:maximumVehicles a owl:DatatypeProperty ;
+    rdfs:label "MaximumVehicles" ;
+    rdfs:comment "The maximum number of MONITORED VEHICLE JOURNEYs to include in a given delivery. The most recent n Events within the look ahead window are included." ;
+    siri:xsdType "xsd:positiveInteger" .
+
+siri:monitoredVehicleJourney a owl:DatatypeProperty ;
+    rdfs:label "MonitoredVehicleJourney" ;
+    rdfs:comment "Monitored VEHICLE JOURNEY that VEHICLE is following." .
+
+siri:monitoringName a owl:ObjectProperty ;
+    rdfs:label "MonitoringName" ;
+    rdfs:comment "Name associated with Monitoring Reference. Supports SIRI LITE servcies ((since SIRI 2.0))." ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:operatorPermissions a owl:DatatypeProperty ;
+    rdfs:label "OperatorPermissions" .
+
+siri:progressBetweenStops a owl:ObjectProperty ;
+    rdfs:label "ProgressBetweenStops" ;
+    rdfs:comment "Provides information about the progress of the VEHICLE along its current link, that is link from previous visited top to current position." ;
+    siri:xsdType "ProgressBetweenStopsStructure" .
+
+siri:publishedLineName a owl:DatatypeProperty ;
+    rdfs:label "PublishedLineName" ;
+    rdfs:comment "Name or Number by which the LINE is known to the public. (Unbounded since SIRI 2.0)" .
+
+siri:reason a owl:ObjectProperty ;
+    rdfs:label "Reason" ;
+    rdfs:comment "Reason for cancellation. (Unbounded since SIRI 2.0)" ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:requestPolicy a owl:DatatypeProperty ;
+    rdfs:label "RequestPolicy" ;
+    rdfs:comment "Request Policy capabilities." .
+
+siri:responseFeatures a owl:DatatypeProperty ;
+    rdfs:label "ResponseFeatures" ;
+    rdfs:comment "Optional Response capabilities." .
+
+siri:routeRef a owl:ObjectProperty ;
+    rdfs:label "RouteRef" ;
+    rdfs:comment "Identifier of ROUTE that journey follows." ;
+    siri:isReference true ;
+    siri:xsdType "RouteRefStructure" .
+
+siri:subscriptionPolicy a owl:ObjectProperty ;
+    rdfs:label "SubscriptionPolicy" ;
+    rdfs:comment "Subscription Policy capabilities." ;
+    siri:xsdType "CapabilitySubscriptionPolicyStructure" .
+
+siri:topicFiltering a owl:DatatypeProperty ;
+    rdfs:label "TopicFiltering" ;
+    rdfs:comment "Topic Filtering Capabilities." .
+
+siri:updateInterval a owl:DatatypeProperty ;
+    rdfs:label "UpdateInterval" ;
+    rdfs:comment "Time interval in seconds in which new data is to be transmitted. If unspecified, default to system configuration." ;
+    siri:xsdType "PositiveDurationType" .
+
+siri:validUntilTime a owl:DatatypeProperty ;
+    rdfs:label "ValidUntilTime" ;
+    rdfs:comment "Time until when data is valid." ;
+    siri:xsdType "xsd:dateTime" .
+
+siri:vehicleActivity a owl:ObjectProperty ;
+    rdfs:label "VehicleActivity" ;
+    rdfs:comment "Describes the progress of a VEHICLE along its route." ;
+    siri:xsdType "VehicleActivityStructure" .
+
+siri:vehicleActivityCancellation a owl:ObjectProperty ;
+    rdfs:label "VehicleActivityCancellation" ;
+    rdfs:comment "Reference to an previously communicated VEHICLE activity which should now be removed from the system." ;
+    siri:xsdType "VehicleActivityCancellationStructure" .
+
+siri:vehicleJourneyRef a owl:ObjectProperty ;
+    rdfs:label "VehicleJourneyRef" ;
+    rdfs:comment "Reference to VEHICLE JOURNEY that VEHICLE is making." ;
+    siri:isReference true ;
+    siri:xsdType "FramedVehicleJourneyRefStructure" .
+
+siri:vehicleMode a owl:DatatypeProperty ;
+    rdfs:label "VehicleMode" ;
+    rdfs:comment "A means of transportation such as bus, rail, etc." ;
+    siri:xsdType "VehicleModesEnumeration" .
+
+siri:vehicleMonitoringDelivery a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringDelivery" ;
+    rdfs:comment "Delivery for Vehicle Moniroting Service." .
+
+siri:vehicleMonitoringDetailLevel a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringDetailLevel" ;
+    rdfs:comment "Level of detail to include in response." ;
+    siri:xsdType "VehicleMonitoringDetailEnumeration" .
+
+siri:vehicleMonitoringRequest a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringRequest" .
+
+siri:vehicleMonitoringServiceCapabilities a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringServiceCapabilities" .
+
+siri:vehicleRef a owl:ObjectProperty ;
+    rdfs:label "VehicleRef" ;
+    rdfs:comment "Reference to a specific VEHICLE about which data is requested." ;
+    rdfs:range siri:Vehicle ;
+    siri:isReference true ;
+    siri:xsdType "VehicleRefStructure" .
+
+siri:directionRef a owl:ObjectProperty ;
+    rdfs:label "DirectionRef" ;
+    rdfs:comment "Filter the results to include only VEHICLEs going to this DIRECTION." ;
+    rdfs:range siri:Direction ;
+    siri:isReference true ;
+    siri:xsdType "DirectionRefStructure" .
+
+siri:lineRef a owl:ObjectProperty ;
+    rdfs:label "LineRef" ;
+    rdfs:comment "Filter the results to include only vehicles for the specific LINE." ;
+    siri:isReference true ;
+    siri:xsdType "LineRefStructure" .
+
+siri:vehicleActivityNote a owl:ObjectProperty ;
+    rdfs:label "VehicleActivityNote" ;
+    rdfs:comment "Annotation to accompany of Vehicle Activities." ;
+    siri:xsdType "NaturalLanguageStringStructure" .
+
+siri:vehicleMonitoringPermissions a owl:DatatypeProperty ;
+    rdfs:label "VehicleMonitoringPermissions" .
+
+siri:vehicleMonitoringRef a owl:ObjectProperty ;
+    rdfs:label "VehicleMonitoringRef" ;
+    rdfs:comment "A predefined scope for making VEHICLE requests." ;
+    siri:isReference true ;
+    siri:xsdType "VehicleMonitoringRefStructure" .
+
+siri:extensions a owl:DatatypeProperty ;
+    rdfs:label "Extensions" .
+

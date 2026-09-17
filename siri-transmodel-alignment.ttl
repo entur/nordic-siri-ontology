@@ -1,0 +1,54 @@
+## -----------------------------------------------------------------
+## SIRI ⇄ Transmodel Alignment
+## -----------------------------------------------------------------
+## ROLE: Curated conceptual alignment between the generated SIRI base
+##       ontology and the Transmodel conceptual model. This is NOT
+##       derived from the XSD — it is an editorial mapping overlay.
+##
+## Mechanism: skos:exactMatch / skos:closeMatch / skos:broadMatch on
+##            generated siri: classes → Transmodel concept URIs. SIRI
+##            keeps its own identity and naming; Transmodel governs
+##            alignment only, without creating hard owl:imports
+##            dependencies. Transmodel ontology: https://w3id.org/transmodel/
+##
+## Loaded alongside the generated SIRI base ontology.
+## -----------------------------------------------------------------
+
+@prefix siri:        <https://siri-cen.eu/ontology#> .
+@prefix rdfs:        <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:         <http://www.w3.org/2002/07/owl#> .
+@prefix skos:        <http://www.w3.org/2004/02/skos/core#> .
+@prefix tm-journeys: <https://w3id.org/transmodel/journeys#> .
+@prefix tm-fac:      <https://w3id.org/transmodel/facilities#> .
+
+<https://siri-cen.eu/alignment/transmodel> a owl:Ontology ;
+    rdfs:label "SIRI–Transmodel Alignment" ;
+    owl:imports <https://siri-cen.eu/ontology> ;
+    rdfs:comment "Editorial skos alignment from generated SIRI classes to Transmodel concepts." .
+
+## --- Real-time journey views ---
+
+siri:EstimatedVehicleJourney skos:closeMatch tm-journeys:MonitoredVehicleJourney ;
+    rdfs:seeAlso tm-journeys:VehicleJourney .
+
+siri:MonitoredVehicleJourneyStructure skos:closeMatch tm-journeys:MonitoredVehicleJourney ;
+    rdfs:seeAlso tm-journeys:VehicleJourney .
+
+## --- Accessibility ---
+
+siri:AccessibilityAssessmentStructure skos:exactMatch tm-fac:AccessibilityAssessment .
+siri:AccessibilityLimitationStructure skos:exactMatch tm-fac:AccessibilityLimitation .
+
+## --- Facilities ---
+
+siri:FacilityStructure skos:broadMatch tm-fac:Facility .
+siri:FacilityCondition skos:closeMatch tm-fac:StatusOfEquipment .
+
+## --- Situations / Validity ---
+
+siri:HalfOpenTimestampOutputRangeStructure skos:closeMatch tm-fac:ValidityCondition .
+
+## --- Stop infrastructure ---
+
+siri:AffectedStopPlaceStructure skos:closeMatch tm-fac:StopPlace .
+siri:AffectedStopPointStructure skos:closeMatch tm-journeys:ScheduledStopPoint .

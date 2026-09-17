@@ -1,0 +1,314 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siri: <https://siri-cen.eu/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+siri:GeneralMessage a owl:Class ;
+    rdfs:label "GeneralMessage" ;
+    rdfs:subClassOf siri:InfoMessageStructure ;
+    siri:xsdElement true .
+
+siri:GeneralMessageCancellation a owl:Class ;
+    rdfs:label "GeneralMessageCancellation" ;
+    rdfs:subClassOf siri:InfoMessageCancellationStructure ;
+    siri:xsdElement true .
+
+siri:GeneralMessageCapabilitiesResponse a owl:Class ;
+    rdfs:label "GeneralMessageCapabilitiesResponse" ;
+    rdfs:subClassOf siri:GeneralMessageCapabilitiesResponseStructure ;
+    siri:xsdElement true .
+
+siri:GeneralMessageCapabilityAccessControlStructure a owl:Class ;
+    rdfs:label "GeneralMessageCapabilityAccessControl" ;
+    rdfs:comment "Type for access control." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:checkInfoChannelRef ;
+            siri:xsdSequenceOrder 1 ],
+        siri:CapabilityAccessControlStructure .
+
+siri:GeneralMessageDeliveriesStructure a owl:Class ;
+    rdfs:label "GeneralMessageDeliveries" ;
+    rdfs:comment "Type for Deliveries. Used in WSDL." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageDelivery ;
+            siri:xsdSequenceOrder 1 ] .
+
+siri:GeneralMessageDelivery a owl:Class ;
+    rdfs:label "GeneralMessageDelivery" ;
+    rdfs:subClassOf siri:GeneralMessageDeliveryStructure ;
+    siri:xsdElement true .
+
+siri:GeneralMessageRequest a owl:Class ;
+    rdfs:label "GeneralMessageRequest" ;
+    rdfs:subClassOf siri:GeneralMessageRequestStructure ;
+    siri:xsdElement true .
+
+siri:GeneralMessageServiceCapabilities a owl:Class ;
+    rdfs:label "GeneralMessageServiceCapabilities" ;
+    rdfs:subClassOf siri:GeneralMessageServiceCapabilitiesStructure ;
+    siri:xsdElement true .
+
+siri:GeneralMessageServicePermissionStructure a owl:Class ;
+    rdfs:label "GeneralMessageServicePermission" ;
+    rdfs:comment "Type for General MessageService Permission." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoChannelPermissions ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractPermissionStructure .
+
+siri:GeneralMessageSubscriptionRequest a owl:Class ;
+    rdfs:label "GeneralMessageSubscriptionRequest" ;
+    rdfs:subClassOf siri:GeneralMessageSubscriptionStructure ;
+    siri:xsdElement true .
+
+siri:InfoChannelPermissionStructure a owl:Class ;
+    rdfs:label "InfoChannelPermission" ;
+    rdfs:comment "Type for Info Channel Permission." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoChannelRef ;
+            siri:xsdSequenceOrder 1 ],
+        siri:AbstractTopicPermissionStructure .
+
+siri:InfoMessageRefStructure a owl:Class ;
+    rdfs:label "InfoMessage" ;
+    rdfs:comment "Type for reference to an Info Message." .
+
+siri:isReference a owl:AnnotationProperty ;
+    rdfs:label "is reference" .
+
+siri:xsdElement a owl:AnnotationProperty ;
+    rdfs:label "xsd element" .
+
+siri:xsdSequenceOrder a owl:AnnotationProperty ;
+    rdfs:label "xsd sequence order" .
+
+siri:xsdType a owl:AnnotationProperty ;
+    rdfs:label "xsd type" .
+
+<https://siri-cen.eu/ontology/gm> a owl:Ontology ;
+    dcterms:created "2026-07-16T09:37:02+02:00" ;
+    dcterms:source "siri.xsd" ;
+    dcterms:title "SIRI General Message (GM)" ;
+    owl:imports <https://siri-cen.eu/ontology/model> ;
+    owl:versionInfo "v2.2-6-g7b1463b" .
+
+siri:GeneralMessageCapabilitiesResponseStructure a owl:Class ;
+    rdfs:label "GeneralMessageCapabilitiesResponse" ;
+    rdfs:comment "Type for Delivery for General MessageService." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageServiceCapabilities ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessagePermissions ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractServiceCapabilitiesResponseStructure .
+
+siri:GeneralMessageDeliveryStructure a owl:Class ;
+    rdfs:label "GeneralMessageDelivery" ;
+    rdfs:comment "Delivery for General Message." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:generalMessage ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:generalMessageCancellation ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractServiceDeliveryStructure .
+
+siri:GeneralMessageRequestStructure a owl:Class ;
+    rdfs:label "GeneralMessageRequest" ;
+    rdfs:comment "Service Request for General Messages." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty siri:infoChannelRef ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:onProperty siri:language ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractFunctionalServiceRequestStructure .
+
+siri:GeneralMessageServiceCapabilitiesStructure a owl:Class ;
+    rdfs:label "GeneralMessageServiceCapabilities" ;
+    rdfs:comment "Type for General Message Capabilities." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:topicFiltering ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:requestPolicy ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:accessControl ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractCapabilitiesStructure .
+
+siri:GeneralMessageSubscriptionStructure a owl:Class ;
+    rdfs:label "GeneralMessageSubscription" ;
+    rdfs:comment "Subscription for General Message Service." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:generalMessageRequest ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 2 ],
+        siri:AbstractSubscriptionStructure .
+
+siri:InfoMessageCancellationStructure a owl:Class ;
+    rdfs:label "InfoMessageCancellation" ;
+    rdfs:comment "Type for Revocation of a previous message." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoMessageIdentifier ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoChannelRef ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 3 ],
+        siri:AbstractReferencingItemStructure .
+
+siri:InfoMessageStructure a owl:Class ;
+    rdfs:label "InfoMessage" ;
+    rdfs:comment "Type for an Info Message. @formatRef." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoMessageIdentifier ;
+            siri:xsdSequenceOrder 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoMessageVersion ;
+            siri:xsdSequenceOrder 2 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:infoChannelRef ;
+            siri:xsdSequenceOrder 3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:validUntilTime ;
+            siri:xsdSequenceOrder 4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:situationRef ;
+            siri:xsdSequenceOrder 5 ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:content ;
+            siri:xsdSequenceOrder 6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty siri:extensions ;
+            siri:xsdSequenceOrder 7 ],
+        siri:AbstractIdentifiedItemStructure .
+
+siri:accessControl a owl:ObjectProperty ;
+    rdfs:label "AccessControl" ;
+    rdfs:comment "Optional Access control capabilities." ;
+    siri:xsdType "GeneralMessageCapabilityAccessControlStructure" .
+
+siri:checkInfoChannelRef a owl:ObjectProperty ;
+    rdfs:label "CheckInfoChannelRef" ;
+    rdfs:comment "If access control is supported, whether access control by LINE is supported. Default is 'true'." ;
+    siri:isReference true ;
+    siri:xsdType "xsd:boolean" .
+
+siri:content a owl:DatatypeProperty ;
+    rdfs:label "Content" ;
+    rdfs:comment "Message Content. Format is specified by Format Ref." ;
+    siri:xsdType "xsd:anyType" .
+
+siri:generalMessage a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessage" .
+
+siri:generalMessageCancellation a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageCancellation" .
+
+siri:generalMessageDelivery a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageDelivery" ;
+    rdfs:comment "Delivery for general Message service." .
+
+siri:generalMessagePermissions a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessagePermissions" .
+
+siri:generalMessageRequest a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageRequest" .
+
+siri:generalMessageServiceCapabilities a owl:DatatypeProperty ;
+    rdfs:label "GeneralMessageServiceCapabilities" .
+
+siri:infoChannelPermissions a owl:DatatypeProperty ;
+    rdfs:label "InfoChannelPermissions" ;
+    rdfs:comment "The monitoring points that the participant may access." .
+
+siri:infoMessageVersion a owl:DatatypeProperty ;
+    rdfs:label "InfoMessageVersion" ;
+    rdfs:comment "Optional version number of update to previosu message." ;
+    siri:xsdType "xsd:positiveInteger" .
+
+siri:language a owl:DatatypeProperty ;
+    rdfs:label "Language" ;
+    rdfs:comment "Preferred languages in which to return text values." ;
+    siri:xsdType "xsd:language" .
+
+siri:requestPolicy a owl:ObjectProperty ;
+    rdfs:label "RequestPolicy" ;
+    rdfs:comment "Request Policiy capabilities." ;
+    siri:xsdType "CapabilityRequestPolicyStructure" .
+
+siri:situationRef a owl:ObjectProperty ;
+    rdfs:label "SituationRef" ;
+    rdfs:range siri:Situation ;
+    siri:isReference true .
+
+siri:topicFiltering a owl:DatatypeProperty ;
+    rdfs:label "TopicFiltering" ;
+    rdfs:comment "Filtering Capabilities." .
+
+siri:validUntilTime a owl:DatatypeProperty ;
+    rdfs:label "ValidUntilTime" ;
+    rdfs:comment "Time until when message is valid. If absent unopen ended." ;
+    siri:xsdType "xsd:dateTime" .
+
+siri:infoMessageIdentifier a owl:ObjectProperty ;
+    rdfs:label "InfoMessageIdentifier" ;
+    rdfs:comment "Unique identifier of message." ;
+    siri:isReference true ;
+    siri:xsdType "InfoMessageRefStructure" .
+
+siri:infoChannelRef a owl:ObjectProperty ;
+    rdfs:label "InfoChannelRef" ;
+    rdfs:comment "Referenceto an Info Channel for which messages are to be returned." ;
+    rdfs:range siri:InfoChannel ;
+    siri:isReference true ;
+    siri:xsdType "InfoChannelRefStructure" .
+
+siri:extensions a owl:DatatypeProperty ;
+    rdfs:label "Extensions" .
+
