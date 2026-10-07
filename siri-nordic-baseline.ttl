@@ -17,7 +17,6 @@
 ##
 ## Scope legend:
 ##   profile:NordicSIRI     — in the common Nordic SIRI Profile (ET, SX, VM)
-##   profile:EnturExtension — documented but outside NSP v1.1 scope (FM)
 ##
 ## CLASS BINDING (applied): nordic:onClass / nordic:inProfile point at the
 ## real generated base IRI — the global element class where SIRI declares
@@ -849,59 +848,6 @@ siri:InfoLinksStructure nordic:inProfile profile:NordicSIRI ;
     nordic:provenance nordic:Baseline .
 
 ## =================================================================
-## SIRI-FM — Facility Monitoring (EnturExtension)
-## =================================================================
-## Documented for parking and facility use cases; not part of the
-## official Nordic SIRI Profile v1.1 scope.
-## -----------------------------------------------------------------
-
-## --- FacilityMonitoringDelivery (EnturExtension) ---
-siri:FacilityMonitoringDelivery nordic:inProfile profile:EnturExtension ;
-    nordic:inService nordic:SIRI_FM ;
-    nordic:provenance nordic:Baseline .
-
-## --- FacilityCondition (EnturExtension) ---
-siri:FacilityCondition nordic:inProfile profile:EnturExtension ;
-    nordic:inService nordic:SIRI_FM ;
-    nordic:provenance nordic:Baseline .
-
-## --- Facility (EnturExtension) ---
-siri:FacilityStructure nordic:inProfile profile:EnturExtension ;
-    nordic:element "Facility" ;
-    nordic:inService nordic:SIRI_FM ;
-    nordic:provenance nordic:Baseline .
-
-## --- FacilityStatus (EnturExtension) ---
-siri:FacilityStatusStructure nordic:inProfile profile:EnturExtension ;
-    nordic:element "FacilityStatus" ;
-    nordic:inService nordic:SIRI_FM ;
-    nordic:provenance nordic:Baseline .
-
-## --- FacilityLocation (EnturExtension) ---
-siri:FacilityLocationStructure nordic:inProfile profile:EnturExtension ;
-    nordic:element "FacilityLocation" ;
-    nordic:inService nordic:SIRI_FM ;
-    nordic:provenance nordic:Baseline .
-
-## --- MonitoredCounting (EnturExtension) ---
-siri:MonitoredCountingStructure nordic:inProfile profile:EnturExtension ;
-    nordic:element "MonitoredCounting" ;
-    nordic:inService nordic:SIRI_FM ;
-    nordic:provenance nordic:Baseline .
-
-## --- MonitoringInfo (EnturExtension) — typed by siri:MonitoringInformationStructure ---
-siri:MonitoringInformationStructure nordic:inProfile profile:EnturExtension ;
-    nordic:element "MonitoringInfo" ;
-    nordic:inService nordic:SIRI_FM ;
-    nordic:provenance nordic:Baseline .
-
-## --- Remedy (EnturExtension) ---
-siri:RemedyStructure nordic:inProfile profile:EnturExtension ;
-    nordic:element "Remedy" ;
-    nordic:inService nordic:SIRI_FM ;
-    nordic:provenance nordic:Baseline .
-
-## =================================================================
 ## SHARED OBJECTS
 ## =================================================================
 
@@ -927,7 +873,7 @@ siri:FramedVehicleJourneyRefStructure nordic:inProfile profile:NordicSIRI ;
 ## --- AccessibilityAssessment (NordicSIRI) ---
 siri:AccessibilityAssessmentStructure nordic:inProfile profile:NordicSIRI ;
     nordic:element "AccessibilityAssessment" ;
-    nordic:inService nordic:SIRI_SX , nordic:SIRI_FM ;
+    nordic:inService nordic:SIRI_SX ;
     nordic:provenance nordic:Baseline .
 
 [] a nordic:ProfileMember ;
@@ -952,7 +898,7 @@ siri:AccessibilityAssessmentStructure nordic:inProfile profile:NordicSIRI ;
 ## --- AccessibilityLimitation (NordicSIRI) ---
 siri:AccessibilityLimitationStructure nordic:inProfile profile:NordicSIRI ;
     nordic:element "AccessibilityLimitation" ;
-    nordic:inService nordic:SIRI_SX , nordic:SIRI_FM ;
+    nordic:inService nordic:SIRI_SX ;
     nordic:provenance nordic:Baseline .
 
 [] a nordic:ProfileMember ;
@@ -1024,7 +970,7 @@ siri:SimpleContactStructure nordic:inProfile profile:NordicSIRI ;
 
 ## --- SituationRef (NordicSIRI) ---
 siri:SituationRef nordic:inProfile profile:NordicSIRI ;
-    nordic:inService nordic:SIRI_ET , nordic:SIRI_FM ;
+    nordic:inService nordic:SIRI_ET ;
     nordic:provenance nordic:Baseline .
 
 [] a nordic:ProfileMember ;
